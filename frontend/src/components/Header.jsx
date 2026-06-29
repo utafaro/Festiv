@@ -1,4 +1,5 @@
 import { Radio } from "lucide-react";
+import UserDropdown from "./UserDropdown";
 
 
 
@@ -22,14 +23,13 @@ export default function Header({ user }){
           </div>
 
           {/* Quick Stats or Spotify Connection Widget */}
-          <div className="flex items-center space-x-4">
+          <div className="relative flex items-center gap-3 group py-2">
             <span className="text-xs text-slate-700 font-semibold">{user?.full_name}</span>
             {/* Profile Avatar mockup */}
-            <div className="w-9 h-9 rounded-xl border border-slate-200 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
-              
-              <img src={user?.avatar} />
-            </div>
-
+            <button className="w-10 h-10 rounded-xl border border-slate-200 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm hover:ring-2 hover:ring-indigo-500/25 hover:border-indigo-500/40 transition-all duration-300 focus:outline-none">
+                <img src={user?.avatar} alt="Avatar User" className="w-full h-full object-cover" />
+            </button>
+            <UserDropdown user={user} />
           </div>
         </div>
       </header>
