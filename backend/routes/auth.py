@@ -3,8 +3,10 @@ from datetime import datetime
 from bson import ObjectId
 from core.database import get_db
 from core.security import (hash_password, verify_password,
-    create_access_token, create_refresh_token, get_current_user)
+    create_access_token, create_refresh_token, get_current_user, bearer_scheme)
 from models.user import SignUpRequest, SignInRequest, TokenResponse, UserResponse
+from jose import jwt, JWTError
+from core.config import settings
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -61,8 +63,7 @@ async def get_me(current_user=Depends(get_current_user)):
 
 @router.post("/refresh")
 async def refresh_token(token: str, db=Depends(get_db)):
-    from jose import jwt, JWTError
-    from core.config import settings
+
     try:
         payload = jwt.decode(token, settings.SECRET_KEY,
                             algorithms=[settings.ALGORITHM])
@@ -76,3 +77,23 @@ async def refresh_token(token: str, db=Depends(get_db)):
         return {"access_token": new_access, "token_type": "bearer"}
     except JWTError:
         raise HTTPException(401, "Token expiré ou invalide")
+    
+
+@router.post("/logout")
+async def logout(
+    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
+    db=Depends(get_db)
+):
+    token = credentials.credentials
+    # Stocke le token en blacklist jusqu'à son expiration
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        exp = payload.get("exp")
+    except JWTError:
+        raise HTTPException(401, "Token invalide")
+
+    await db["token_blacklist"].insert_one({
+        "token": token,
+        "expires_at": datetime.utcfromtimestamp(exp)
+    })
+    return {"message": "Déconnecté avec succès"}

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { signUp, signIn, getMe, saveTokens, clearTokens } from "../api/auth"
+import { signUp, signIn, getMe, saveTokens, clearTokens, logoutApi } from "../api/auth"
 
 const AuthContext = createContext(null)
 
@@ -38,10 +38,16 @@ export function AuthProvider({ children }) {
     return data
   }
 
-  function logout() {
+  async function logout() {
+  try {
+    await logoutApi() // invalide le token côté serveur
+  } catch {
+    // Si le token est déjà expiré, on continue quand même
+  } finally {
     clearTokens()
     setUser(null)
   }
+}
 
   function loginWithTokens(accessToken, refreshToken) {
     saveTokens(accessToken, refreshToken, false)

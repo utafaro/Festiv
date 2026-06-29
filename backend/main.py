@@ -5,6 +5,8 @@ from core.database import connect_db, close_db
 from routes.auth import router as auth_router
 from routes.oauth import router as oauth_router
 from routes.password import router as password_router
+from starlette.middleware.sessions import SessionMiddleware
+from core.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -26,6 +28,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=settings.SECRET_KEY
+)
+
 
 app.include_router(auth_router)
 app.include_router(oauth_router)

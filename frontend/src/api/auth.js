@@ -38,7 +38,7 @@ api.interceptors.response.use(
           return api(error.config)
         } catch {
           clearTokens()
-          window.location.href = "/signin"
+          window.location.href = "/auth"
         }
       }
     }
@@ -73,5 +73,8 @@ export const forgotPassword = (email) =>
 
 export const resetPassword = (token, new_password) =>
   api.post("/auth/reset-password", { token, new_password }).then((r) => r.data)
+
+export const logoutApi = () =>
+  api.post("/auth/logout").then((r) => r.data)
 
 export default api

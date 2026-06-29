@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/useAuth";
 import AuthHeader from "./AuthHeader";
 import AuthTabs from "./AuthTabs";
 import SocialButtons from "./SocialButtons";
@@ -9,6 +11,8 @@ import ToastContainer from "./ToastContainer";
 
 export default function AuthCard() {
     const [activeTab, setActiveTab] = useState('login');
+    const { user, loading: authLoading } = useAuth();
+    const navigate = useNavigate();
     const [theme, setTheme] = useState(() => {
         if (typeof window !== 'undefined') {
           const savedTheme = localStorage.getItem('color-theme');
@@ -17,6 +21,12 @@ export default function AuthCard() {
         }
           return 'dark';
     });
+
+    useEffect(() => {
+    if (!authLoading && user) {
+      navigate("/", { replace: true });
+    }
+  }, [user, authLoading]);
 
     // Custom interactive notification state
     const [toasts, setToasts] = useState([]);
@@ -82,7 +92,7 @@ export default function AuthCard() {
                       </div>
 
                       <AuthTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-                      <SocialButtons showToast={showToast} />
+                      <SocialButtons />
 
                       <AuthForm
                         activeTab={activeTab}

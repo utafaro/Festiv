@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PasswordField from "./PasswordField";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/useAuth";
+import { useNavigate } from "react-router";
 
 export default function AuthForm({ activeTab, setActiveTab, showToast, setShowResetModal}) {
   const { login, register } = useAuth();
@@ -31,7 +31,7 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
         if (activeTab === "login") {
           await login(formData.email, formData.password, formData.rememberMe);
           showToast(`Ravi de vous revoir ! Authentification réussie.`, "success");
-          navigate("/dashboard");
+          navigate("/");
 
         } else {
           if (!formData.terms) {
@@ -40,7 +40,7 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
           }
           await register(formData.email, formData.password, formData.fullname);
           showToast(`Compte créé avec succès ! Bienvenue, ${formData.fullname}.`, "success");
-          navigate("/dashboard");
+          navigate("/");
         }
 
       } catch (err) {

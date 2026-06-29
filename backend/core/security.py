@@ -53,6 +53,12 @@ async def get_current_user(
             raise credentials_exception
     except JWTError:
         raise credentials_exception
+    
+    # Vérifie que le token n'est pas blacklisté
+    db = get_db()
+    blacklisted = await db["token_blacklist"].find_one({"token": credentials.credentials})
+    if blacklisted:
+        raise HTTPException(status_code=401, detail="Token révoqué")
 
     db = get_db()
     from bson import ObjectId
