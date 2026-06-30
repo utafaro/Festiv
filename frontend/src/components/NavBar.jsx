@@ -5,7 +5,7 @@ export default function NavBar({
     setActiveTab
 }){
     return (
-        <nav className="flex flex-row items-center justify-center overflow-x-auto bg-white/70 p-1.5 rounded-2xl border border-slate-200/80 sticky top-19 z-30 backdrop-blur-md gap-1 sm:gap-2 shadow-md w-full scrollbar-none">
+        <nav className="flex w-fit mx-auto items-center justify-center overflow-x-auto bg-white/70 p-1.5 rounded-2xl border border-slate-200/80 z-30 backdrop-blur-md gap-1 sm:gap-2 shadow-md scrollbar-none">
           
           <button 
             onClick={() => setActiveTab('dashboard')}

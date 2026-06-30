@@ -5,6 +5,7 @@ from core.database import connect_db, close_db
 from routes.auth import router as auth_router
 from routes.oauth import router as oauth_router
 from routes.password import router as password_router
+from routes.festival import router as festival_router
 from starlette.middleware.sessions import SessionMiddleware
 from core.config import settings
 
@@ -36,8 +37,13 @@ app.add_middleware(
 
 
 app.include_router(auth_router)
+app.include_router(festival_router)
 app.include_router(oauth_router)
 app.include_router(password_router)
+
+
+from fastapi.staticfiles import StaticFiles
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def root():

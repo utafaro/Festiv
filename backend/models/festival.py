@@ -73,7 +73,7 @@ class FestivalInDB(BaseModel):
     tags: List[str] = Field(default_factory=list) # 0, 1 ou plusieurs tags
     start_date: datetime
     end_date: datetime
-    set_ids: List[str] = Field(default_factory=list) # Références aux IDs des sets associés
+    #set_ids: List[str] = Field(default_factory=list) # Références aux IDs des sets associés
     
     # Liens et médias (Utilisation de HttpUrl converti en str en base)
     main_page_url: Optional[str] = None
@@ -93,7 +93,7 @@ class FestivalResponse(BaseModel):
     tags: List[str]
     start_date: datetime
     end_date: datetime
-    sets: List[SetResponse] # Liste des sets complets ordonnés
+    #sets: List[SetResponse] # Liste des sets complets ordonnés
     
     main_page_url: Optional[str] = None
     ticket_office_url: Optional[str] = None
@@ -109,7 +109,7 @@ class FestivalCreateRequest(BaseModel):
     tags: List[str] = []
     start_date: datetime
     end_date: datetime
-    set_ids: List[str] = []
+    #set_ids: List[str] = []
     
     main_page_url: Optional[HttpUrl] = None
     ticket_office_url: Optional[HttpUrl] = None
