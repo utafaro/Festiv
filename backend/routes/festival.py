@@ -94,3 +94,54 @@ async def get_festival(festival_id: str, db=Depends(get_db)):
         raise HTTPException(404, "Festival introuvable")
         
     return await format_festival(festival_doc, db)
+
+
+#update festival
+@router.put("/{festival_id}", response_model=FestivalResponse)
+async def update_festival(festival_id: str, festival_data: str = Form(...), file: UploadFile = File(None), db=Depends(get_db), current_user=Depends(get_current_user)):
+    if not ObjectId.is_valid(festival_id):
+        raise HTTPException(400, "Format d'ID de festival invalide")
+    
+    existing_festival = await db["festivals"].find_one({"_id": ObjectId(festival_id)})
+    if not existing_festival:
+        raise HTTPException(404, "Festival introuvable")
+    
+    try:
+        data = FestivalCreateRequest.model_validate_json(festival_data)
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=e.errors())
+    
+    cover_image_url = str(data.cover_image_url) if data.cover_image_url else existing_festival.get("cover_image_url")
+
+    if file:
+        # Générer un nom unique pour éviter les collisions (ex: timestamp + nom_origine)
+        filename = f"{int(datetime.utcnow().timestamp())}_{file.filename.replace(' ', '_')}"
+        file_path = os.path.join(UPLOAD_DIR, filename)
+        
+        # Sauvegarde physique du fichier
+        try:
+            with open(file_path, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            # L'URL finale qui sera accessible publiquement
+            cover_image_url = f"/static/uploads/festivals/{filename}"
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Erreur lors de la sauvegarde de l'image: {str(e)}")
+        finally:
+            await file.close()
+
+    updated_festival = {
+        "name": data.name,
+        "location": data.location,
+        "genres": data.genres,
+        "tags": data.tags,
+        "start_date": data.start_date,
+        "end_date": data.end_date,
+        "main_page_url": str(data.main_page_url) if data.main_page_url else None,
+        "ticket_office_url": str(data.ticket_office_url) if data.ticket_office_url else None,
+        "akkros_url": str(data.akkros_url) if data.akkros_url else None,
+        "merch_url": str(data.merch_url) if data.merch_url else None,
+        "cover_image_url": cover_image_url
+    }
+    
+    await db["festivals"].update_one({"_id": ObjectId(festival_id)}, {"$set": updated_festival})
+    return await format_festival({**existing_festival, **updated_festival}, db)

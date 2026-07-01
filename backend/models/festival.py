@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
 
@@ -111,8 +111,22 @@ class FestivalCreateRequest(BaseModel):
     end_date: datetime
     #set_ids: List[str] = []
     
-    main_page_url: Optional[HttpUrl] = None
-    ticket_office_url: Optional[HttpUrl] = None
-    akkros_url: Optional[HttpUrl] = None
-    merch_url: Optional[HttpUrl] = None
-    cover_image_url: Optional[HttpUrl] = None
+    main_page_url: Optional[str] = None
+    ticket_office_url: Optional[str] = None
+    akkros_url: Optional[str] = None
+    merch_url: Optional[str] = None
+    cover_image_url: Optional[str] = None
+
+
+class FestivalUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    location: Optional[str] = None
+    genres: Optional[List[str]] = None
+    tags: Optional[List[str]] = None
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    main_page_url: Optional[str] = None
+    ticket_office_url: Optional[str] = None
+    akkros_url: Optional[str] = None
+    merch_url: Optional[str] = None
+    cover_image_url: Optional[str] = None
