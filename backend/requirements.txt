@@ -11,12 +11,14 @@ cryptography==49.0.0
 dkimpy==1.1.8
 dnspython==2.8.0
 ecdsa==0.19.2
+email-validator==2.3.0
 emails==1.1.2
 fastapi==0.138.1
 h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
 idna==3.18
+itsdangerous==2.2.0
 joserfc==1.7.1
 motor==3.7.1
 passlib==1.7.4
@@ -24,6 +26,7 @@ puremagic==2.2.0
 pyasn1==0.6.3
 pycparser==3.0
 pydantic==2.13.4
+pydantic-settings==2.14.2
 pydantic_core==2.46.4
 pymongo==4.17.0
 python-dateutil==2.9.0.post0

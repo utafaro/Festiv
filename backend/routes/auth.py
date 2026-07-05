@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi.security import HTTPAuthorizationCredentials
 from datetime import datetime
 from bson import ObjectId
 from core.database import get_db
