@@ -1,14 +1,11 @@
 import { useState } from "react";
 
-export default function PasswordField(
-  {
-    setShowResetModal,
-    activeTab,
-    handleInputChange,
-    formData
-  }
-) {
-
+export default function PasswordField({
+  setShowResetModal,
+  activeTab,
+  handleInputChange,
+  formData,
+}) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="space-y-2">
@@ -52,7 +49,7 @@ export default function PasswordField(
           value={formData.password}
           onChange={handleInputChange}
           placeholder="••••••••••••"
-          className="w-full pl-11 pr-11 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400 dark:placeholder-slate-500 text-sm"
+          className="w-full pl-11 pr-11 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 dark:text-white dark:placeholder-slate-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400"
         />
 
         {/* Password Visibility Switcher */}

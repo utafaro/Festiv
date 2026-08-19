@@ -1,29 +1,59 @@
 from datetime import datetime, timedelta
+import hashlib
+import bcrypt
 from typing import Optional
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from .config import settings
 from .database import get_db
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 bearer_scheme = HTTPBearer()
 
 
-def _normalize_password(password: str) -> str:
-    encoded = password.encode("utf-8")
-    if len(encoded) <= 72:
-        return password
-    return encoded[:72].decode("utf-8", errors="ignore")
+def _hash_pre_bcrypt(password: str) -> bytes:
+    """
+    Méthode la plus courante : On transforme le mot de passe en une clé unique 
+    de taille fixe (SHA-256) pour que bcrypt ne dépasse jamais les 72 octets.
+    """
+    # 1. On encode le texte en octets
+    password_bytes = password.encode('utf-8')
+    # 2. On génère le sha256 (toujours 64 caractères)
+    sha256_hex = hashlib.sha256(password_bytes).hexdigest()
+    # 3. On retourne les octets prêts pour bcrypt
+    return sha256_hex.encode('utf-8')
 
 
 def hash_password(password: str) -> str:
-    return pwd_context.hash(_normalize_password(password))
+    """
+    Génère un sel et hache le mot de passe de manière sécurisée.
+    """
+    # Pré-hachage pour la sécurité de taille
+    prepared_password = _hash_pre_bcrypt(password)
+    
+    # Génération du sel unique (standard de bcrypt)
+    salt = bcrypt.gensalt()
+    
+    # Hachage
+    hashed_bytes = bcrypt.hashpw(prepared_password, salt)
+    
+    # On transforme en chaîne de caractères (string) pour stocker en Base de Données
+    return hashed_bytes.decode('utf-8')
 
 
-def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(_normalize_password(plain), hashed)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """
+    Compare le mot de passe texte avec le hash de la base de données.
+    """
+    try:
+        prepared_password = _hash_pre_bcrypt(plain_password)
+        hashed_bytes = hashed_password.encode('utf-8')
+        
+        # La fonction native de bcrypt fait la comparaison de manière sécurisée
+        return bcrypt.checkpw(prepared_password, hashed_bytes)
+    except Exception:
+        return False
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()

@@ -9,6 +9,10 @@ from routes.festival import router as festival_router
 from starlette.middleware.sessions import SessionMiddleware
 from core.config import settings
 
+origins = [
+    "http://localhost:5173",
+]
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await connect_db()
@@ -24,7 +28,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
