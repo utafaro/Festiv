@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { updateFestival } from "../api/festival";
+import { API_BASE_URL } from "../api/config";
 
 export default function EditFestivalModal({
   festival, // Le festival complet à modifier passé par le parent
@@ -37,7 +38,7 @@ export default function EditFestivalModal({
     akkros_url: festival.akkros_url || "",
     merch_url: festival.merch_url || "",
     cover_image_url: festival.cover_image_url
-      ? `http://localhost:8000${festival.cover_image_url}`
+      ? `${API_BASE_URL}${festival.cover_image_url}`
       : "",
   });
 

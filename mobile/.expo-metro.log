@@ -1,0 +1,12 @@
+Starting project at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile
+Starting Metro Bundler
+
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+› Opening exp://192.168.1.120:8081 on iPhone 15
+Expo Go 57.0.9 is recommended for SDK 57.0.0 (iPhone 15 is using 2.31.6). Learn more: https://docs.expo.dev/develop/tools/#expo-go. Install the recommended Expo Go version?
+- Fetching Expo Go
+- Installing Expo Go on iPhone 15
+Waiting on http://localhost:8081
+
+Logs for your project will appear below.
+iOS Bundled 9103ms node_modules/expo-router/entry.js (3632 modules)

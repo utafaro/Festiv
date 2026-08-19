@@ -6,11 +6,13 @@ import {
   Music,
   Tag,
   ArrowLeft,
+  ArrowUpRight,
   ExternalLink,
   Ticket,
-  Radio,
   Layers,
   Loader2,
+  Radio,
+  Plus,
 } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -18,6 +20,8 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { getFestivalById } from "../api/festival";
+import { API_BASE_URL } from "../api/config";
+import { listMyLineups, createLineup } from "../api/lineup";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -36,6 +40,11 @@ export default function FestivalDetailPage() {
   const [coordinates, setCoordinates] = useState([46.603354, 1.888334]);
   const [mapLoading, setMapLoading] = useState(true);
 
+  const [myLineup, setMyLineup] = useState(null);
+  const [lineupLoading, setLineupLoading] = useState(true);
+  const [creatingLineup, setCreatingLineup] = useState(false);
+  const [lineupError, setLineupError] = useState("");
+
   // 1. Récupérer les données du festival depuis l'API globale
   useEffect(() => {
     const fetchDetails = async () => {
@@ -53,6 +62,38 @@ export default function FestivalDetailPage() {
 
     if (id) fetchDetails();
   }, [id]);
+
+  // 1bis. Vérifie si l'utilisateur a déjà créé une lineup pour ce festival
+  useEffect(() => {
+    const fetchMyLineup = async () => {
+      try {
+        setLineupLoading(true);
+        const lineups = await listMyLineups();
+        const existing = lineups.find((l) => l.festival_id === id);
+        setMyLineup(existing || null);
+      } catch (err) {
+        console.error("Erreur lors de la récupération de la lineup :", err);
+      } finally {
+        setLineupLoading(false);
+      }
+    };
+
+    if (id) fetchMyLineup();
+  }, [id]);
+
+  const handleCreateLineup = async () => {
+    setCreatingLineup(true);
+    setLineupError("");
+    try {
+      const lineup = await createLineup(id, null);
+      navigate(`/lineups/${lineup.id}`);
+    } catch (err) {
+      setLineupError(
+        err.response?.data?.detail || "Erreur lors de la création de la lineup.",
+      );
+      setCreatingLineup(false);
+    }
+  };
 
   // 2. Géocodage de la localisation pour la carte OpenStreetMap
   useEffect(() => {
@@ -118,28 +159,6 @@ export default function FestivalDetailPage() {
     );
   }
 
-  // Mock-up d'artistes de secours si la table n'est pas encore implémentée au complet dans votre bdd
-  const artistsList = festival.artists || [
-    {
-      name: "Headliner Act",
-      genre: festival.genres?.[0] || "Live Electronic",
-      time: "22:00 - 23:30",
-      stage: "Main Stage",
-    },
-    {
-      name: "Rising Star",
-      genre: festival.genres?.[1] || festival.genres?.[0] || "Techno",
-      time: "20:30 - 21:45",
-      stage: "The Lab",
-    },
-    {
-      name: "Local Hero",
-      genre: festival.tags?.[0] || "House",
-      time: "19:00 - 20:15",
-      stage: "Alternative Stage",
-    },
-  ];
-
   return (
     <div className="relative min-h-screen bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
       {/* Halos lumineux d'ambiance de la charte "Festiv Light Premium" */}
@@ -154,13 +173,14 @@ export default function FestivalDetailPage() {
 
       {/* Header avec bouton Retour géré par react-router */}
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 px-4 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={() => navigate("/")} // Utilise l'historique du routeur
             className="group inline-flex items-center space-x-2 text-slate-600 hover:text-indigo-600 text-sm font-medium transition-all duration-200"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            <span>Retour aux festivals</span>
+            <span className="hidden sm:inline">Retour aux festivals</span>
+            <span className="sm:hidden">Retour</span>
           </button>
 
           <div className="flex items-center space-x-3">
@@ -201,7 +221,7 @@ export default function FestivalDetailPage() {
                   src={
                     festival.cover_image_url.startsWith("http")
                       ? festival.cover_image_url
-                      : `http://localhost:8000${festival.cover_image_url}`
+                      : `${API_BASE_URL}${festival.cover_image_url}`
                   }
                   alt={festival.name}
                   className="w-full h-full object-cover"
@@ -224,41 +244,50 @@ export default function FestivalDetailPage() {
             </div>
           </div>
 
-          {/* Section Artistes */}
+          {/* Section Line-up */}
           <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-xl shadow-slate-100/50 rounded-3xl p-6 sm:p-8">
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center space-x-3 mb-4">
               <div className="p-2 bg-fuchsia-50 text-fuchsia-600 rounded-xl">
                 <Radio className="w-5 h-5" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">
-                Line-up & Artistes
+                Line-up & Programmation
               </h2>
             </div>
+            <p className="text-sm text-slate-500 mb-5">
+              Créez votre programmation personnelle pour ce festival — sets,
+              horaires et scènes — et partagez-la avec qui vous voulez.
+            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {artistsList.map((artist, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center justify-between p-4 bg-slate-100/60 border border-slate-200/40 rounded-2xl hover:bg-white hover:border-indigo-100 transition shadow-sm hover:shadow-md group"
+            {lineupLoading ? (
+              <Loader2 className="w-5 h-5 text-indigo-400 animate-spin" />
+            ) : myLineup ? (
+              <button
+                onClick={() => navigate(`/lineups/${myLineup.id}`)}
+                className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-xl shadow-sm transition-all text-sm"
+              >
+                <span>Voir ma Lineup</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={handleCreateLineup}
+                  disabled={creatingLineup}
+                  className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-xl shadow-sm transition-all text-sm disabled:opacity-50"
                 >
-                  <div className="space-y-1">
-                    <h3 className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                      {artist.name}
-                    </h3>
-                    <div className="flex items-center space-x-2 text-[11px] text-slate-500">
-                      <span className="bg-slate-200/60 text-slate-700 px-2 py-0.5 rounded-md font-medium">
-                        {artist.stage}
-                      </span>
-                      <span>•</span>
-                      <span>{artist.time}</span>
-                    </div>
-                  </div>
-                  <span className="inline-flex px-2.5 py-0.5 bg-indigo-50 text-indigo-600 font-bold rounded-lg text-[10px] uppercase tracking-wide">
-                    {artist.genre}
-                  </span>
-                </div>
-              ))}
-            </div>
+                  {creatingLineup ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                  <span>Créer ma Lineup pour ce festival</span>
+                </button>
+                {lineupError && (
+                  <p className="text-xs text-rose-600 mt-2">{lineupError}</p>
+                )}
+              </>
+            )}
           </div>
         </div>
 

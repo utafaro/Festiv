@@ -1,0 +1,1194 @@
+INFO:     Will watch for changes in these directories: ['/Users/alexisthierry/Documents/Alex/Code/Festiv/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [39475] using StatReload
+INFO:     Started server process [39478]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+✅ Connecté à MongoDB Atlas
+INFO:     192.168.1.161:63974 - "OPTIONS /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63977 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63975 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63976 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63977 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63975 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63975 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63977 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63976 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63975 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63977 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63975 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63976 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63974 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "OPTIONS /lineups HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "POST /lineups HTTP/1.1" 201 Created
+INFO:     192.168.1.161:63978 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63979 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63980 - "GET /artists HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63978 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63979 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50538 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50541 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:50538 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50543 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50538 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50548 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50549 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50545 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50549 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50543 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50538 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50549 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50543 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63983 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/invite HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63983 - "POST /lineups/6a861809608d2f4bdbee1cae/invite HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50559 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50559 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50559 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50559 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50563 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50567 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "OPTIONS /lineups/invitations/6a861820608d2f4bdbee1caf/accept HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "POST /lineups/invitations/6a861820608d2f4bdbee1caf/accept HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50563 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50567 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63984 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63984 - "POST /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50571 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50575 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:50571 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50582 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50579 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50573 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50579 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50582 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50582 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50579 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50585 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50585 - "POST /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 201 Created
+INFO:     192.168.1.161:63993 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /artists HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63997 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "OPTIONS /suivis HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "POST /suivis HTTP/1.1" 201 Created
+INFO:     192.168.1.161:63995 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63999 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:63995 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64000 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64000 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50603 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50604 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50603 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50604 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50604 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50608 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50603 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50608 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50608 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50610 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50610 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50608 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50612 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50610 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64016 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64000 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63993 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63995 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:63996 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64018 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/invite HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64018 - "POST /suivis/6a861872608d2f4bdbee1cb2/invite HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50615 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50617 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50624 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50615 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50622 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50617 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50615 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50622 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50615 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "OPTIONS /suivis/invitations/6a86187d608d2f4bdbee1cb3/accept HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "POST /suivis/invitations/6a86187d608d2f4bdbee1cb3/accept HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50622 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50615 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64019 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64019 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64020 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64021 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50629 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50629 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50631 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzM1MTgsInR5cGUiOiJhY2Nlc3MifQ.dO1tAGO8JFOU2dsqBnkyb60qgz3eqrX5M4Y2DLrnUTM" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50628 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50629 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50635 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50635 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50629 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64022 - "DELETE /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:50628 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64022 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64023 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64024 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50638 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50639 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64025 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64026 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50642 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50642 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50642 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50644 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64027 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64028 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64029 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50647 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50648 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64030 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64031 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50650 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50650 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50652 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64032 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64033 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64034 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64034 - "POST /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50655 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50656 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64035 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64036 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64034 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50656 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50655 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64035 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64036 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:64037 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64037 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64040 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64039 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64038 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50661 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50661 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64059 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64059 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64067 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50701 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50701 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64092 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64090 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64091 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64092 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64091 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64090 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64092 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64091 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64090 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64099 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64097 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64098 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64099 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64101 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64097 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64098 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64088 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64099 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:64102 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64105 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64103 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64104 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64104 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64102 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64103 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64105 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64119 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64119 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64121 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64123 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64122 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64119 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64124 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64124 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64124 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64124 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64125 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64126 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50762 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50766 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50764 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50762 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50764 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50766 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50762 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50766 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50770 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50768 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50762 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50764 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51048 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51048 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51066 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51072 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51045 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51045 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51049 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51051 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:51446 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51446 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51446 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51444 - "OPTIONS /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51446 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51446 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51608 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51607 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51604 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51608 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51610 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51607 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51607 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /lineups/6a861809608d2f4bdbee1cae HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /lineups/6a861809608d2f4bdbee1cae/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51610 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51450 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51608 - "GET /artists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51607 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51610 - "GET /lineups/6a861809608d2f4bdbee1cae/stages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51608 - "GET /lineups/6a861809608d2f4bdbee1cae/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51677 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51673 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51677 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51679 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51677 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51679 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51673 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51677 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51694 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51677 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51672 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51676 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51673 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64138 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64140 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64140 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64138 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64140 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64138 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64140 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64142 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64138 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64140 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64138 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64139 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64137 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:51854 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51854 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51856 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51861 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51854 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51858 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51862 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:64145 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64145 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64147 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64149 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64145 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64148 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64150 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64145 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:64164 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64164 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64164 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64164 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64166 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64164 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64167 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64169 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64168 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64174 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64174 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52154 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52156 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64175 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64176 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64177 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52215 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52217 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64178 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64179 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64180 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52331 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52332 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64182 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64181 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64180 - "DELETE /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:52332 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52331 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64182 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64181 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64183 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52424 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52425 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64184 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64185 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52451 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52453 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52454 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52451 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52459 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52460 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52453 - "GET /lineups/mine HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52451 - "GET /lineups/invitations HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52454 - "GET /lineups/shared HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52456 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52460 - "GET /lineups/mine HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52453 - "GET /lineups/invitations HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52451 - "GET /lineups/shared HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52454 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52454 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52451 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52453 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52456 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52459 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52454 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52451 - "GET /suivis/mine HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52453 - "GET /suivis/shared HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52459 - "GET /suivis/invitations HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52460 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52454 - "GET /suivis/mine HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52451 - "GET /suivis/shared HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52453 - "GET /suivis/invitations HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52459 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:64195 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64195 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64195 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64197 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:64195 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64199 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64198 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64200 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52516 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52516 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52515 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52515 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52516 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52516 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52516 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52522 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52530 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52520 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52515 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52522 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64201 - "DELETE /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:52545 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52546 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64201 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64202 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64201 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52546 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52520 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64202 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64201 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52545 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52518 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64203 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52524 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52596 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52598 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52597 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64204 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64203 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64203 - "DELETE /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:52598 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52596 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52597 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52524 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64204 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:64205 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:52260 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52260 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52260 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52262 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52260 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52263 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52264 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52265 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:52307 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52307 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52307 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52309 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52307 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52310 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52311 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52312 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:52327 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52327 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52327 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52329 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52331 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52327 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52330 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52332 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54220 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54226 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54226 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54220 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54220 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54228 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54220 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54220 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54220 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54220 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54225 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54241 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52348 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52348 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52348 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52351 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52348 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52353 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52354 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52352 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     192.168.1.161:52363 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52363 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52363 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52365 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52363 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52367 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52368 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52369 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54560 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54560 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54553 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54575 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54579 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54598 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54598 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54604 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54598 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54598 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:54572 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54638 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54638 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54650 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54579 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54579 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54648 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54652 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54652 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54684 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     192.168.1.161:52400 - "OPTIONS /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52400 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52400 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52400 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52400 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52402 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52403 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52400 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52403 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52402 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52405 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52405 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52405 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52408 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzYwODQsInR5cGUiOiJhY2Nlc3MifQ.pKn65DYbz0pXab44UxoAfO0tasjoyLBSIFRU-0udZiw" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52405 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52404 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52406 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52405 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52401 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52409 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52409 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52410 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52411 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:52412 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52415 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52414 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52413 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:54907 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52429 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52429 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52429 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52432 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ2NTgsInR5cGUiOiJhY2Nlc3MifQ.eXCjqcr1F2BTaxVRBPpSRKtmKkDGDi3C8u_TXq6OfJo" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52429 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52434 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52433 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52435 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54954 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.161:52452 - "OPTIONS /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52452 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52452 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52452 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52452 - "OPTIONS /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52453 - "OPTIONS /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52454 - "OPTIONS /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52455 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52452 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52453 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52454 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52455 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55056 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55058 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52458 - "GET /lineups/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52457 - "GET /lineups/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "OPTIONS /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "OPTIONS /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52458 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52457 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52458 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52457 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52461 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzYxNDAsInR5cGUiOiJhY2Nlc3MifQ.vvnG0lfGN17YqAd6r05MyaVobH77Lwj10_tVZFUtcug" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52458 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52457 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52458 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52457 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52456 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52459 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52458 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55151 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55151 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55151 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55182 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:55213 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55241 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55241 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55241 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55261 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzQ3MzksInR5cGUiOiJhY2Nlc3MifQ.UDkbT_eAeC_tP6sjVPUx35HqNfuSW41LeyVbdmIlWx4" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:55241 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57244 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57244 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57244 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     connection closed
+INFO:     127.0.0.1:57350 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57354 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzU2MDYsInR5cGUiOiJhY2Nlc3MifQ.ybcR307x8UyM-fUYu-aBqtVZWmlZXfpKAB9DJRUWTmQ" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57350 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57357 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57357 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57358 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57350 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57352 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57733 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODc3Nzc3MzksInR5cGUiOiJyZWZyZXNoIn0.6bsiV_RIUR4B99t5qCA_XrsNF5a_YHZxlCVX1nPoh1Q HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57733 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODc3Nzc3MzksInR5cGUiOiJyZWZyZXNoIn0.6bsiV_RIUR4B99t5qCA_XrsNF5a_YHZxlCVX1nPoh1Q HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58158 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58572 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.120:60480 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:60518 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.161:52492 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.161:52493 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE4MDUzMTY4NTgsInR5cGUiOiJyZWZyZXNoIn0.hiLO_WTKyuj9oqQxKtDqVhu4S3XtIaebS8kcn-TH3xU HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE4MDUzMTY4NTgsInR5cGUiOiJyZWZyZXNoIn0.hiLO_WTKyuj9oqQxKtDqVhu4S3XtIaebS8kcn-TH3xU HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52493 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52493 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52495 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzcyNzMsInR5cGUiOiJhY2Nlc3MifQ.j9nN5HYdx9SmLucapsi8p38lNBlj1DIHvxsI92Ubdpk" [accepted]
+INFO:     connection open
+INFO:     192.168.1.161:52493 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52493 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52496 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52497 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52492 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52493 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52496 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.161:52497 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.120:61346 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:61346 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:61420 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:61479 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.120:61479 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.120:61479 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 200 OK
+INFO:     192.168.1.120:61479 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:61499 - "GET /lineups/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.120:61785 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.120:62990 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:64072 - "POST /auth/signin HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64072 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64072 - "GET /static/uploads/festivals/1787160938_hard_boat_festival_2026.jpg HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64122 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64134 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzc4OTcsInR5cGUiOiJhY2Nlc3MifQ.R5qvyF-ktpVFCrKNqidZnjT_7j1ai7O2G1ooEOhUcb4" [accepted]
+INFO:     connection open
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64122 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.168.1.120:64122 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/mine HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/shared HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64173 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzc4OTcsInR5cGUiOiJhY2Nlc3MifQ.R5qvyF-ktpVFCrKNqidZnjT_7j1ai7O2G1ooEOhUcb4" [accepted]
+INFO:     connection open
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64122 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64210 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "DELETE /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 204 No Content
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "PUT /suivis/6a861872608d2f4bdbee1cb2/position HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64121 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64119 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64120 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64210 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64250 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64252 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64253 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64254 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64250 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64253 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64254 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64250 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 401 Unauthorized
+INFO:     192.168.1.120:64863 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64862 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     192.168.1.120:64864 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:65186 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65186 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65186 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65189 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzgxMTIsInR5cGUiOiJhY2Nlc3MifQ.A4VrYklOYaWc4HDyDArS_cHLP1PXSDlKN_vuF1XxgyM" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:65186 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65192 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65186 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65187 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65193 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:49426 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49428 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49428 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49428 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49430 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzgxMTIsInR5cGUiOiJhY2Nlc3MifQ.A4VrYklOYaWc4HDyDArS_cHLP1PXSDlKN_vuF1XxgyM" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49428 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49433 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49428 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49434 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     192.168.1.120:49745 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     192.168.1.120:49745 - "GET /festivals HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:51476 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51476 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51478 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51476 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51478 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51478 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51480 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzgxMTIsInR5cGUiOiJhY2Nlc3MifQ.A4VrYklOYaWc4HDyDArS_cHLP1PXSDlKN_vuF1XxgyM" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51478 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51483 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51484 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51478 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51484 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51483 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51476 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:54759 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODc3Nzc3MzksInR5cGUiOiJyZWZyZXNoIn0.6bsiV_RIUR4B99t5qCA_XrsNF5a_YHZxlCVX1nPoh1Q HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODc3Nzc3MzksInR5cGUiOiJyZWZyZXNoIn0.6bsiV_RIUR4B99t5qCA_XrsNF5a_YHZxlCVX1nPoh1Q HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54813 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzkzNzcsInR5cGUiOiJhY2Nlc3MifQ.U8cYRT6VM2z4kQpMr46-spoq_CXY_jsIK69BD8-UZgw" [accepted]
+INFO:     connection open
+WARNING:  StatReload detected changes in 'main.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39478]
+INFO:     Started server process [53165]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:56724 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzkzNzcsInR5cGUiOiJhY2Nlc3MifQ.U8cYRT6VM2z4kQpMr46-spoq_CXY_jsIK69BD8-UZgw" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+✅ Connecté à MongoDB Atlas
+INFO:     127.0.0.1:56753 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56755 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56761 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56761 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56761 - "GET /auth/me HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [53165]
+INFO:     Started server process [53569]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+✅ Connecté à MongoDB Atlas
+INFO:     127.0.0.1:57514 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57516 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57514 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57514 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57526 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57526 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "POST /auth/refresh?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODc3NzY1MTgsInR5cGUiOiJyZWZyZXNoIn0.0UnQKmt2Zigruhs6UKYmlLi0ccj9TKdCpizdtyIs8kY HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57541 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MTBmZmNiMjg0ZjhiYzY3NmJjMTgiLCJleHAiOjE3ODcxNzk5ODcsInR5cGUiOiJhY2Nlc3MifQ.iR3nqtwwjtpMA5W9PRcd6IKoiq52GC-tQUGMiyoJGWE" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57526 - "OPTIONS /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /suivis/invitations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57560 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57526 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57528 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57562 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57560 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57572 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57572 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "GET /suivis/6a861872608d2f4bdbee1cb2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "OPTIONS /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "GET /festivals/6a86058ad8faa1f5c551c5c1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57575 - "WebSocket /suivis/6a861872608d2f4bdbee1cb2/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTg2MDUxN2Q4ZmFhMWY1YzU1MWM1YzAiLCJleHAiOjE3ODcxNzkzNzcsInR5cGUiOiJhY2Nlc3MifQ.U8cYRT6VM2z4kQpMr46-spoq_CXY_jsIK69BD8-UZgw" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57571 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "GET /suivis/6a861872608d2f4bdbee1cb2/members HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57572 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57572 - "GET /suivis/6a861872608d2f4bdbee1cb2/spots HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "GET /suivis/6a861872608d2f4bdbee1cb2/sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "OPTIONS /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57571 - "GET /suivis/6a861872608d2f4bdbee1cb2/positions HTTP/1.1" 200 OK

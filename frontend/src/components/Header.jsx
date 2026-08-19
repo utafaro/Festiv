@@ -33,7 +33,7 @@ export default function Header({ user }) {
 
         {/* Quick Stats or Spotify Connection Widget */}
         <div className="relative flex items-center gap-3 group py-2">
-          <span className="text-xs text-slate-700 font-semibold">
+          <span className="hidden sm:inline text-xs text-slate-700 font-semibold truncate max-w-[140px]">
             {user?.full_name}
           </span>
           {/* Profile Avatar mockup */}

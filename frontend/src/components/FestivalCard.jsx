@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router";
+import { API_BASE_URL } from "../api/config";
 
 export default function FestivalCard({
   festivals,
@@ -84,7 +85,7 @@ export default function FestivalCard({
               <div className="relative h-44 bg-slate-100 overflow-hidden shrink-0">
                 {festival.cover_image_url ? (
                   <img
-                    src={`http://localhost:8000${festival.cover_image_url}`}
+                    src={`${API_BASE_URL}${festival.cover_image_url}`}
                     alt={festival.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {

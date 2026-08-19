@@ -1,4 +1,10 @@
 import axios from "axios";
+import { API_BASE_URL } from "./config";
+
+export const listFestivals = async () => {
+  const response = await axios.get(`${API_BASE_URL}/festivals`);
+  return response.data;
+};
 
 export const createFestival = async (festivalTextData, imageFile) => {
   const formData = new FormData();
@@ -15,7 +21,7 @@ export const createFestival = async (festivalTextData, imageFile) => {
     sessionStorage.getItem("access_token");
   try {
     const response = await axios.post(
-      "http://localhost:8000/festivals",
+      `${API_BASE_URL}/festivals`,
       formData,
       {
         headers: {
@@ -52,7 +58,7 @@ export const updateFestival = async (
 
   try {
     const response = await axios.put(
-      `http://localhost:8000/festivals/${festivalId}`,
+      `${API_BASE_URL}/festivals/${festivalId}`,
       formData,
       {
         headers: {
@@ -77,7 +83,7 @@ export const getFestivalById = async (festivalId) => {
     sessionStorage.getItem("access_token");
   try {
     const response = await axios.get(
-      `http://localhost:8000/festivals/${festivalId}`,
+      `${API_BASE_URL}/festivals/${festivalId}`,
       {
         headers: {
           Authorization: activeToken ? `Bearer ${activeToken}` : undefined,

@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 from typing import Optional, List
 from datetime import datetime
+from enum import Enum
 
 # ==========================================
 # 1. MODÈLES ARTISTE (Artist)
@@ -29,24 +30,110 @@ class ArtistCreateRequest(BaseModel):
 
 
 # ==========================================
-# 2. MODÈLES SET / CONCERT (Set)
+# 2. MODÈLES LINEUP (planning partageable, lié à un festival)
+# ==========================================
+
+# Schéma en base MongoDB
+class LineupInDB(BaseModel):
+    id: Optional[str] = None
+    festival_id: str
+    owner_id: str
+    name: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+# Réponse publique
+class LineupResponse(BaseModel):
+    id: str
+    festival_id: str
+    owner_id: str
+    name: Optional[str] = None
+    created_at: datetime
+
+# Requête de création
+class LineupCreateRequest(BaseModel):
+    festival_id: str
+    name: Optional[str] = None
+
+
+# ==========================================
+# 3. MODÈLES MEMBRES / INVITATIONS DE LINEUP
+# ==========================================
+
+class LineupMemberStatus(str, Enum):
+    pending = "pending"
+    accepted = "accepted"
+
+# Schéma en base MongoDB
+class LineupMemberInDB(BaseModel):
+    id: Optional[str] = None
+    lineup_id: str
+    user_id: str
+    status: LineupMemberStatus = LineupMemberStatus.pending
+    invited_by: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+# Réponse publique (enrichie avec les infos de l'utilisateur invité et de la lineup)
+class LineupMemberResponse(BaseModel):
+    id: str
+    lineup_id: str
+    lineup_name: Optional[str] = None
+    festival_id: str
+    user_id: str
+    email: str
+    full_name: str
+    status: LineupMemberStatus
+
+# Requête d'invitation
+class LineupInviteRequest(BaseModel):
+    email: EmailStr
+
+
+# ==========================================
+# 4. MODÈLES SCÈNE / LIEU (Stage)
+# ==========================================
+
+# Schéma en base MongoDB — une scène appartient à une lineup et est réutilisable
+# pour tous les sets de cette lineup.
+class StageInDB(BaseModel):
+    id: Optional[str] = None
+    lineup_id: str
+    name: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+# Réponse publique
+class StageResponse(BaseModel):
+    id: str
+    lineup_id: str
+    name: str
+
+# Requête de création
+class StageCreateRequest(BaseModel):
+    name: str
+
+
+# ==========================================
+# 5. MODÈLES SET / CONCERT (Set)
 # ==========================================
 
 # Schéma en base MongoDB
 class SetInDB(BaseModel):
     id: Optional[str] = None
+    lineup_id: str
     name: Optional[str] = None  # Optionnel (ex: "Closing Set", "Opening")
     artist_ids: List[str] = Field(default_factory=list) # Références aux IDs des artistes
+    stage_id: str
     start_time: datetime
     end_time: datetime
     date: datetime # Date spécifique du set
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
-# Réponse publique (On embarque l'objet ArtistResponse complet pour le front)
+# Réponse publique (On embarque l'objet ArtistResponse complet et la scène pour le front)
 class SetResponse(BaseModel):
     id: str
+    lineup_id: str
     name: Optional[str] = None
     artists: List[ArtistResponse]
+    stage: StageResponse
     start_time: datetime
     end_time: datetime
     date: datetime
@@ -54,14 +141,24 @@ class SetResponse(BaseModel):
 # Requête de création
 class SetCreateRequest(BaseModel):
     name: Optional[str] = None
-    artist_ids: List[str]
+    artist_ids: List[str] = []
+    stage_id: str
     start_time: datetime
     end_time: datetime
     date: datetime
 
+# Requête de modification
+class SetUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    artist_ids: Optional[List[str]] = None
+    stage_id: Optional[str] = None
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    date: Optional[datetime] = None
+
 
 # ==========================================
-# 3. MODÈLES FESTIVAL (Festival)
+# 6. MODÈLES FESTIVAL (Festival)
 # ==========================================
 
 # Schéma en base MongoDB

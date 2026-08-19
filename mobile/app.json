@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Festiv",
+    "slug": "festiv",
+    "scheme": "festiv",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#f8fafc",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.festiv.app",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.festiv.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#4f46e5",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Festiv a besoin d'accéder à vos photos pour choisir une image de couverture de festival."
+        }
+      ],
+      [
+        "react-native-maps",
+        {
+          "requestLocationPermission": false
+        }
+      ],
+      "@react-native-community/datetimepicker"
+    ]
+  }
+}
