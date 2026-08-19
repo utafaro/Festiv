@@ -8,6 +8,7 @@ from routes.password import router as password_router
 from routes.festival import router as festival_router
 from starlette.middleware.sessions import SessionMiddleware
 from core.config import settings
+from core.database import get_db
 
 origins = [
     "http://localhost:5173",
@@ -48,6 +49,18 @@ app.include_router(password_router)
 
 from fastapi.staticfiles import StaticFiles
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/api/health")
+async def health():
+    db = get_db()
+    await db.command("ping")
+
+    return {
+        "status": "ok",
+        "database": "connected",
+    }
+
 
 @app.get("/")
 async def root():
