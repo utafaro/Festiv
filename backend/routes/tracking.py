@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status, WebSocket, WebSocketDisconnect, Query
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from jose import jwt, JWTError
 from core.database import get_db
@@ -9,6 +9,7 @@ from models.suivi import (
     PositionSetRequest,
     PositionResponse,
     TargetType,
+    GeoPingRequest,
 )
 from models.festival import SetResponse
 from routes.suivi import get_suivi_or_404, ensure_access
@@ -50,12 +51,15 @@ def format_position(position, user) -> PositionResponse:
         user_id=position["user_id"],
         full_name=user["full_name"],
         avatar=user.get("avatar"),
-        target_type=position["target_type"],
+        target_type=position.get("target_type"),
         lineup_id=position.get("lineup_id"),
         set_id=position.get("set_id"),
         custom_label=position.get("custom_label"),
         note=position.get("note"),
         grouped_with=position.get("grouped_with", []),
+        lat=position.get("lat"),
+        lng=position.get("lng"),
+        geo_updated_at=position.get("geo_updated_at"),
         updated_at=position["updated_at"],
     )
 
@@ -109,7 +113,7 @@ async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_d
         "custom_label": custom_label,
         "note": data.note,
         "grouped_with": data.grouped_with,
-        "updated_at": datetime.utcnow(),
+        "updated_at": datetime.now(timezone.utc),
     }
     await db["positions"].update_one(
         {"suivi_id": suivi_id, "user_id": user_id}, {"$set": position}, upsert=True
@@ -122,8 +126,63 @@ async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_d
 async def clear_position(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
     suivi = await get_suivi_or_404(suivi_id, db)
     await ensure_access(suivi, str(current_user["_id"]), db)
-    await db["positions"].delete_one({"suivi_id": suivi_id, "user_id": str(current_user["_id"])})
+    user_id = str(current_user["_id"])
+
+    position = await db["positions"].find_one({"suivi_id": suivi_id, "user_id": user_id})
+    if position:
+        if position.get("lat") is not None:
+            await db["positions"].update_one(
+                {"_id": position["_id"]},
+                {"$set": {"target_type": None, "lineup_id": None, "set_id": None, "custom_label": None, "note": None, "grouped_with": []}},
+            )
+        else:
+            await db["positions"].delete_one({"_id": position["_id"]})
+        await manager.broadcast(suivi_id, {"type": "updated"})
+
+@router.put("/geo", response_model=PositionResponse)
+async def ping_geo(suivi_id: str, data: GeoPingRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
+    suivi = await get_suivi_or_404(suivi_id, db)
+    await ensure_access(suivi, str(current_user["_id"]), db)
+    user_id = str(current_user["_id"])
+
+    await db["positions"].update_one(
+        {"suivi_id": suivi_id, "user_id": user_id},
+        {
+            "$set": {"lat": data.lat, "lng": data.lng, "geo_updated_at": datetime.now(timezone.utc)},
+            "$setOnInsert": {
+                "suivi_id": suivi_id,
+                "user_id": user_id,
+                "target_type": None,
+                "lineup_id": None,
+                "set_id": None,
+                "custom_label": None,
+                "note": None,
+                "grouped_with": [],
+                "updated_at": datetime.now(timezone.utc),
+            },
+        },
+        upsert=True,
+    )
+    saved = await db["positions"].find_one({"suivi_id": suivi_id, "user_id": user_id})
     await manager.broadcast(suivi_id, {"type": "updated"})
+    return format_position(saved, current_user)
+
+@router.delete("/geo", status_code=status.HTTP_204_NO_CONTENT)
+async def clear_geo(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    suivi = await get_suivi_or_404(suivi_id, db)
+    await ensure_access(suivi, str(current_user["_id"]), db)
+    user_id = str(current_user["_id"])
+
+    position = await db["positions"].find_one({"suivi_id": suivi_id, "user_id": user_id})
+    if position:
+        if position.get("target_type"):
+            await db["positions"].update_one(
+                {"_id": position["_id"]},
+                {"$set": {"lat": None, "lng": None, "geo_updated_at": None}},
+            )
+        else:
+            await db["positions"].delete_one({"_id": position["_id"]})
+        await manager.broadcast(suivi_id, {"type": "updated"})
 
 @router.get("/positions", response_model=List[PositionResponse])
 async def list_positions(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
@@ -133,6 +192,8 @@ async def list_positions(suivi_id: str, db=Depends(get_db), current_user=Depends
     positions = await cursor.to_list(length=500)
     result = []
     for p in positions:
+        if not p.get("target_type") and p.get("lat") is None:
+            continue
         user = await db["users"].find_one({"_id": ObjectId(p["user_id"])})
         if user:
             result.append(format_position(p, user))

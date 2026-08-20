@@ -2,11 +2,13 @@
 
 Dans le dossier mobile: 
 ```
+rm -rf /ios
+rm -rf ~/Library/Developer/Xcode/DerivedData/<nomapp>*
 npx expo prebuild --platform ios --clean
 cd ios && pod install
 ``` 
 
-Ces commandes vont générer un projet xcode dans /ios
+Ces commandes vont générer un projet xcode dans ios
 Ouvrir le fichier .xcworkspace ET PAS .xccodeproj
 
 Selectionner une cible (any ios device arm64 par exemple, ou connecter son iphone et le selectionner)

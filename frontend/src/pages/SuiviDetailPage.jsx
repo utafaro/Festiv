@@ -13,6 +13,7 @@ import {
   Radar,
   Navigation,
   Users,
+  Compass,
 } from "lucide-react";
 import { useAuth } from "../context/useAuth";
 import { getFestivalById } from "../api/festival";
@@ -26,10 +27,21 @@ import {
   listSuiviSets,
   listPositions,
   clearPosition,
+  clearGeo,
 } from "../api/suivi";
 import { useSuiviSocket } from "../hooks/useSuiviSocket";
 import PositionFormModal from "../modal/PositionFormModal";
+import GeoPingModal from "../modal/GeoPingModal";
+import CompassModal from "../modal/CompassModal";
 import ToastNotifications from "../components/ToastNotifications";
+
+function formatGeoAgo(iso) {
+  if (!iso) return "";
+  const diffMin = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+  if (diffMin < 1) return "à l'instant";
+  if (diffMin < 60) return `il y a ${diffMin} min`;
+  return `il y a ${Math.round(diffMin / 60)} h`;
+}
 
 export default function SuiviDetailPage() {
   const { id } = useParams();
@@ -50,7 +62,10 @@ export default function SuiviDetailPage() {
   const [responding, setResponding] = useState(false);
   const [removingId, setRemovingId] = useState(null);
   const [clearingPosition, setClearingPosition] = useState(false);
+  const [clearingGeo, setClearingGeo] = useState(false);
   const [showPositionModal, setShowPositionModal] = useState(false);
+  const [showGeoModal, setShowGeoModal] = useState(false);
+  const [compassTargetId, setCompassTargetId] = useState(null);
   const [quickTarget, setQuickTarget] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -232,13 +247,47 @@ export default function SuiviDetailPage() {
     setClearingPosition(true);
     try {
       await clearPosition(id);
-      setPositions((prev) => prev.filter((p) => p.user_id !== user.id));
+      setPositions((prev) =>
+        prev
+          .map((p) =>
+            p.user_id === user.id
+              ? { ...p, target_type: null, set_id: null, custom_label: null, note: null, grouped_with: [] }
+              : p,
+          )
+          .filter((p) => p.user_id !== user.id || p.lat != null),
+      );
       triggerToast("Position retirée.", "info");
     } catch {
       triggerToast("Erreur lors de la suppression de votre position.", "error");
     } finally {
       setClearingPosition(false);
     }
+  };
+
+  const handleClearGeo = async () => {
+    setClearingGeo(true);
+    try {
+      await clearGeo(id);
+      setPositions((prev) =>
+        prev
+          .map((p) => (p.user_id === user.id ? { ...p, lat: null, lng: null, geo_updated_at: null } : p))
+          .filter((p) => p.user_id !== user.id || p.target_type),
+      );
+      triggerToast("Partage de position GPS arrêté.", "info");
+    } catch {
+      triggerToast("Erreur lors de l'arrêt du partage.", "error");
+    } finally {
+      setClearingGeo(false);
+    }
+  };
+
+  const handleGeoSaved = (saved) => {
+    setPositions((prev) => {
+      const exists = prev.some((p) => p.user_id === saved.user_id);
+      return exists
+        ? prev.map((p) => (p.user_id === saved.user_id ? saved : p))
+        : [...prev, saved];
+    });
   };
 
   if (loading) {
@@ -267,20 +316,25 @@ export default function SuiviDetailPage() {
     );
   }
 
-  const myPosition = positions.find((p) => p.user_id === user.id);
+  const myPosition = positions.find((p) => p.user_id === user.id && p.target_type);
+  const myGeo = positions.find((p) => p.user_id === user.id && p.lat != null);
+  const geoPeople = positions.filter((p) => p.lat != null);
+  const compassTarget = compassTargetId ? positions.find((p) => p.user_id === compassTargetId) : null;
   const otherPositions = positions.filter((p) => p.user_id !== user.id);
 
   const setById = Object.fromEntries(sets.map((s) => [s.id, s]));
   const nameByUserId = Object.fromEntries(positions.map((p) => [p.user_id, p.full_name]));
 
-  const groups = positions.reduce((acc, p) => {
-    const key =
-      p.target_type === "set"
-        ? `set:${p.set_id}`
-        : `custom:${(p.custom_label || "").trim().toLowerCase()}`;
-    (acc[key] ||= []).push(p);
-    return acc;
-  }, {});
+  const groups = positions
+    .filter((p) => p.target_type)
+    .reduce((acc, p) => {
+      const key =
+        p.target_type === "set"
+          ? `set:${p.set_id}`
+          : `custom:${(p.custom_label || "").trim().toLowerCase()}`;
+      (acc[key] ||= []).push(p);
+      return acc;
+    }, {});
 
   return (
     <div className="relative min-h-screen bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
@@ -487,6 +541,69 @@ export default function SuiviDetailPage() {
                   </div>
                 )}
               </div>
+
+              <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-xl shadow-slate-100/50 rounded-3xl p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-fuchsia-50 text-fuchsia-600 rounded-xl">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-900">Localisation live</h2>
+                  </div>
+
+                  {myGeo ? (
+                    <button
+                      onClick={handleClearGeo}
+                      disabled={clearingGeo}
+                      className="px-3 py-2 bg-rose-50 text-rose-600 border border-rose-200 rounded-xl hover:bg-rose-100 transition text-[11px] font-bold disabled:opacity-50"
+                    >
+                      Arrêter le partage
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setShowGeoModal(true)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-xl text-[11px] font-bold shadow-sm transition"
+                    >
+                      <MapPin className="w-3.5 h-3.5" /> Partager ma position
+                    </button>
+                  )}
+                </div>
+
+                {geoPeople.length === 0 ? (
+                  <div className="text-center py-10 text-slate-400 text-sm">
+                    Personne ne partage sa position GPS pour l'instant.
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {geoPeople.map((p) => (
+                      <div
+                        key={p.user_id}
+                        className="flex items-center justify-between p-3 bg-slate-100/60 rounded-xl"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-7 h-7 rounded-full bg-fuchsia-100 text-fuchsia-600 flex items-center justify-center text-[10px] font-bold shrink-0">
+                            {p.full_name?.[0]?.toUpperCase() || "?"}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs font-semibold text-slate-800 truncate">
+                              {p.user_id === user.id ? "Vous" : p.full_name}
+                            </p>
+                            <p className="text-[10px] text-slate-500">{formatGeoAgo(p.geo_updated_at)}</p>
+                          </div>
+                        </div>
+                        {p.user_id !== user.id && (
+                          <button
+                            onClick={() => setCompassTargetId(p.user_id)}
+                            className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[10px] font-bold transition"
+                          >
+                            <Compass className="w-3.5 h-3.5" /> Boussole
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -604,6 +721,19 @@ export default function SuiviDetailPage() {
           onSaved={handlePositionSaved}
           triggerToast={triggerToast}
         />
+      )}
+
+      {showGeoModal && (
+        <GeoPingModal
+          suiviId={id}
+          onClose={() => setShowGeoModal(false)}
+          onSaved={handleGeoSaved}
+          triggerToast={triggerToast}
+        />
+      )}
+
+      {compassTargetId && (
+        <CompassModal target={compassTarget} onClose={() => setCompassTargetId(null)} />
       )}
 
       <ToastNotifications toasts={toasts} />

@@ -2,11 +2,13 @@ import {
   ArrowUpRight,
   Calendar,
   ImageIcon,
+  Loader2,
   MapPin,
   Music,
   Pencil,
   Plus,
   Tag,
+  Trash2,
 } from "lucide-react";
 
 import { useNavigate } from "react-router";
@@ -18,6 +20,9 @@ export default function FestivalCard({
   setShowAddModal,
   setShowEditModal,
   setSelectedFestival,
+  currentUserId,
+  onDeleteFestival,
+  deletingId,
 }) {
   // Formatteur de date pour l'affichage de la carte (ex: "15 Juil. 2026")
   const formatDate = (dateString) => {
@@ -75,7 +80,10 @@ export default function FestivalCard({
       ) : (
         /* Grille de cartes Design triée par date */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
-          {sortedFestivals.map((festival) => (
+          {sortedFestivals.map((festival) => {
+            // Les festivals créés avant l'introduction de owner_id restent gérables par tous
+            const isOwner = !festival.owner_id || festival.owner_id === currentUserId;
+            return (
             <div
               key={festival.id}
               onClick={() => navigate(`/festival/${festival.id}`)}
@@ -123,18 +131,39 @@ export default function FestivalCard({
                     </h3>
 
                     <div className="flex items-center space-x-1 shrink-0">
-                      {/* Bouton Éditer (Stylo) */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation(); // 🌟 Bloque l'ouverture de la page détail
-                          setSelectedFestival(festival);
-                          setShowEditModal(true);
-                        }}
-                        className="p-1.5 text-slate-400 z-10 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all cursor-pointer"
-                        title="Modifier le festival"
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </button>
+                      {isOwner && (
+                        <>
+                          {/* Bouton Éditer (Stylo) */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation(); // 🌟 Bloque l'ouverture de la page détail
+                              setSelectedFestival(festival);
+                              setShowEditModal(true);
+                            }}
+                            className="p-1.5 text-slate-400 z-10 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all cursor-pointer"
+                            title="Modifier le festival"
+                          >
+                            <Pencil className="w-4 h-4" />
+                          </button>
+
+                          {/* Bouton Supprimer */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onDeleteFestival(festival);
+                            }}
+                            disabled={deletingId === festival.id}
+                            className="p-1.5 text-slate-400 z-10 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all cursor-pointer disabled:opacity-50"
+                            title="Supprimer le festival"
+                          >
+                            {deletingId === festival.id ? (
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                              <Trash2 className="w-4 h-4" />
+                            )}
+                          </button>
+                        </>
+                      )}
 
                       {/* Bouton Lien Externe existant */}
                       {festival.main_page_url && (
@@ -205,7 +234,8 @@ export default function FestivalCard({
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </>

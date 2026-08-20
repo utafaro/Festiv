@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel, EmailStr
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from core.database import get_db
 from core.security import hash_password
 import uuid, smtplib
@@ -38,7 +38,7 @@ async def forgot_password(data: ForgotRequest, db=Depends(get_db)):
         return {"message": "Si cet email existe, un lien a été envoyé."}
 
     token = str(uuid.uuid4())
-    expiry = datetime.utcnow() + timedelta(hours=1)
+    expiry = datetime.now(timezone.utc) + timedelta(hours=1)
 
     await db["users"].update_one(
         {"_id": user["_id"]},
@@ -55,7 +55,7 @@ async def reset_password(data: ResetRequest, db=Depends(get_db)):
     if not user:
         raise HTTPException(400, "Token invalide")
 
-    if user.get("reset_token_exp") < datetime.utcnow():
+    if user.get("reset_token_exp") < datetime.now(timezone.utc):
         raise HTTPException(400, "Token expiré. Refais une demande.")
 
     await db["users"].update_one(

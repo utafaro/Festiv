@@ -13,6 +13,7 @@ import {
   Navigation,
   Users,
   MapPin,
+  Compass,
 } from "lucide-react-native";
 import ToastStack from "../../src/components/ToastStack";
 import { useToasts } from "../../src/hooks/useToasts";
@@ -28,10 +29,19 @@ import {
   listSuiviSets,
   listPositions,
   clearPosition,
+  clearGeo,
 } from "../../src/api/suivi";
 import { getFestivalById } from "../../src/api/festival";
 import { colors } from "../../src/theme/colors";
 import GlassCard from "../../src/components/GlassCard";
+
+function formatGeoAgo(iso) {
+  if (!iso) return "";
+  const diffMin = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+  if (diffMin < 1) return "à l'instant";
+  if (diffMin < 60) return `il y a ${diffMin} min`;
+  return `il y a ${Math.round(diffMin / 60)} h`;
+}
 
 export default function SuiviDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -51,6 +61,7 @@ export default function SuiviDetailScreen() {
   const [inviting, setInviting] = useState(false);
   const [responding, setResponding] = useState(false);
   const [clearingPosition, setClearingPosition] = useState(false);
+  const [clearingGeo, setClearingGeo] = useState(false);
 
   const isOwner = suivi && user && suivi.owner_id === user.id;
 
@@ -191,12 +202,37 @@ export default function SuiviDetailScreen() {
     setClearingPosition(true);
     try {
       await clearPosition(id);
-      setPositions((prev) => prev.filter((p) => p.user_id !== user.id));
+      setPositions((prev) =>
+        prev
+          .map((p) =>
+            p.user_id === user.id
+              ? { ...p, target_type: null, set_id: null, custom_label: null, note: null, grouped_with: [] }
+              : p,
+          )
+          .filter((p) => p.user_id !== user.id || p.lat != null),
+      );
       triggerToast("Position retirée.", "info");
     } catch {
       triggerToast("Erreur lors de la suppression de votre position.", "error");
     } finally {
       setClearingPosition(false);
+    }
+  };
+
+  const handleClearGeo = async () => {
+    setClearingGeo(true);
+    try {
+      await clearGeo(id);
+      setPositions((prev) =>
+        prev
+          .map((p) => (p.user_id === user.id ? { ...p, lat: null, lng: null, geo_updated_at: null } : p))
+          .filter((p) => p.user_id !== user.id || p.target_type),
+      );
+      triggerToast("Partage de position GPS arrêté.", "info");
+    } catch {
+      triggerToast("Erreur lors de l'arrêt du partage.", "error");
+    } finally {
+      setClearingGeo(false);
     }
   };
 
@@ -238,18 +274,22 @@ export default function SuiviDetailScreen() {
     );
   }
 
-  const myPosition = positions.find((p) => p.user_id === user.id);
+  const myPosition = positions.find((p) => p.user_id === user.id && p.target_type);
+  const myGeo = positions.find((p) => p.user_id === user.id && p.lat != null);
+  const geoPeople = positions.filter((p) => p.lat != null);
   const setById = Object.fromEntries(sets.map((s) => [s.id, s]));
   const nameByUserId = Object.fromEntries(positions.map((p) => [p.user_id, p.full_name]));
 
-  const groups = positions.reduce((acc, p) => {
-    const key =
-      p.target_type === "set"
-        ? `set:${p.set_id}`
-        : `custom:${(p.custom_label || "").trim().toLowerCase()}`;
-    (acc[key] ||= []).push(p);
-    return acc;
-  }, {});
+  const groups = positions
+    .filter((p) => p.target_type)
+    .reduce((acc, p) => {
+      const key =
+        p.target_type === "set"
+          ? `set:${p.set_id}`
+          : `custom:${(p.custom_label || "").trim().toLowerCase()}`;
+      (acc[key] ||= []).push(p);
+      return acc;
+    }, {});
 
   return (
     <SafeAreaView className="flex-1 bg-slate-50" edges={[]}>
@@ -427,6 +467,80 @@ export default function SuiviDetailScreen() {
                     </Pressable>
                   );
                 })
+              )}
+            </GlassCard>
+
+            <GlassCard className="p-5" style={{ gap: 12 }}>
+              <View className="flex-row items-center justify-between">
+                <View className="flex-row items-center" style={{ gap: 8 }}>
+                  <MapPin size={16} color={colors.fuchsia600} />
+                  <Text className="text-sm font-bold text-slate-900">Localisation live</Text>
+                </View>
+                {myGeo ? (
+                  <Pressable onPress={handleClearGeo} disabled={clearingGeo}>
+                    <Text className="text-[11px] font-bold text-rose-600">Arrêter le partage</Text>
+                  </Pressable>
+                ) : (
+                  <Pressable
+                    onPress={() => router.push({ pathname: "/modals/geo-ping", params: { suiviId: id } })}
+                    className="flex-row items-center bg-fuchsia-600 rounded-xl px-3 py-2"
+                    style={{ gap: 6 }}
+                  >
+                    <MapPin size={13} color="white" />
+                    <Text className="text-white text-[11px] font-bold">Partager ma position</Text>
+                  </Pressable>
+                )}
+              </View>
+
+              {geoPeople.length === 0 ? (
+                <Text className="text-xs text-slate-400 text-center py-4">
+                  Personne ne partage sa position GPS pour l'instant.
+                </Text>
+              ) : (
+                geoPeople.map((p) => (
+                  <View
+                    key={p.user_id}
+                    className="flex-row items-center justify-between bg-slate-50 rounded-2xl p-3.5"
+                  >
+                    <View className="flex-row items-center flex-1 pr-2" style={{ gap: 10 }}>
+                      <View
+                        style={{
+                          width: 22,
+                          height: 22,
+                          borderRadius: 11,
+                          backgroundColor: "#fdf4ff",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Text className="text-[9px] font-bold text-fuchsia-600">
+                          {p.full_name?.[0]?.toUpperCase() || "?"}
+                        </Text>
+                      </View>
+                      <View className="flex-1">
+                        <Text className="text-xs font-semibold text-slate-800" numberOfLines={1}>
+                          {p.user_id === user.id ? "Vous" : p.full_name}
+                        </Text>
+                        <Text className="text-[10px] text-slate-500">{formatGeoAgo(p.geo_updated_at)}</Text>
+                      </View>
+                    </View>
+                    {p.user_id !== user.id && (
+                      <Pressable
+                        onPress={() =>
+                          router.push({
+                            pathname: "/modals/compass",
+                            params: { suiviId: id, targetUserId: p.user_id, targetName: p.full_name },
+                          })
+                        }
+                        className="flex-row items-center bg-indigo-600 rounded-lg px-2.5 py-1.5"
+                        style={{ gap: 4 }}
+                      >
+                        <Compass size={13} color="white" />
+                        <Text className="text-white text-[10px] font-bold">Boussole</Text>
+                      </Pressable>
+                    )}
+                  </View>
+                ))
               )}
             </GlassCard>
 

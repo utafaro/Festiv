@@ -51,6 +51,12 @@ export const setPosition = (suiviId, data) =>
 
 export const clearPosition = (suiviId) => api.delete(`/suivis/${suiviId}/position`);
 
+// Géolocalisation ponctuelle
+export const pingGeo = (suiviId, { lat, lng }) =>
+  api.put(`/suivis/${suiviId}/geo`, { lat, lng }).then((r) => r.data);
+
+export const clearGeo = (suiviId) => api.delete(`/suivis/${suiviId}/geo`);
+
 export async function suiviWsUrl(suiviId) {
   const token = await AsyncStorage.getItem("access_token");
   return `${WS_BASE_URL}/suivis/${suiviId}/ws?token=${encodeURIComponent(token || "")}`;

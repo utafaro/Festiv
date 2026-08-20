@@ -5,6 +5,8 @@ export const listFestivals = () => api.get("/festivals").then((r) => r.data);
 export const getFestivalById = (festivalId) =>
   api.get(`/festivals/${festivalId}`).then((r) => r.data);
 
+export const deleteFestival = (festivalId) => api.delete(`/festivals/${festivalId}`);
+
 // imageAsset: { uri, name, type } depuis expo-image-picker, ou null
 export const createFestival = (festivalTextData, imageAsset) => {
   const formData = new FormData();

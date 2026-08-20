@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
@@ -92,7 +92,7 @@ async def create_suivi(data: SuiviCreateRequest, db=Depends(get_db), current_use
         "lineup_ids": data.lineup_ids,
         "owner_id": user_id,
         "name": data.name,
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db["suivis"].insert_one(suivi)
     return format_suivi({**suivi, "_id": result.inserted_id})
@@ -192,15 +192,17 @@ async def update_suivi(suivi_id: str, data: SuiviUpdateRequest, db=Depends(get_d
     updated = await db["suivis"].find_one({"_id": ObjectId(suivi_id)})
     return format_suivi(updated)
 
-@router.delete("/{suivi_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_suivi(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
-    suivi = await get_suivi_or_404(suivi_id, db)
-    ensure_owner(suivi, str(current_user["_id"]))
-
+async def cascade_delete_suivi(suivi_id: str, db):
     await db["suivi_members"].delete_many({"suivi_id": suivi_id})
     await db["custom_spots"].delete_many({"suivi_id": suivi_id})
     await db["positions"].delete_many({"suivi_id": suivi_id})
     await db["suivis"].delete_one({"_id": ObjectId(suivi_id)})
+
+@router.delete("/{suivi_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_suivi(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    suivi = await get_suivi_or_404(suivi_id, db)
+    ensure_owner(suivi, str(current_user["_id"]))
+    await cascade_delete_suivi(suivi_id, db)
 
 @router.get("/{suivi_id}/members", response_model=List[SuiviMemberResponse])
 async def list_members(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
@@ -237,7 +239,7 @@ async def invite_member(suivi_id: str, data: SuiviInviteRequest, db=Depends(get_
         "user_id": invited_id,
         "status": SuiviMemberStatus.pending,
         "invited_by": str(current_user["_id"]),
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db["suivi_members"].insert_one(member)
     return format_member({**member, "_id": result.inserted_id}, invited_user, suivi)

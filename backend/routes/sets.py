@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
@@ -63,7 +63,7 @@ async def create_set(lineup_id: str, data: SetCreateRequest, db=Depends(get_db),
         "start_time": data.start_time,
         "end_time": data.end_time,
         "date": data.date,
-        "created_at": datetime.utcnow()
+        "created_at": datetime.now(timezone.utc)
     }
     result = await db["sets"].insert_one(new_set)
     return await format_set({**new_set, "_id": result.inserted_id}, db)

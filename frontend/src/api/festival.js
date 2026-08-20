@@ -77,6 +77,25 @@ export const updateFestival = async (
   }
 };
 
+export const deleteFestival = async (festivalId) => {
+  const activeToken =
+    localStorage.getItem("access_token") ||
+    sessionStorage.getItem("access_token");
+  try {
+    await axios.delete(`${API_BASE_URL}/festivals/${festivalId}`, {
+      headers: {
+        Authorization: activeToken ? `Bearer ${activeToken}` : undefined,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la suppression du festival :",
+      error.response?.data || error.message,
+    );
+    throw error;
+  }
+};
+
 export const getFestivalById = async (festivalId) => {
   const activeToken =
     localStorage.getItem("access_token") ||

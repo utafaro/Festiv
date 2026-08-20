@@ -105,6 +105,20 @@ export const clearPosition = async (suiviId) => {
   await axios.delete(`${BASE}/suivis/${suiviId}/position`, { headers: authHeaders() });
 };
 
+// Géolocalisation ponctuelle
+export const pingGeo = async (suiviId, { lat, lng }) => {
+  const response = await axios.put(
+    `${BASE}/suivis/${suiviId}/geo`,
+    { lat, lng },
+    { headers: authHeaders() },
+  );
+  return response.data;
+};
+
+export const clearGeo = async (suiviId) => {
+  await axios.delete(`${BASE}/suivis/${suiviId}/geo`, { headers: authHeaders() });
+};
+
 export const suiviWsUrl = (suiviId) => {
   const token = getToken();
   return `${WS_BASE_URL}/suivis/${suiviId}/ws?token=${encodeURIComponent(token || "")}`;

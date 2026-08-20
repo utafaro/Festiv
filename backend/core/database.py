@@ -5,7 +5,7 @@ client: AsyncIOMotorClient = None
 
 async def connect_db():
     global client
-    client = AsyncIOMotorClient(settings.MONGODB_URI)
+    client = AsyncIOMotorClient(settings.MONGODB_URI, tz_aware=True)
     await client[settings.DB_NAME]["token_blacklist"].create_index(
         "expires_at", expireAfterSeconds=0
     )

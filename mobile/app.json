@@ -10,9 +10,12 @@
     "backgroundColor": "#f8fafc",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.festiv.app",
+      "bundleIdentifier": "com.athierry.festiv",
       "config": {
         "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Festiv a besoin de votre position pour partager votre localisation avec vos amis et vous guider vers eux."
       }
     },
     "android": {
@@ -24,7 +27,9 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "permissions": [
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
       ]
     },
     "web": {
@@ -44,6 +49,12 @@
         "react-native-maps",
         {
           "requestLocationPermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Festiv a besoin de votre position pour partager votre localisation avec vos amis et vous guider vers eux."
         }
       ],
       "@react-native-community/datetimepicker"

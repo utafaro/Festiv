@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
@@ -70,7 +70,7 @@ async def create_lineup(data: LineupCreateRequest, db=Depends(get_db), current_u
         "festival_id": data.festival_id,
         "owner_id": str(current_user["_id"]),
         "name": data.name,
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db["lineups"].insert_one(lineup)
     return format_lineup({**lineup, "_id": result.inserted_id})
@@ -163,11 +163,7 @@ async def update_lineup(lineup_id: str, data: LineupUpdateRequest, db=Depends(ge
     updated = await db["lineups"].find_one({"_id": ObjectId(lineup_id)})
     return format_lineup(updated)
 
-@router.delete("/{lineup_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_lineup(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
-    lineup = await get_lineup_or_404(lineup_id, db)
-    ensure_owner(lineup, str(current_user["_id"]))
-
+async def cascade_delete_lineup(lineup_id: str, db):
     await db["sets"].delete_many({"lineup_id": lineup_id})
     await db["stages"].delete_many({"lineup_id": lineup_id})
     await db["lineup_members"].delete_many({"lineup_id": lineup_id})
@@ -176,6 +172,12 @@ async def delete_lineup(lineup_id: str, db=Depends(get_db), current_user=Depends
         {"lineup_ids": lineup_id}, {"$pull": {"lineup_ids": lineup_id}}
     )
     await db["lineups"].delete_one({"_id": ObjectId(lineup_id)})
+
+@router.delete("/{lineup_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_lineup(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    lineup = await get_lineup_or_404(lineup_id, db)
+    ensure_owner(lineup, str(current_user["_id"]))
+    await cascade_delete_lineup(lineup_id, db)
 
 @router.get("/{lineup_id}/members", response_model=List[LineupMemberResponse])
 async def list_members(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
@@ -212,7 +214,7 @@ async def invite_member(lineup_id: str, data: LineupInviteRequest, db=Depends(ge
         "user_id": invited_id,
         "status": LineupMemberStatus.pending,
         "invited_by": str(current_user["_id"]),
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db["lineup_members"].insert_one(member)
     return format_member({**member, "_id": result.inserted_id}, invited_user, lineup)

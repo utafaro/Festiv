@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 
 # ==========================================
@@ -13,7 +13,7 @@ class SuiviInDB(BaseModel):
     lineup_ids: List[str]
     owner_id: str
     name: Optional[str] = None
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class SuiviResponse(BaseModel):
     id: str
@@ -47,7 +47,7 @@ class SuiviMemberInDB(BaseModel):
     user_id: str
     status: SuiviMemberStatus = SuiviMemberStatus.pending
     invited_by: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class SuiviMemberResponse(BaseModel):
     id: str
@@ -75,13 +75,16 @@ class PositionInDB(BaseModel):
     id: Optional[str] = None
     suivi_id: str
     user_id: str
-    target_type: TargetType
+    target_type: Optional[TargetType] = None
     lineup_id: Optional[str] = None
     set_id: Optional[str] = None
     custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = Field(default_factory=list)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    geo_updated_at: Optional[datetime] = None
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class PositionResponse(BaseModel):
     id: str
@@ -89,12 +92,15 @@ class PositionResponse(BaseModel):
     user_id: str
     full_name: str
     avatar: Optional[str] = None
-    target_type: TargetType
+    target_type: Optional[TargetType] = None
     lineup_id: Optional[str] = None
     set_id: Optional[str] = None
     custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = []
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    geo_updated_at: Optional[datetime] = None
     updated_at: datetime
 
 class PositionSetRequest(BaseModel):
@@ -103,3 +109,7 @@ class PositionSetRequest(BaseModel):
     custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = []
+
+class GeoPingRequest(BaseModel):
+    lat: float = Field(ge=-90, le=90)
+    lng: float = Field(ge=-180, le=180)

@@ -2,17 +2,20 @@ import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import AddFestivalModal from "../modal/AddFestivalModal";
 import ToastNotifications from "../components/ToastNotifications";
-import { listFestivals } from "../api/festival";
+import { listFestivals, deleteFestival } from "../api/festival";
 import FestivalCard from "../components/FestivalCard";
 import EditFestivalModal from "../modal/EditFestivalModal";
+import { useAuth } from "../context/useAuth";
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const [showAddModal, setShowAddModal] = useState(false);
   const [festivals, setFestivals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedFestival, setSelectedFestival] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const [toasts, setToasts] = useState([]);
 
@@ -43,6 +46,28 @@ export default function DashboardPage() {
     fetchFestivals();
   }, []);
 
+  const handleDeleteFestival = async (festival) => {
+    if (
+      !window.confirm(
+        `Supprimer le festival "${festival.name}" ? Ses lineups et suivis associés seront aussi supprimés. Cette action est irréversible.`,
+      )
+    )
+      return;
+    setDeletingId(festival.id);
+    try {
+      await deleteFestival(festival.id);
+      setFestivals((prev) => prev.filter((f) => f.id !== festival.id));
+      triggerToast("Festival supprimé.", "success");
+    } catch (error) {
+      triggerToast(
+        error.response?.data?.detail || "Erreur lors de la suppression du festival.",
+        "error",
+      );
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -72,6 +97,9 @@ export default function DashboardPage() {
           setShowEditModal={setShowEditModal}
           setSelectedFestival={setSelectedFestival}
           isLoading={isLoading}
+          currentUserId={user?.id}
+          onDeleteFestival={handleDeleteFestival}
+          deletingId={deletingId}
         />
       </div>
 

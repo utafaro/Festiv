@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 
 # ==========================================
@@ -13,7 +13,7 @@ class ArtistInDB(BaseModel):
     name: str
     nationality: Optional[str] = None
     genres: List[str] = Field(default_factory=list)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique
 class ArtistResponse(BaseModel):
@@ -39,7 +39,7 @@ class LineupInDB(BaseModel):
     festival_id: str
     owner_id: str
     name: Optional[str] = None
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique
 class LineupResponse(BaseModel):
@@ -74,7 +74,7 @@ class LineupMemberInDB(BaseModel):
     user_id: str
     status: LineupMemberStatus = LineupMemberStatus.pending
     invited_by: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique (enrichie avec les infos de l'utilisateur invité et de la lineup)
 class LineupMemberResponse(BaseModel):
@@ -102,7 +102,7 @@ class StageInDB(BaseModel):
     id: Optional[str] = None
     lineup_id: str
     name: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique
 class StageResponse(BaseModel):
@@ -129,7 +129,7 @@ class SetInDB(BaseModel):
     start_time: Optional[datetime] = None
     end_time: Optional[datetime] = None
     date: Optional[datetime] = None # Date spécifique du set
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique (On embarque l'objet ArtistResponse complet et la scène pour le front)
 class SetResponse(BaseModel):
@@ -168,6 +168,7 @@ class SetUpdateRequest(BaseModel):
 # Schéma en base MongoDB
 class FestivalInDB(BaseModel):
     id: Optional[str] = None
+    owner_id: Optional[str] = None  # Optionnel : festivals créés avant l'introduction de ce champ
     name: str
     location: str
     genres: List[str] = Field(default_factory=list)
@@ -183,11 +184,12 @@ class FestivalInDB(BaseModel):
     merch_url: Optional[str] = None
     cover_image_url: Optional[str] = None
     
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Réponse publique (Enrichie avec les Sets et les Artistes pour Festiv)
 class FestivalResponse(BaseModel):
     id: str
+    owner_id: Optional[str] = None
     name: str
     location: str
     genres: List[str]
