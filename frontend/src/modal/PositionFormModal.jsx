@@ -135,8 +135,9 @@ export default function PositionFormModal({
                   <option value="">Sélectionner un set</option>
                   {sets.map((s) => (
                     <option key={s.id} value={s.id}>
-                      {s.name || s.artists.map((a) => a.name).join(" B2B ") || "Set"} —{" "}
-                      {s.stage.name} — {s.start_time.slice(11, 16)}
+                      {s.name || s.artists.map((a) => a.name).join(" B2B ") || "Set"}
+                      {s.stage ? ` — ${s.stage.name}` : ""}
+                      {s.start_time ? ` — ${s.start_time.slice(11, 16)}` : ""}
                     </option>
                   ))}
                 </select>

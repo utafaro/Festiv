@@ -59,11 +59,16 @@ export default function LineupSection({ lineupId, readOnly = false }) {
   };
 
   const sortSets = (list) =>
-    [...list].sort((a, b) =>
-      a.date === b.date
-        ? a.start_time.localeCompare(b.start_time)
-        : a.date.localeCompare(b.date),
-    );
+    [...list].sort((a, b) => {
+      if (a.date !== b.date) {
+        if (!a.date) return 1;
+        if (!b.date) return -1;
+        return a.date.localeCompare(b.date);
+      }
+      if (!a.start_time) return 1;
+      if (!b.start_time) return -1;
+      return a.start_time.localeCompare(b.start_time);
+    });
 
   const handleSaved = (saved) => {
     setSets((prev) => {
@@ -89,19 +94,26 @@ export default function LineupSection({ lineupId, readOnly = false }) {
     }
   };
 
+  const UNSCHEDULED_KEY = "sans-date";
+
   const formatDay = (dateStr) =>
-    new Date(dateStr).toLocaleDateString("fr-FR", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-    });
+    dateStr === UNSCHEDULED_KEY
+      ? "Sans date"
+      : new Date(dateStr).toLocaleDateString("fr-FR", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+        });
 
   const groups = sets.reduce((acc, s) => {
-    const key = s.date.slice(0, 10);
+    const key = s.date ? s.date.slice(0, 10) : UNSCHEDULED_KEY;
     (acc[key] ||= []).push(s);
     return acc;
   }, {});
-  const orderedDates = Object.keys(groups).sort();
+  const orderedDates = Object.keys(groups)
+    .filter((k) => k !== UNSCHEDULED_KEY)
+    .sort();
+  if (groups[UNSCHEDULED_KEY]) orderedDates.push(UNSCHEDULED_KEY);
 
   return (
     <>
@@ -175,13 +187,22 @@ export default function LineupSection({ lineupId, readOnly = false }) {
                               : "Set")}
                         </h4>
                         <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-[11px] text-slate-500">
-                          <span className="bg-slate-200/60 text-slate-700 px-2 py-0.5 rounded-md font-medium">
-                            {s.stage.name}
-                          </span>
-                          <span>•</span>
-                          <span>
-                            {s.start_time.slice(11, 16)} - {s.end_time.slice(11, 16)}
-                          </span>
+                          {s.stage && (
+                            <span className="bg-slate-200/60 text-slate-700 px-2 py-0.5 rounded-md font-medium">
+                              {s.stage.name}
+                            </span>
+                          )}
+                          {s.stage && s.start_time && s.end_time && <span>•</span>}
+                          {s.start_time && s.end_time && (
+                            <span>
+                              {s.start_time.slice(11, 16)} - {s.end_time.slice(11, 16)}
+                            </span>
+                          )}
+                          {!s.stage && !s.start_time && (
+                            <span className="italic text-slate-400">
+                              Horaires et scène à définir
+                            </span>
+                          )}
                         </div>
                         {s.name && s.artists.length > 0 && (
                           <div className="flex flex-wrap gap-1.5 pt-1">

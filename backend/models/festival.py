@@ -121,10 +121,10 @@ class SetInDB(BaseModel):
     lineup_id: str
     name: Optional[str] = None  # Optionnel (ex: "Closing Set", "Opening")
     artist_ids: List[str] = Field(default_factory=list) # Références aux IDs des artistes
-    stage_id: str
-    start_time: datetime
-    end_time: datetime
-    date: datetime # Date spécifique du set
+    stage_id: Optional[str] = None
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    date: Optional[datetime] = None # Date spécifique du set
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 # Réponse publique (On embarque l'objet ArtistResponse complet et la scène pour le front)
@@ -133,19 +133,19 @@ class SetResponse(BaseModel):
     lineup_id: str
     name: Optional[str] = None
     artists: List[ArtistResponse]
-    stage: StageResponse
-    start_time: datetime
-    end_time: datetime
-    date: datetime
+    stage: Optional[StageResponse] = None
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    date: Optional[datetime] = None
 
 # Requête de création
 class SetCreateRequest(BaseModel):
     name: Optional[str] = None
     artist_ids: List[str] = []
-    stage_id: str
-    start_time: datetime
-    end_time: datetime
-    date: datetime
+    stage_id: Optional[str] = None
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    date: Optional[datetime] = None
 
 # Requête de modification
 class SetUpdateRequest(BaseModel):

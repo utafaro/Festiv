@@ -20,17 +20,19 @@ async def format_set(set_doc, db) -> SetResponse:
         artists_raw = await cursor.to_list(length=len(artist_ids))
     artists_formatted = [format_artist(a) for a in artists_raw]
 
-    stage_doc = await db["stages"].find_one({"_id": ObjectId(set_doc["stage_id"])})
+    stage_doc = None
+    if set_doc.get("stage_id"):
+        stage_doc = await db["stages"].find_one({"_id": ObjectId(set_doc["stage_id"])})
 
     return SetResponse(
         id=str(set_doc["_id"]),
         lineup_id=set_doc["lineup_id"],
         name=set_doc.get("name"),
         artists=artists_formatted,
-        stage=format_stage(stage_doc),
-        start_time=set_doc["start_time"],
-        end_time=set_doc["end_time"],
-        date=set_doc["date"]
+        stage=format_stage(stage_doc) if stage_doc else None,
+        start_time=set_doc.get("start_time"),
+        end_time=set_doc.get("end_time"),
+        date=set_doc.get("date")
     )
 
 async def validate_stage(lineup_id: str, stage_id: str, db):
@@ -49,7 +51,8 @@ async def validate_artists(artist_ids: List[str], db):
 async def create_set(lineup_id: str, data: SetCreateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
     lineup = await get_lineup_or_404(lineup_id, db)
     ensure_owner(lineup, str(current_user["_id"]))
-    await validate_stage(lineup_id, data.stage_id, db)
+    if data.stage_id:
+        await validate_stage(lineup_id, data.stage_id, db)
     await validate_artists(data.artist_ids, db)
 
     new_set = {
@@ -84,7 +87,7 @@ async def update_set(lineup_id: str, set_id: str, data: SetUpdateRequest, db=Dep
         raise HTTPException(404, "Set introuvable")
 
     update_data = {k: v for k, v in data.model_dump(exclude_unset=True).items()}
-    if "stage_id" in update_data:
+    if update_data.get("stage_id"):
         await validate_stage(lineup_id, update_data["stage_id"], db)
     if "artist_ids" in update_data:
         await validate_artists(update_data["artist_ids"], db)

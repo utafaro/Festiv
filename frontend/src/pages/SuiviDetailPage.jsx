@@ -443,9 +443,14 @@ export default function SuiviDetailPage() {
                                 Lieu perso
                               </span>
                             ) : (
-                              target && (
+                              target && (target.stage || target.start_time) && (
                                 <span className="shrink-0 bg-slate-200/60 text-slate-700 px-2 py-0.5 rounded-md text-[10px] font-medium">
-                                  {target.stage.name} • {target.start_time.slice(11, 16)}
+                                  {[
+                                    target.stage?.name,
+                                    target.start_time?.slice(11, 16),
+                                  ]
+                                    .filter(Boolean)
+                                    .join(" • ")}
                                 </span>
                               )
                             )}

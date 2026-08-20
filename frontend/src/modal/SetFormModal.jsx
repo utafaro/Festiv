@@ -24,7 +24,7 @@ export default function SetFormModal({
           date: toDate(initialSet.date),
           start_time: toTime(initialSet.start_time),
           end_time: toTime(initialSet.end_time),
-          stage_id: initialSet.stage.id,
+          stage_id: initialSet.stage ? initialSet.stage.id : "",
           artist_ids: initialSet.artists.map((a) => a.id),
         }
       : {
@@ -108,14 +108,7 @@ export default function SetFormModal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.date || !form.start_time || !form.end_time || !form.stage_id) {
-      triggerToast(
-        "Merci de renseigner la date, les horaires et la scène.",
-        "warning",
-      );
-      return;
-    }
-    if (form.end_time <= form.start_time) {
+    if (form.start_time && form.end_time && form.end_time <= form.start_time) {
       triggerToast("L'heure de fin doit être après l'heure de début.", "warning");
       return;
     }
@@ -124,10 +117,12 @@ export default function SetFormModal({
     const payload = {
       name: form.name.trim() || null,
       artist_ids: form.artist_ids,
-      stage_id: form.stage_id,
-      start_time: `${form.date}T${form.start_time}:00`,
-      end_time: `${form.date}T${form.end_time}:00`,
-      date: `${form.date}T00:00:00`,
+      stage_id: form.stage_id || null,
+      start_time:
+        form.date && form.start_time ? `${form.date}T${form.start_time}:00` : null,
+      end_time:
+        form.date && form.end_time ? `${form.date}T${form.end_time}:00` : null,
+      date: form.date ? `${form.date}T00:00:00` : null,
     };
 
     try {
@@ -166,7 +161,7 @@ export default function SetFormModal({
             {initialSet ? "Modifier le set" : "Ajouter un set"}
           </h3>
           <p className="text-xs text-slate-500 mt-1">
-            Date, horaires et scène du passage. Les scènes créées sont réutilisables pour tout le line-up.
+            Date, horaires et scène sont facultatifs. Les scènes créées sont réutilisables pour tout le line-up.
           </p>
         </div>
 
@@ -185,10 +180,9 @@ export default function SetFormModal({
           </div>
 
           <div className="space-y-1">
-            <label className="text-slate-500 font-bold">Date * :</label>
+            <label className="text-slate-500 font-bold">Date (optionnel) :</label>
             <input
               type="date"
-              required
               value={form.date}
               onChange={(e) => setForm((prev) => ({ ...prev, date: e.target.value }))}
               className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500 font-semibold"
@@ -197,20 +191,18 @@ export default function SetFormModal({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-slate-500 font-bold">Heure début * :</label>
+              <label className="text-slate-500 font-bold">Heure début (optionnel) :</label>
               <input
                 type="time"
-                required
                 value={form.start_time}
                 onChange={(e) => setForm((prev) => ({ ...prev, start_time: e.target.value }))}
                 className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500 font-semibold"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-slate-500 font-bold">Heure fin * :</label>
+              <label className="text-slate-500 font-bold">Heure fin (optionnel) :</label>
               <input
                 type="time"
-                required
                 value={form.end_time}
                 onChange={(e) => setForm((prev) => ({ ...prev, end_time: e.target.value }))}
                 className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500 font-semibold"
@@ -221,10 +213,9 @@ export default function SetFormModal({
           <div className="space-y-1">
             <label className="text-slate-500 font-bold flex items-center space-x-1.5">
               <Layers className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Scène / Lieu * :</span>
+              <span>Scène / Lieu (optionnel) :</span>
             </label>
             <select
-              required
               value={form.stage_id}
               onChange={(e) => setForm((prev) => ({ ...prev, stage_id: e.target.value }))}
               className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500"
