@@ -128,7 +128,10 @@ export default function EditFestivalModal() {
           <View style={{ flex: 1, gap: 6 }}>
             <Text className="text-xs font-bold text-slate-500">Date de Début</Text>
             <Pressable
-              onPress={() => setShowStartPicker(true)}
+              onPress={() => {
+                setShowEndPicker(false);
+                setShowStartPicker(true);
+              }}
               className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-3"
               style={{ gap: 8 }}
             >
@@ -139,7 +142,10 @@ export default function EditFestivalModal() {
           <View style={{ flex: 1, gap: 6 }}>
             <Text className="text-xs font-bold text-slate-500">Date de Fin</Text>
             <Pressable
-              onPress={() => setShowEndPicker(true)}
+              onPress={() => {
+                setShowStartPicker(false);
+                setShowEndPicker(true);
+              }}
               className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-3"
               style={{ gap: 8 }}
             >
@@ -155,7 +161,7 @@ export default function EditFestivalModal() {
             mode="date"
             display={Platform.OS === "ios" ? "inline" : "default"}
             onChange={(e, d) => {
-              setShowStartPicker(Platform.OS === "ios");
+              setShowStartPicker(false);
               if (d) setStartDate(d);
             }}
           />
@@ -166,7 +172,7 @@ export default function EditFestivalModal() {
             mode="date"
             display={Platform.OS === "ios" ? "inline" : "default"}
             onChange={(e, d) => {
-              setShowEndPicker(Platform.OS === "ios");
+              setShowEndPicker(false);
               if (d) setEndDate(d);
             }}
           />

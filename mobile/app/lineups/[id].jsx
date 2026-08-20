@@ -226,15 +226,22 @@ export default function LineupDetailScreen() {
     );
   }
 
+  const UNSCHEDULED_KEY = "sans-date";
+
   const groups = sets.reduce((acc, s) => {
-    const key = s.date.slice(0, 10);
+    const key = s.date ? s.date.slice(0, 10) : UNSCHEDULED_KEY;
     (acc[key] ||= []).push(s);
     return acc;
   }, {});
-  const orderedDates = Object.keys(groups).sort();
+  const orderedDates = Object.keys(groups)
+    .filter((k) => k !== UNSCHEDULED_KEY)
+    .sort();
+  if (groups[UNSCHEDULED_KEY]) orderedDates.push(UNSCHEDULED_KEY);
 
   const formatDay = (d) =>
-    new Date(d).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+    d === UNSCHEDULED_KEY
+      ? "Sans date"
+      : new Date(d).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
 
   return (
     <SafeAreaView className="flex-1 bg-slate-50" edges={[]}>
@@ -343,12 +350,16 @@ export default function LineupDetailScreen() {
                             {s.name || s.artists.map((a) => a.name).join(" B2B ") || "Set"}
                           </Text>
                           <View className="flex-row items-center mt-1" style={{ gap: 6 }}>
-                            <Text className="text-[10px] font-medium bg-slate-200 text-slate-700 rounded px-1.5 py-0.5">
-                              {s.stage.name}
-                            </Text>
-                            <Text className="text-[11px] text-slate-500">
-                              {s.start_time.slice(11, 16)} - {s.end_time.slice(11, 16)}
-                            </Text>
+                            {s.stage && (
+                              <Text className="text-[10px] font-medium bg-slate-200 text-slate-700 rounded px-1.5 py-0.5">
+                                {s.stage.name}
+                              </Text>
+                            )}
+                            {s.start_time && s.end_time && (
+                              <Text className="text-[11px] text-slate-500">
+                                {s.start_time.slice(11, 16)} - {s.end_time.slice(11, 16)}
+                              </Text>
+                            )}
                           </View>
                         </View>
                         {isOwner && (

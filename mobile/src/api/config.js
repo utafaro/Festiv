@@ -13,7 +13,7 @@ function resolveApiBaseUrl() {
 
   if (hostUri) {
     const host = hostUri.split(":")[0];
-    return `http://${host}:8000`;
+    return `https://festiv.backend.alexis-thierry.com`;
   }
 
   // Fallback : build release (Xcode) ou simulateur sans info d'hôte Metro dispo.

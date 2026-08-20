@@ -193,7 +193,7 @@ export default function SetFormModal() {
                 mode="date"
                 display={Platform.OS === "ios" ? "inline" : "default"}
                 onChange={(e, d) => {
-                  setShowDatePicker(Platform.OS === "ios");
+                  setShowDatePicker(false);
                   if (d) setDate(d);
                 }}
               />

@@ -26,7 +26,6 @@ import {
   acceptSuiviInvitation,
   deleteSuiviInvitation,
   listSuiviSets,
-  listSpots,
   listPositions,
   clearPosition,
 } from "../../src/api/suivi";
@@ -44,7 +43,6 @@ export default function SuiviDetailScreen() {
   const [festival, setFestival] = useState(null);
   const [members, setMembers] = useState([]);
   const [sets, setSets] = useState([]);
-  const [spots, setSpots] = useState([]);
   const [positions, setPositions] = useState([]);
   const [pendingInvite, setPendingInvite] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -67,15 +65,13 @@ export default function SuiviDetailScreen() {
 
       if (suiviData.owner_id === user.id) {
         setPendingInvite(null);
-        const [membersData, setsData, spotsData, positionsData] = await Promise.all([
+        const [membersData, setsData, positionsData] = await Promise.all([
           listSuiviMembers(id),
           listSuiviSets(id),
-          listSpots(id),
           listPositions(id),
         ]);
         setMembers(membersData);
         setSets(setsData);
-        setSpots(spotsData);
         setPositions(positionsData);
       } else {
         const invitations = await listSuiviInvitations();
@@ -84,15 +80,13 @@ export default function SuiviDetailScreen() {
           setPendingInvite(mine);
         } else {
           setPendingInvite(null);
-          const [membersData, setsData, spotsData, positionsData] = await Promise.all([
+          const [membersData, setsData, positionsData] = await Promise.all([
             listSuiviMembers(id),
             listSuiviSets(id),
-            listSpots(id),
             listPositions(id),
           ]);
           setMembers(membersData);
           setSets(setsData);
-          setSpots(spotsData);
           setPositions(positionsData);
         }
       }
@@ -115,8 +109,7 @@ export default function SuiviDetailScreen() {
 
   const refreshLive = useCallback(async () => {
     try {
-      const [spotsData, positionsData] = await Promise.all([listSpots(id), listPositions(id)]);
-      setSpots(spotsData);
+      const positionsData = await listPositions(id);
       setPositions(positionsData);
     } catch {
       // rattrapé par la prochaine mise à jour socket ou le prochain focus
@@ -215,7 +208,7 @@ export default function SuiviDetailScreen() {
           suiviId: id,
           targetType: quickTarget.target_type,
           setId: quickTarget.set_id || "",
-          customSpotId: quickTarget.custom_spot_id || "",
+          customLabel: quickTarget.custom_label || "",
           groupedWith: JSON.stringify(quickTarget.grouped_with || []),
         },
       });
@@ -247,11 +240,13 @@ export default function SuiviDetailScreen() {
 
   const myPosition = positions.find((p) => p.user_id === user.id);
   const setById = Object.fromEntries(sets.map((s) => [s.id, s]));
-  const spotById = Object.fromEntries(spots.map((s) => [s.id, s]));
   const nameByUserId = Object.fromEntries(positions.map((p) => [p.user_id, p.full_name]));
 
   const groups = positions.reduce((acc, p) => {
-    const key = p.target_type === "set" ? `set:${p.set_id}` : `custom:${p.custom_spot_id}`;
+    const key =
+      p.target_type === "set"
+        ? `set:${p.set_id}`
+        : `custom:${(p.custom_label || "").trim().toLowerCase()}`;
     (acc[key] ||= []).push(p);
     return acc;
   }, {});
@@ -351,11 +346,11 @@ export default function SuiviDetailScreen() {
               ) : (
                 Object.entries(groups).map(([key, people]) => {
                   const isCustom = key.startsWith("custom:");
-                  const target = isCustom ? spotById[people[0].custom_spot_id] : setById[people[0].set_id];
+                  const target = isCustom ? null : setById[people[0].set_id];
                   const title = isCustom
-                    ? target?.label || "Lieu personnalisé"
+                    ? people[0].custom_label || "Lieu personnalisé"
                     : target?.name || target?.artists?.map((a) => a.name).join(" B2B ") || "Set";
-                  const targetId = isCustom ? people[0].custom_spot_id : people[0].set_id;
+                  const targetId = isCustom ? people[0].custom_label : people[0].set_id;
                   const iAmHere = people.some((p) => p.user_id === user.id);
 
                   return (
@@ -365,7 +360,7 @@ export default function SuiviDetailScreen() {
                         openPositionForm({
                           target_type: isCustom ? "custom" : "set",
                           set_id: isCustom ? null : targetId,
-                          custom_spot_id: isCustom ? targetId : null,
+                          custom_label: isCustom ? targetId : null,
                           grouped_with: people.filter((p) => p.user_id !== user.id).map((p) => p.user_id),
                         })
                       }
@@ -386,9 +381,12 @@ export default function SuiviDetailScreen() {
                             </Text>
                           </View>
                         ) : (
-                          target && (
+                          target &&
+                          (target.stage || target.start_time) && (
                             <Text className="text-[10px] font-medium text-slate-600 bg-slate-200 rounded px-2 py-0.5">
-                              {target.stage.name} • {target.start_time.slice(11, 16)}
+                              {[target.stage?.name, target.start_time?.slice(11, 16)]
+                                .filter(Boolean)
+                                .join(" • ")}
                             </Text>
                           )
                         )}
