@@ -34,6 +34,20 @@ export const getSuivi = async (suiviId) => {
   return response.data;
 };
 
+export const updateSuivi = async (suiviId, { name, lineupIds } = {}) => {
+  const payload = {};
+  if (name !== undefined) payload.name = name || null;
+  if (lineupIds !== undefined) payload.lineup_ids = lineupIds;
+  const response = await axios.put(`${BASE}/suivis/${suiviId}`, payload, {
+    headers: authHeaders(),
+  });
+  return response.data;
+};
+
+export const deleteSuivi = async (suiviId) => {
+  await axios.delete(`${BASE}/suivis/${suiviId}`, { headers: authHeaders() });
+};
+
 // Invitations
 export const listSuiviInvitations = async () => {
   const response = await axios.get(`${BASE}/suivis/invitations`, { headers: authHeaders() });
@@ -71,21 +85,6 @@ export const inviteSuiviMember = async (suiviId, email) => {
 // Programme agrégé (sets de toutes les lineups du suivi)
 export const listSuiviSets = async (suiviId) => {
   const response = await axios.get(`${BASE}/suivis/${suiviId}/sets`, { headers: authHeaders() });
-  return response.data;
-};
-
-// Cases personnalisées
-export const listSpots = async (suiviId) => {
-  const response = await axios.get(`${BASE}/suivis/${suiviId}/spots`, { headers: authHeaders() });
-  return response.data;
-};
-
-export const createSpot = async (suiviId, label) => {
-  const response = await axios.post(
-    `${BASE}/suivis/${suiviId}/spots`,
-    { label },
-    { headers: authHeaders() },
-  );
   return response.data;
 };
 

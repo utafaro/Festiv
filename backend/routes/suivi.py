@@ -5,6 +5,7 @@ from core.database import get_db
 from core.security import get_current_user
 from models.suivi import (
     SuiviCreateRequest,
+    SuiviUpdateRequest,
     SuiviResponse,
     SuiviInviteRequest,
     SuiviMemberResponse,
@@ -169,6 +170,37 @@ async def get_suivi(suivi_id: str, db=Depends(get_db), current_user=Depends(get_
         if not member:
             raise HTTPException(403, "Accès refusé à ce suivi")
     return format_suivi(suivi)
+
+@router.put("/{suivi_id}", response_model=SuiviResponse)
+async def update_suivi(suivi_id: str, data: SuiviUpdateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
+    suivi = await get_suivi_or_404(suivi_id, db)
+    ensure_owner(suivi, str(current_user["_id"]))
+
+    update_data = {k: v for k, v in data.model_dump(exclude_unset=True).items()}
+    if "lineup_ids" in update_data:
+        if not update_data["lineup_ids"]:
+            raise HTTPException(400, "Le suivi doit contenir au moins une lineup")
+        user_id = str(current_user["_id"])
+        for lineup_id in update_data["lineup_ids"]:
+            lineup = await ensure_lineup_access(lineup_id, user_id, db)
+            if lineup["festival_id"] != suivi["festival_id"]:
+                raise HTTPException(400, f"La lineup {lineup_id} n'appartient pas à ce festival")
+
+    if update_data:
+        await db["suivis"].update_one({"_id": ObjectId(suivi_id)}, {"$set": update_data})
+
+    updated = await db["suivis"].find_one({"_id": ObjectId(suivi_id)})
+    return format_suivi(updated)
+
+@router.delete("/{suivi_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_suivi(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    suivi = await get_suivi_or_404(suivi_id, db)
+    ensure_owner(suivi, str(current_user["_id"]))
+
+    await db["suivi_members"].delete_many({"suivi_id": suivi_id})
+    await db["custom_spots"].delete_many({"suivi_id": suivi_id})
+    await db["positions"].delete_many({"suivi_id": suivi_id})
+    await db["suivis"].delete_one({"_id": ObjectId(suivi_id)})
 
 @router.get("/{suivi_id}/members", response_model=List[SuiviMemberResponse])
 async def list_members(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):

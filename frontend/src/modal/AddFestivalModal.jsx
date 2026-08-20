@@ -186,7 +186,7 @@ export default function AddFestivalModal({
 
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-none">
+      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90dvh] overflow-y-auto scrollbar-none">
         <button 
           onClick={() => setShowAddModal(false)}
           className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"

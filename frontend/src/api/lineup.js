@@ -33,6 +33,19 @@ export const getLineup = async (lineupId) => {
   return response.data;
 };
 
+export const updateLineup = async (lineupId, name) => {
+  const response = await axios.put(
+    `${BASE}/lineups/${lineupId}`,
+    { name: name || null },
+    { headers: authHeaders() },
+  );
+  return response.data;
+};
+
+export const deleteLineup = async (lineupId) => {
+  await axios.delete(`${BASE}/lineups/${lineupId}`, { headers: authHeaders() });
+};
+
 // Invitations
 export const listInvitations = async () => {
   const response = await axios.get(`${BASE}/lineups/invitations`, { headers: authHeaders() });

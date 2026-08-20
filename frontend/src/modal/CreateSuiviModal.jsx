@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { X, RefreshCw, Radar, Check } from "lucide-react";
 import { listFestivals } from "../api/festival";
 import { listMyLineups, listSharedLineups } from "../api/lineup";
-import { createSuivi } from "../api/suivi";
+import { createSuivi, updateSuivi } from "../api/suivi";
 
-export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
+export default function CreateSuiviModal({ initialSuivi, onClose, onCreated, triggerToast }) {
+  const isEdit = Boolean(initialSuivi);
   const [festivals, setFestivals] = useState([]);
   const [lineups, setLineups] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [festivalId, setFestivalId] = useState("");
-  const [lineupIds, setLineupIds] = useState([]);
-  const [name, setName] = useState("");
+  const [festivalId, setFestivalId] = useState(initialSuivi?.festival_id || "");
+  const [lineupIds, setLineupIds] = useState(initialSuivi?.lineup_ids || []);
+  const [name, setName] = useState(initialSuivi?.name || "");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -59,12 +60,15 @@ export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
     }
     setSubmitting(true);
     try {
-      const suivi = await createSuivi(festivalId, lineupIds, name.trim());
-      triggerToast("Suivi créé avec succès !", "success");
+      const suivi = isEdit
+        ? await updateSuivi(initialSuivi.id, { name: name.trim(), lineupIds })
+        : await createSuivi(festivalId, lineupIds, name.trim());
+      triggerToast(isEdit ? "Suivi modifié avec succès." : "Suivi créé avec succès !", "success");
       onCreated(suivi);
     } catch (err) {
       triggerToast(
-        err.response?.data?.detail || "Erreur lors de la création du suivi.",
+        err.response?.data?.detail ||
+          `Erreur lors de ${isEdit ? "la modification" : "la création"} du suivi.`,
         "error",
       );
     } finally {
@@ -74,7 +78,7 @@ export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
 
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-none">
+      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-md shadow-2xl relative max-h-[90dvh] overflow-y-auto scrollbar-none">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
@@ -86,7 +90,9 @@ export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
           <div className="w-12 h-12 rounded-2xl bg-fuchsia-50 text-fuchsia-600 flex items-center justify-center mx-auto mb-3">
             <Radar className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-extrabold text-slate-800">Nouveau Suivi</h3>
+          <h3 className="text-xl font-extrabold text-slate-800">
+            {isEdit ? "Modifier le suivi" : "Nouveau Suivi"}
+          </h3>
           <p className="text-xs text-slate-500 mt-1">
             Repérez-vous en direct avec vos amis pendant le festival.
           </p>
@@ -100,19 +106,27 @@ export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
           <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             <div className="space-y-1">
               <label className="text-slate-500 font-bold">Festival * :</label>
-              <select
-                required
-                value={festivalId}
-                onChange={(e) => handleFestivalChange(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500"
-              >
-                <option value="">Sélectionner un festival</option>
-                {festivals.map((f) => (
-                  <option key={f.id} value={f.id}>
-                    {f.name} — {f.location}
-                  </option>
-                ))}
-              </select>
+              {isEdit ? (
+                <div className="w-full bg-slate-100 border border-slate-200 px-4 py-3 rounded-xl text-slate-700 font-semibold">
+                  {festivals.find((f) => f.id === festivalId)
+                    ? `${festivals.find((f) => f.id === festivalId).name} — ${festivals.find((f) => f.id === festivalId).location}`
+                    : "Festival"}
+                </div>
+              ) : (
+                <select
+                  required
+                  value={festivalId}
+                  onChange={(e) => handleFestivalChange(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-indigo-500"
+                >
+                  <option value="">Sélectionner un festival</option>
+                  {festivals.map((f) => (
+                    <option key={f.id} value={f.id}>
+                      {f.name} — {f.location}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
 
             {festivalId && (
@@ -171,10 +185,10 @@ export default function CreateSuiviModal({ onClose, onCreated, triggerToast }) {
               {submitting ? (
                 <>
                   <RefreshCw className="w-4 h-4 animate-spin" />
-                  <span>Création...</span>
+                  <span>{isEdit ? "Enregistrement..." : "Création..."}</span>
                 </>
               ) : (
-                <span>Créer le suivi</span>
+                <span>{isEdit ? "Enregistrer les modifications" : "Créer le suivi"}</span>
               )}
             </button>
           </form>

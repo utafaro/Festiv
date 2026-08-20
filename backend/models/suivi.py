@@ -28,6 +28,10 @@ class SuiviCreateRequest(BaseModel):
     lineup_ids: List[str] = Field(min_length=1)
     name: Optional[str] = None
 
+class SuiviUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    lineup_ids: Optional[List[str]] = None
+
 
 # ==========================================
 # 2. MODÈLES MEMBRES / INVITATIONS DE SUIVI (même logique que Lineup)
@@ -60,28 +64,7 @@ class SuiviInviteRequest(BaseModel):
 
 
 # ==========================================
-# 3. MODÈLES CASE PERSONNALISÉE (lieu ad-hoc, réutilisable au sein du suivi)
-# ==========================================
-
-class CustomSpotInDB(BaseModel):
-    id: Optional[str] = None
-    suivi_id: str
-    label: str
-    created_by: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-class CustomSpotResponse(BaseModel):
-    id: str
-    suivi_id: str
-    label: str
-    created_by: str
-
-class CustomSpotCreateRequest(BaseModel):
-    label: str
-
-
-# ==========================================
-# 4. MODÈLES POSITION (pointage live d'un membre)
+# 3. MODÈLES POSITION (pointage live d'un membre)
 # ==========================================
 
 class TargetType(str, Enum):
@@ -95,7 +78,7 @@ class PositionInDB(BaseModel):
     target_type: TargetType
     lineup_id: Optional[str] = None
     set_id: Optional[str] = None
-    custom_spot_id: Optional[str] = None
+    custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = Field(default_factory=list)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
@@ -109,7 +92,7 @@ class PositionResponse(BaseModel):
     target_type: TargetType
     lineup_id: Optional[str] = None
     set_id: Optional[str] = None
-    custom_spot_id: Optional[str] = None
+    custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = []
     updated_at: datetime
@@ -117,6 +100,6 @@ class PositionResponse(BaseModel):
 class PositionSetRequest(BaseModel):
     target_type: TargetType
     set_id: Optional[str] = None
-    custom_spot_id: Optional[str] = None
+    custom_label: Optional[str] = None
     note: Optional[str] = None
     grouped_with: List[str] = []

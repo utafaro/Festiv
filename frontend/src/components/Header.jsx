@@ -1,7 +1,22 @@
+import { useEffect, useRef, useState } from "react";
 import { Radio } from "lucide-react";
 import UserDropdown from "./UserDropdown";
 
 export default function Header({ user }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", handleOutside);
+    return () => document.removeEventListener("pointerdown", handleOutside);
+  }, [menuOpen]);
+
   function getInitials(fullName) {
     if (!fullName) return "??"; // Valeur par défaut si l'utilisateur n'a pas de nom chargé
 
@@ -32,12 +47,15 @@ export default function Header({ user }) {
         </div>
 
         {/* Quick Stats or Spotify Connection Widget */}
-        <div className="relative flex items-center gap-3 group py-2">
+        <div ref={menuRef} className="relative flex items-center gap-3 py-2">
           <span className="hidden sm:inline text-xs text-slate-700 font-semibold truncate max-w-[140px]">
             {user?.full_name}
           </span>
           {/* Profile Avatar mockup */}
-          <button className="w-10 h-10 rounded-xl border border-slate-200 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm hover:ring-2 hover:ring-indigo-500/25 hover:border-indigo-500/40 transition-all duration-300 focus:outline-none">
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="w-10 h-10 rounded-xl border border-slate-200 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm hover:ring-2 hover:ring-indigo-500/25 hover:border-indigo-500/40 transition-all duration-300 focus:outline-none"
+          >
             {user?.avatar_url ? (
               <img
                 src={user.avatar_url}
@@ -50,7 +68,13 @@ export default function Header({ user }) {
               </div>
             )}
           </button>
-          <UserDropdown user={user} getInitials={getInitials} />
+          {menuOpen && (
+            <UserDropdown
+              user={user}
+              getInitials={getInitials}
+              onNavigate={() => setMenuOpen(false)}
+            />
+          )}
         </div>
       </div>
     </header>

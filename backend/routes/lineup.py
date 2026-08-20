@@ -5,6 +5,7 @@ from core.database import get_db
 from core.security import get_current_user
 from models.festival import (
     LineupCreateRequest,
+    LineupUpdateRequest,
     LineupResponse,
     LineupInviteRequest,
     LineupMemberResponse,
@@ -149,6 +150,32 @@ async def get_lineup(lineup_id: str, db=Depends(get_db), current_user=Depends(ge
         if not member:
             raise HTTPException(403, "Accès refusé à cette lineup")
     return format_lineup(lineup)
+
+@router.put("/{lineup_id}", response_model=LineupResponse)
+async def update_lineup(lineup_id: str, data: LineupUpdateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
+    lineup = await get_lineup_or_404(lineup_id, db)
+    ensure_owner(lineup, str(current_user["_id"]))
+
+    update_data = {k: v for k, v in data.model_dump(exclude_unset=True).items()}
+    if update_data:
+        await db["lineups"].update_one({"_id": ObjectId(lineup_id)}, {"$set": update_data})
+
+    updated = await db["lineups"].find_one({"_id": ObjectId(lineup_id)})
+    return format_lineup(updated)
+
+@router.delete("/{lineup_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_lineup(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    lineup = await get_lineup_or_404(lineup_id, db)
+    ensure_owner(lineup, str(current_user["_id"]))
+
+    await db["sets"].delete_many({"lineup_id": lineup_id})
+    await db["stages"].delete_many({"lineup_id": lineup_id})
+    await db["lineup_members"].delete_many({"lineup_id": lineup_id})
+    await db["positions"].delete_many({"lineup_id": lineup_id})
+    await db["suivis"].update_many(
+        {"lineup_ids": lineup_id}, {"$pull": {"lineup_ids": lineup_id}}
+    )
+    await db["lineups"].delete_one({"_id": ObjectId(lineup_id)})
 
 @router.get("/{lineup_id}/members", response_model=List[LineupMemberResponse])
 async def list_members(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):

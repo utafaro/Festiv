@@ -210,7 +210,7 @@ export default function FestivalDetailPage() {
       </header>
 
       {/* Grid Principal */}
-      <main className="max-w-7xl mx-auto px-4 lg:px-8 mt-8 relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="max-w-7xl mx-auto px-4 lg:px-8 mt-8 relative grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Colonne Gauche & Centre */}
         <div className="lg:col-span-2 space-y-8">
           {/* Image de couverture */}

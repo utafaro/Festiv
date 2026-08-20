@@ -11,6 +11,11 @@ export const createLineup = (festivalId, name) =>
 
 export const getLineup = (lineupId) => api.get(`/lineups/${lineupId}`).then((r) => r.data);
 
+export const updateLineup = (lineupId, name) =>
+  api.put(`/lineups/${lineupId}`, { name: name || null }).then((r) => r.data);
+
+export const deleteLineup = (lineupId) => api.delete(`/lineups/${lineupId}`);
+
 // Invitations
 export const listInvitations = () => api.get("/lineups/invitations").then((r) => r.data);
 

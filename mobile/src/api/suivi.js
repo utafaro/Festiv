@@ -13,6 +13,15 @@ export const createSuivi = (festivalId, lineupIds, name) =>
 
 export const getSuivi = (suiviId) => api.get(`/suivis/${suiviId}`).then((r) => r.data);
 
+export const updateSuivi = (suiviId, { name, lineupIds } = {}) => {
+  const payload = {};
+  if (name !== undefined) payload.name = name || null;
+  if (lineupIds !== undefined) payload.lineup_ids = lineupIds;
+  return api.put(`/suivis/${suiviId}`, payload).then((r) => r.data);
+};
+
+export const deleteSuivi = (suiviId) => api.delete(`/suivis/${suiviId}`);
+
 // Invitations
 export const listSuiviInvitations = () => api.get("/suivis/invitations").then((r) => r.data);
 
@@ -32,12 +41,6 @@ export const inviteSuiviMember = (suiviId, email) =>
 // Programme agrégé
 export const listSuiviSets = (suiviId) =>
   api.get(`/suivis/${suiviId}/sets`).then((r) => r.data);
-
-// Cases personnalisées
-export const listSpots = (suiviId) => api.get(`/suivis/${suiviId}/spots`).then((r) => r.data);
-
-export const createSpot = (suiviId, label) =>
-  api.post(`/suivis/${suiviId}/spots`, { label }).then((r) => r.data);
 
 // Positions live
 export const listPositions = (suiviId) =>

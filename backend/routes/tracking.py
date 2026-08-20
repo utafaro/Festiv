@@ -6,8 +6,6 @@ from core.database import get_db
 from core.security import get_current_user
 from core.config import settings
 from models.suivi import (
-    CustomSpotCreateRequest,
-    CustomSpotResponse,
     PositionSetRequest,
     PositionResponse,
     TargetType,
@@ -45,14 +43,6 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
-def format_spot(spot) -> CustomSpotResponse:
-    return CustomSpotResponse(
-        id=str(spot["_id"]),
-        suivi_id=spot["suivi_id"],
-        label=spot["label"],
-        created_by=spot["created_by"],
-    )
-
 def format_position(position, user) -> PositionResponse:
     return PositionResponse(
         id=str(position["_id"]),
@@ -63,7 +53,7 @@ def format_position(position, user) -> PositionResponse:
         target_type=position["target_type"],
         lineup_id=position.get("lineup_id"),
         set_id=position.get("set_id"),
-        custom_spot_id=position.get("custom_spot_id"),
+        custom_label=position.get("custom_label"),
         note=position.get("note"),
         grouped_with=position.get("grouped_with", []),
         updated_at=position["updated_at"],
@@ -80,29 +70,6 @@ async def list_suivi_sets(suivi_id: str, db=Depends(get_db), current_user=Depend
     sets = await cursor.to_list(length=1000)
     return [await format_set(s, db) for s in sets]
 
-@router.post("/spots", response_model=CustomSpotResponse, status_code=status.HTTP_201_CREATED)
-async def create_spot(suivi_id: str, data: CustomSpotCreateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
-    suivi = await get_suivi_or_404(suivi_id, db)
-    await ensure_access(suivi, str(current_user["_id"]), db)
-
-    spot = {
-        "suivi_id": suivi_id,
-        "label": data.label,
-        "created_by": str(current_user["_id"]),
-        "created_at": datetime.utcnow(),
-    }
-    result = await db["custom_spots"].insert_one(spot)
-    await manager.broadcast(suivi_id, {"type": "updated"})
-    return format_spot({**spot, "_id": result.inserted_id})
-
-@router.get("/spots", response_model=List[CustomSpotResponse])
-async def list_spots(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
-    suivi = await get_suivi_or_404(suivi_id, db)
-    await ensure_access(suivi, str(current_user["_id"]), db)
-    cursor = db["custom_spots"].find({"suivi_id": suivi_id})
-    spots = await cursor.to_list(length=200)
-    return [format_spot(s) for s in spots]
-
 @router.put("/position", response_model=PositionResponse)
 async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
     suivi = await get_suivi_or_404(suivi_id, db)
@@ -111,7 +78,7 @@ async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_d
 
     lineup_id = None
     set_id = None
-    custom_spot_id = None
+    custom_label = None
 
     if data.target_type == TargetType.set:
         if not data.set_id or not ObjectId.is_valid(data.set_id):
@@ -122,12 +89,9 @@ async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_d
         set_id = data.set_id
         lineup_id = set_doc["lineup_id"]
     elif data.target_type == TargetType.custom:
-        if not data.custom_spot_id or not ObjectId.is_valid(data.custom_spot_id):
-            raise HTTPException(400, "custom_spot_id invalide")
-        spot_doc = await db["custom_spots"].find_one({"_id": ObjectId(data.custom_spot_id), "suivi_id": suivi_id})
-        if not spot_doc:
-            raise HTTPException(400, "Cette case personnalisée n'existe pas dans ce suivi")
-        custom_spot_id = data.custom_spot_id
+        custom_label = (data.custom_label or "").strip()
+        if not custom_label:
+            raise HTTPException(400, "Merci de préciser où vous êtes")
     else:
         raise HTTPException(400, "target_type invalide")
 
@@ -142,7 +106,7 @@ async def set_position(suivi_id: str, data: PositionSetRequest, db=Depends(get_d
         "target_type": data.target_type,
         "lineup_id": lineup_id,
         "set_id": set_id,
-        "custom_spot_id": custom_spot_id,
+        "custom_label": custom_label,
         "note": data.note,
         "grouped_with": data.grouped_with,
         "updated_at": datetime.utcnow(),

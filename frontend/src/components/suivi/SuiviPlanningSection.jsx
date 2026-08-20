@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Plus, Radar, MapPin, Check, X, Loader2, Users, Crown } from "lucide-react";
+import {
+  Plus,
+  Radar,
+  MapPin,
+  Check,
+  X,
+  Loader2,
+  Users,
+  Crown,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 import { listFestivals } from "../../api/festival";
 import {
   listMySuivis,
@@ -8,6 +19,7 @@ import {
   listSuiviInvitations,
   acceptSuiviInvitation,
   deleteSuiviInvitation,
+  deleteSuivi,
 } from "../../api/suivi";
 import CreateSuiviModal from "../../modal/CreateSuiviModal";
 import ToastNotifications from "../ToastNotifications";
@@ -20,6 +32,8 @@ export default function SuiviPlanningSection() {
   const [festivalsById, setFestivalsById] = useState({});
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingSuivi, setEditingSuivi] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
   const [respondingId, setRespondingId] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -88,6 +102,28 @@ export default function SuiviPlanningSection() {
     }
   };
 
+  const handleDeleteSuivi = async (suivi) => {
+    if (
+      !window.confirm(
+        `Supprimer le suivi "${suivi.name || "sans nom"}" ? Cette action est irréversible.`,
+      )
+    )
+      return;
+    setDeletingId(suivi.id);
+    try {
+      await deleteSuivi(suivi.id);
+      setMySuivis((prev) => prev.filter((s) => s.id !== suivi.id));
+      triggerToast("Suivi supprimé.", "success");
+    } catch (err) {
+      triggerToast(
+        err.response?.data?.detail || "Erreur lors de la suppression du suivi.",
+        "error",
+      );
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const SuiviCard = ({ suivi, shared }) => {
     const festival = festivalsById[suivi.festival_id];
     return (
@@ -106,9 +142,42 @@ export default function SuiviPlanningSection() {
             {shared ? <Users className="w-3 h-3" /> : <Crown className="w-3 h-3" />}
             {shared ? "Partagé avec moi" : "Propriétaire"}
           </span>
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-fuchsia-50 text-fuchsia-600 rounded-lg text-[9px] font-bold uppercase">
-            <Radar className="w-3 h-3" /> Live
-          </span>
+          <div className="flex items-center gap-1 shrink-0">
+            {!shared && (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingSuivi(suivi);
+                  }}
+                  className="p-1.5 text-slate-400 hover:text-fuchsia-600 rounded-lg hover:bg-fuchsia-50"
+                  title="Modifier"
+                >
+                  <Pencil className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteSuivi(suivi);
+                  }}
+                  disabled={deletingId === suivi.id}
+                  className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 disabled:opacity-50"
+                  title="Supprimer"
+                >
+                  {deletingId === suivi.id ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Trash2 className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </>
+            )}
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-fuchsia-50 text-fuchsia-600 rounded-lg text-[9px] font-bold uppercase">
+              <Radar className="w-3 h-3" /> Live
+            </span>
+          </div>
         </div>
         <h3 className="text-base font-extrabold text-slate-800 group-hover:text-fuchsia-600 transition-colors line-clamp-1">
           {suivi.name || festival?.name || "Mon Suivi"}
@@ -250,6 +319,20 @@ export default function SuiviPlanningSection() {
           onCreated={(suivi) => {
             setShowCreateModal(false);
             navigate(`/suivis/${suivi.id}`);
+          }}
+          triggerToast={triggerToast}
+        />
+      )}
+
+      {editingSuivi && (
+        <CreateSuiviModal
+          initialSuivi={editingSuivi}
+          onClose={() => setEditingSuivi(null)}
+          onCreated={(updated) => {
+            setMySuivis((prev) =>
+              prev.map((s) => (s.id === updated.id ? updated : s)),
+            );
+            setEditingSuivi(null);
           }}
           triggerToast={triggerToast}
         />

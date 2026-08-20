@@ -54,6 +54,10 @@ class LineupCreateRequest(BaseModel):
     festival_id: str
     name: Optional[str] = None
 
+# Requête de modification
+class LineupUpdateRequest(BaseModel):
+    name: Optional[str] = None
+
 
 # ==========================================
 # 3. MODÈLES MEMBRES / INVITATIONS DE LINEUP

@@ -9,6 +9,8 @@ import {
   Loader2,
   Users,
   Crown,
+  Pencil,
+  Trash2,
 } from "lucide-react";
 import { listFestivals } from "../../api/festival";
 import {
@@ -17,8 +19,10 @@ import {
   listInvitations,
   acceptInvitation,
   deleteInvitation,
+  deleteLineup,
 } from "../../api/lineup";
 import CreateLineupModal from "../../modal/CreateLineupModal";
+import RenameLineupModal from "../../modal/RenameLineupModal";
 import ToastNotifications from "../ToastNotifications";
 
 export default function LineupPlanningSection() {
@@ -29,6 +33,8 @@ export default function LineupPlanningSection() {
   const [festivalsById, setFestivalsById] = useState({});
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [renamingLineup, setRenamingLineup] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
   const [respondingId, setRespondingId] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -97,6 +103,28 @@ export default function LineupPlanningSection() {
     }
   };
 
+  const handleDeleteLineup = async (lineup) => {
+    if (
+      !window.confirm(
+        `Supprimer la lineup "${lineup.name || "sans nom"}" ? Cette action est irréversible.`,
+      )
+    )
+      return;
+    setDeletingId(lineup.id);
+    try {
+      await deleteLineup(lineup.id);
+      setMyLineups((prev) => prev.filter((l) => l.id !== lineup.id));
+      triggerToast("Lineup supprimée.", "success");
+    } catch (err) {
+      triggerToast(
+        err.response?.data?.detail || "Erreur lors de la suppression de la lineup.",
+        "error",
+      );
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const LineupCard = ({ lineup, shared }) => {
     const festival = festivalsById[lineup.festival_id];
     return (
@@ -115,6 +143,37 @@ export default function LineupPlanningSection() {
             {shared ? <Users className="w-3 h-3" /> : <Crown className="w-3 h-3" />}
             {shared ? "Partagé avec moi" : "Propriétaire"}
           </span>
+          {!shared && (
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setRenamingLineup(lineup);
+                }}
+                className="p-1.5 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-indigo-50"
+                title="Renommer"
+              >
+                <Pencil className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteLineup(lineup);
+                }}
+                disabled={deletingId === lineup.id}
+                className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 disabled:opacity-50"
+                title="Supprimer"
+              >
+                {deletingId === lineup.id ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Trash2 className="w-3.5 h-3.5" />
+                )}
+              </button>
+            </div>
+          )}
         </div>
         <h3 className="text-base font-extrabold text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-1">
           {lineup.name || festival?.name || "Ma Lineup"}
@@ -255,6 +314,20 @@ export default function LineupPlanningSection() {
           onCreated={(lineup) => {
             setShowCreateModal(false);
             navigate(`/lineups/${lineup.id}`);
+          }}
+          triggerToast={triggerToast}
+        />
+      )}
+
+      {renamingLineup && (
+        <RenameLineupModal
+          lineup={renamingLineup}
+          onClose={() => setRenamingLineup(null)}
+          onSaved={(updated) => {
+            setMyLineups((prev) =>
+              prev.map((l) => (l.id === updated.id ? updated : l)),
+            );
+            setRenamingLineup(null);
           }}
           triggerToast={triggerToast}
         />

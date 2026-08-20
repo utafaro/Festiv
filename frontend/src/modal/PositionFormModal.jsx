@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { X, RefreshCw, MapPin, Music, Plus, Users } from "lucide-react";
-import { setPosition, createSpot } from "../api/suivi";
+import { X, RefreshCw, MapPin, Music, Users } from "lucide-react";
+import { setPosition } from "../api/suivi";
 
 export default function PositionFormModal({
   suiviId,
   sets,
-  spots,
-  setSpots,
   otherPositions,
   initialPosition,
   onClose,
@@ -15,9 +13,7 @@ export default function PositionFormModal({
 }) {
   const [mode, setMode] = useState(initialPosition?.target_type || "set");
   const [setId, setSetId] = useState(initialPosition?.set_id || "");
-  const [customSpotId, setCustomSpotId] = useState(initialPosition?.custom_spot_id || "");
-  const [newSpotLabel, setNewSpotLabel] = useState("");
-  const [creatingSpot, setCreatingSpot] = useState(false);
+  const [customLabel, setCustomLabel] = useState(initialPosition?.custom_label || "");
   const [note, setNote] = useState(initialPosition?.note || "");
   const [groupedWith, setGroupedWith] = useState(initialPosition?.grouped_with || []);
   const [submitting, setSubmitting] = useState(false);
@@ -28,30 +24,14 @@ export default function PositionFormModal({
     );
   };
 
-  const handleCreateSpot = async () => {
-    const label = newSpotLabel.trim();
-    if (!label) return;
-    setCreatingSpot(true);
-    try {
-      const spot = await createSpot(suiviId, label);
-      setSpots((prev) => (prev.some((s) => s.id === spot.id) ? prev : [...prev, spot]));
-      setCustomSpotId(spot.id);
-      setNewSpotLabel("");
-    } catch {
-      triggerToast("Erreur lors de la création du lieu personnalisé.", "error");
-    } finally {
-      setCreatingSpot(false);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (mode === "set" && !setId) {
       triggerToast("Sélectionnez le set sur lequel vous vous trouvez.", "warning");
       return;
     }
-    if (mode === "custom" && !customSpotId) {
-      triggerToast("Sélectionnez ou créez un lieu personnalisé.", "warning");
+    if (mode === "custom" && !customLabel.trim()) {
+      triggerToast("Précisez où vous êtes.", "warning");
       return;
     }
 
@@ -60,7 +40,7 @@ export default function PositionFormModal({
       const payload = {
         target_type: mode,
         set_id: mode === "set" ? setId : null,
-        custom_spot_id: mode === "custom" ? customSpotId : null,
+        custom_label: mode === "custom" ? customLabel.trim() : null,
         note: note.trim() || null,
         grouped_with: groupedWith,
       };
@@ -80,7 +60,7 @@ export default function PositionFormModal({
 
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-none">
+      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90dvh] overflow-y-auto scrollbar-none">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
@@ -146,50 +126,15 @@ export default function PositionFormModal({
           ) : (
             <div className="space-y-1">
               <label className="text-slate-500 font-bold flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-fuchsia-500" /> Lieu personnalisé * :
+                <MapPin className="w-3.5 h-3.5 text-fuchsia-500" /> Où êtes-vous * :
               </label>
-              {spots.length > 0 && (
-                <select
-                  value={customSpotId}
-                  onChange={(e) => setCustomSpotId(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-fuchsia-500"
-                >
-                  <option value="">Sélectionner un lieu existant</option>
-                  {spots.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {s.label}
-                    </option>
-                  ))}
-                </select>
-              )}
-              <div className="flex gap-2 mt-2">
-                <input
-                  type="text"
-                  placeholder="ex: Devant les foodtrucks"
-                  value={newSpotLabel}
-                  onChange={(e) => setNewSpotLabel(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      handleCreateSpot();
-                    }
-                  }}
-                  className="flex-1 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-xl text-slate-800 focus:outline-none focus:border-fuchsia-500"
-                />
-                <button
-                  type="button"
-                  disabled={creatingSpot}
-                  onClick={handleCreateSpot}
-                  className="px-3.5 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-xl font-bold disabled:opacity-50 inline-flex items-center gap-1"
-                >
-                  {creatingSpot ? (
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                  ) : (
-                    <Plus className="w-3.5 h-3.5" />
-                  )}
-                  Créer
-                </button>
-              </div>
+              <input
+                type="text"
+                placeholder="ex: Devant les foodtrucks"
+                value={customLabel}
+                onChange={(e) => setCustomLabel(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:border-fuchsia-500"
+              />
             </div>
           )}
 
