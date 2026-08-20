@@ -30,7 +30,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", settings.FRONTEND_URL],
     # Autorise aussi l'accès depuis une IP du réseau local (ex: `vite --host` + test sur mobile),
     # où l'origine envoyée par le navigateur n'est plus "localhost" mais l'IP LAN de la machine de dev.
     allow_origin_regex=r"http://(127\.0\.0\.1|192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}):5173",
