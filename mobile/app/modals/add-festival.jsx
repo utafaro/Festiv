@@ -10,12 +10,14 @@ import {
   Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { X, MapPin, Image as ImageIcon, Calendar, Trash2 } from "lucide-react-native";
+import { MapPin, Image as ImageIcon, Calendar, Trash2 } from "lucide-react-native";
 import { createFestival } from "../../src/api/festival";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import { HeaderCloseButton } from "../../src/components/nav/HeaderButtons";
 
 export default function AddFestivalModal() {
   const router = useRouter();
@@ -115,13 +117,14 @@ export default function AddFestivalModal() {
     d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : "Sélectionner";
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
-        <Text className="text-base font-extrabold text-slate-800">Nouveau Festival</Text>
-        <Pressable onPress={() => router.back()} hitSlop={8}>
-          <X size={20} color={colors.slate400} />
-        </Pressable>
-      </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["bottom", "left", "right"]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "Nouveau Festival",
+          headerRight: () => <HeaderCloseButton onPress={() => router.back()} />,
+        }}
+      />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }} keyboardShouldPersistTaps="handled">
         <View style={{ gap: 6 }}>
@@ -267,20 +270,7 @@ export default function AddFestivalModal() {
 
         {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
 
-        <Pressable
-          onPress={handleSubmit}
-          disabled={submitting}
-          className="bg-indigo-600 rounded-xl py-4 items-center active:opacity-80"
-          style={{ opacity: submitting ? 0.6 : 1 }}
-        >
-          {submitting ? (
-            <ActivityIndicator color="white" />
-          ) : (
-            <Text className="text-white text-xs font-extrabold uppercase tracking-wide">
-              Créer le festival
-            </Text>
-          )}
-        </Pressable>
+        <PrimaryButton label="Créer le festival" onPress={handleSubmit} loading={submitting} />
       </ScrollView>
     </SafeAreaView>
   );

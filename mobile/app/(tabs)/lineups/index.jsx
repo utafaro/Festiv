@@ -1,27 +1,29 @@
 import { useCallback, useState } from "react";
 import { View, Text, FlatList, Pressable, ActivityIndicator, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFocusEffect, useRouter } from "expo-router";
+import { Stack, useFocusEffect, useRouter } from "expo-router";
 import { Plus, Sparkles, MapPin, Crown, Users, Check, X } from "lucide-react-native";
-import ScreenHeader from "../../src/components/ScreenHeader";
-import ToastStack from "../../src/components/ToastStack";
-import { useToasts } from "../../src/hooks/useToasts";
-import { listFestivals } from "../../src/api/festival";
+import ToastStack from "../../../src/components/ToastStack";
+import { HeaderAvatarButton } from "../../../src/components/nav/HeaderButtons";
+import { useToasts } from "../../../src/hooks/useToasts";
+import { useAuth } from "../../../src/context/AuthContext";
+import { useSettingsSheet } from "../../../src/context/SettingsSheetContext";
+import { getInitials } from "../../../src/utils/getInitials";
+import { listFestivals } from "../../../src/api/festival";
 import {
   listMyLineups,
   listSharedLineups,
   listInvitations,
   acceptInvitation,
   deleteInvitation,
-} from "../../src/api/lineup";
-import { colors } from "../../src/theme/colors";
+} from "../../../src/api/lineup";
+import { colors } from "../../../src/theme/colors";
+import GlassCard from "../../../src/components/GlassCard";
 
 function LineupCard({ lineup, shared, festival, onPress }) {
   return (
-    <Pressable
-      onPress={onPress}
-      className="bg-white border border-slate-200 rounded-2xl p-4 mb-3 active:opacity-90"
-    >
+    <Pressable onPress={onPress} className="mb-3 active:opacity-90">
+    <GlassCard radius="rounded-2xl" className="p-4">
       <View className="flex-row items-center justify-between mb-2">
         <View
           className="flex-row items-center rounded-lg px-2 py-1"
@@ -51,12 +53,15 @@ function LineupCard({ lineup, shared, festival, onPress }) {
           </Text>
         </View>
       )}
+    </GlassCard>
     </Pressable>
   );
 }
 
 export default function LineupsScreen() {
   const router = useRouter();
+  const { user } = useAuth();
+  const { show: showSettings } = useSettingsSheet();
   const [mine, setMine] = useState([]);
   const [shared, setShared] = useState([]);
   const [invitations, setInvitations] = useState([]);
@@ -132,8 +137,16 @@ export default function LineupsScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-50" edges={["top"]}>
-      <ScreenHeader />
+    <SafeAreaView className="flex-1 bg-slate-50" edges={[]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "FESTIV",
+          headerRight: () => (
+            <HeaderAvatarButton initials={getInitials(user?.full_name)} onPress={showSettings} />
+          ),
+        }}
+      />
 
       <View className="px-4 pt-5 pb-2 flex-row items-center justify-between">
         <View className="flex-1 pr-3">
@@ -180,9 +193,11 @@ export default function LineupsScreen() {
                   {item.data.map((inv) => {
                     const festival = festivalsById[inv.festival_id];
                     return (
-                      <View
+                      <GlassCard
                         key={inv.id}
-                        className="bg-white border border-amber-200 rounded-2xl p-3.5 mb-2"
+                        radius="rounded-2xl"
+                        tintColor={colors.amber700}
+                        className="p-3.5 mb-2"
                       >
                         <Text className="text-sm font-bold text-slate-800" numberOfLines={1}>
                           {inv.lineup_name || festival?.name || "Une lineup"}
@@ -212,7 +227,7 @@ export default function LineupsScreen() {
                             <Text className="text-slate-600 text-xs font-bold">Refuser</Text>
                           </Pressable>
                         </View>
-                      </View>
+                      </GlassCard>
                     );
                   })}
                 </View>
@@ -226,7 +241,7 @@ export default function LineupsScreen() {
                     Mes Lineups
                   </Text>
                   {item.data.length === 0 ? (
-                    <View className="bg-white/60 border border-slate-200 rounded-2xl p-8 items-center">
+                    <GlassCard radius="rounded-2xl" className="p-8 items-center">
                       <Sparkles color={colors.indigo600} size={22} />
                       <Text className="text-xs font-bold text-slate-800 mt-3 text-center">
                         Aucune lineup pour l'instant
@@ -234,7 +249,7 @@ export default function LineupsScreen() {
                       <Text className="text-[11px] text-slate-500 mt-1 text-center">
                         Choisissez un festival pour créer votre programmation.
                       </Text>
-                    </View>
+                    </GlassCard>
                   ) : (
                     item.data.map((l) => (
                       <LineupCard

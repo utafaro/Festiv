@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, ActivityIndicator, Pressable, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import MapView, { Marker } from "react-native-maps";
 import {
   Calendar,
   MapPin,
   Music,
-  Ticket,
   ExternalLink,
   Radio,
   Plus,
   ArrowUpRight,
-  Pencil,
 } from "lucide-react-native";
-import { BackHeader } from "../../src/components/ScreenHeader";
+import { HeaderIconButton, HeaderTextButton } from "../../src/components/nav/HeaderButtons";
 import { getFestivalById } from "../../src/api/festival";
 import { listMyLineups, createLineup } from "../../src/api/lineup";
 import { API_BASE_URL } from "../../src/api/config";
 import { colors } from "../../src/theme/colors";
+import GlassCard from "../../src/components/GlassCard";
 
 export default function FestivalDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -100,29 +99,42 @@ export default function FestivalDetailScreen() {
     : null;
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-50" edges={["top"]}>
-      <BackHeader
-        title="Retour"
-        right={
-          <View className="flex-row items-center" style={{ gap: 8 }}>
-            <Pressable
-              onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
-              className="bg-slate-100 rounded-xl p-2"
-            >
-              <Pencil size={14} color={colors.slate600} />
-            </Pressable>
-            {festival.ticket_office_url && (
-              <Pressable
-                onPress={() => Linking.openURL(festival.ticket_office_url)}
-                className="flex-row items-center bg-indigo-600 rounded-xl px-3 py-2"
-                style={{ gap: 6 }}
-              >
-                <Ticket size={13} color="white" />
-                <Text className="text-white text-[11px] font-bold">Billetterie</Text>
-              </Pressable>
-            )}
-          </View>
-        }
+    <SafeAreaView className="flex-1 bg-slate-50" edges={[]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerBackTitle: "Retour",
+          headerTitle: "",
+          unstable_headerRightItems: () => [
+            {
+              type: "custom",
+              hidesSharedBackground: true,
+              element: (
+                <HeaderIconButton
+                  systemImage="pencil"
+                  accessibilityLabel="Modifier"
+                  onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+                />
+              ),
+            },
+            ...(festival.ticket_office_url
+              ? [
+                  {
+                    type: "custom",
+                    hidesSharedBackground: true,
+                    element: (
+                      <HeaderTextButton
+                        label="Billetterie"
+                        systemImage="ticket.fill"
+                        onPress={() => Linking.openURL(festival.ticket_office_url)}
+                        prominent
+                      />
+                    ),
+                  },
+                ]
+              : []),
+          ],
+        }}
       />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
@@ -143,7 +155,7 @@ export default function FestivalDetailScreen() {
           </View>
         </View>
 
-        <View className="bg-white rounded-3xl p-5 border border-slate-100">
+        <GlassCard className="p-5">
           <View className="flex-row items-center mb-3" style={{ gap: 10 }}>
             <View className="bg-fuchsia-50 rounded-xl p-2">
               <Radio size={18} color={colors.fuchsia600} />
@@ -180,9 +192,9 @@ export default function FestivalDetailScreen() {
               <Text className="text-white text-xs font-bold">Créer ma Lineup</Text>
             </Pressable>
           )}
-        </View>
+        </GlassCard>
 
-        <View className="bg-white rounded-3xl p-5 border border-slate-100" style={{ gap: 14 }}>
+        <GlassCard className="p-5" style={{ gap: 14 }}>
           <Text className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3">
             Informations
           </Text>
@@ -224,9 +236,9 @@ export default function FestivalDetailScreen() {
               <Text className="text-xs font-bold text-indigo-600">Site officiel</Text>
             </Pressable>
           )}
-        </View>
+        </GlassCard>
 
-        <View className="bg-white rounded-3xl p-4 border border-slate-100" style={{ gap: 10 }}>
+        <GlassCard className="p-4" style={{ gap: 10 }}>
           <Text className="text-sm font-bold text-slate-900">Plan d'accès</Text>
           <View className="h-52 rounded-2xl overflow-hidden">
             {mapLoading ? (
@@ -246,7 +258,7 @@ export default function FestivalDetailScreen() {
               </MapView>
             )}
           </View>
-        </View>
+        </GlassCard>
       </ScrollView>
     </SafeAreaView>
   );

@@ -24,27 +24,27 @@ function RootNavigator() {
         <Stack.Screen name="suivis/[id]" />
         <Stack.Screen
           name="modals/add-festival"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
         <Stack.Screen
           name="modals/edit-festival"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
         <Stack.Screen
           name="modals/create-lineup"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
         <Stack.Screen
           name="modals/create-suivi"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
         <Stack.Screen
           name="modals/set-form"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
         <Stack.Screen
           name="modals/position-form"
-          options={{ presentation: "modal", headerShown: false }}
+          options={{ presentation: "modal", headerShown: true }}
         />
       </Stack.Protected>
       <Stack.Protected guard={!user}>

@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { MapPin, Calendar, Music, ImageIcon } from "lucide-react-native";
 import { API_BASE_URL } from "../api/config";
 import { colors } from "../theme/colors";
+import GlassCard from "./GlassCard";
 
 function formatDate(dateString) {
   if (!dateString) return "";
@@ -24,8 +25,9 @@ export default function FestivalCard({ festival }) {
   return (
     <Pressable
       onPress={() => router.push(`/festival/${festival.id}`)}
-      className="bg-white border border-slate-200 rounded-3xl overflow-hidden mb-4 shadow-sm active:opacity-90"
+      className="mb-4 active:opacity-90"
     >
+    <GlassCard>
       <View className="h-40 bg-slate-100">
         {coverUri ? (
           <Image source={{ uri: coverUri }} className="w-full h-full" resizeMode="cover" />
@@ -75,6 +77,7 @@ export default function FestivalCard({ festival }) {
           </Text>
         </View>
       </View>
+    </GlassCard>
     </Pressable>
   );
 }

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, ActivityIndicator, Image, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { X, Calendar, Image as ImageIcon, Trash2 } from "lucide-react-native";
+import { Calendar, Image as ImageIcon, Trash2 } from "lucide-react-native";
 import { getFestivalById, updateFestival } from "../../src/api/festival";
 import { API_BASE_URL } from "../../src/api/config";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import { HeaderCloseButton } from "../../src/components/nav/HeaderButtons";
 
 export default function EditFestivalModal() {
   const { id } = useLocalSearchParams();
@@ -92,13 +94,14 @@ export default function EditFestivalModal() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
-        <Text className="text-base font-extrabold text-slate-800">Modifier le Festival</Text>
-        <Pressable onPress={() => router.back()} hitSlop={8}>
-          <X size={20} color={colors.slate400} />
-        </Pressable>
-      </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["bottom", "left", "right"]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "Modifier le Festival",
+          headerRight: () => <HeaderCloseButton onPress={() => router.back()} />,
+        }}
+      />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }} keyboardShouldPersistTaps="handled">
         <View style={{ gap: 6 }}>
@@ -220,20 +223,11 @@ export default function EditFestivalModal() {
 
         {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
 
-        <Pressable
+        <PrimaryButton
+          label="Enregistrer les modifications"
           onPress={handleSubmit}
-          disabled={submitting}
-          className="bg-indigo-600 rounded-xl py-4 items-center"
-          style={{ opacity: submitting ? 0.6 : 1 }}
-        >
-          {submitting ? (
-            <ActivityIndicator color="white" />
-          ) : (
-            <Text className="text-white text-xs font-extrabold uppercase tracking-wide">
-              Enregistrer les modifications
-            </Text>
-          )}
-        </Pressable>
+          loading={submitting}
+        />
       </ScrollView>
     </SafeAreaView>
   );

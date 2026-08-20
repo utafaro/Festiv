@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
 import {
   UserPlus,
   Trash2,
@@ -14,7 +14,6 @@ import {
   Users,
   MapPin,
 } from "lucide-react-native";
-import { BackHeader } from "../../src/components/ScreenHeader";
 import ToastStack from "../../src/components/ToastStack";
 import { useToasts } from "../../src/hooks/useToasts";
 import { useAuth } from "../../src/context/AuthContext";
@@ -33,6 +32,7 @@ import {
 } from "../../src/api/suivi";
 import { getFestivalById } from "../../src/api/festival";
 import { colors } from "../../src/theme/colors";
+import GlassCard from "../../src/components/GlassCard";
 
 export default function SuiviDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -257,11 +257,17 @@ export default function SuiviDetailScreen() {
   }, {});
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-50" edges={["top"]}>
-      <BackHeader title="Amis & Live" onBack={() => router.replace("/(tabs)/suivi")} />
+    <SafeAreaView className="flex-1 bg-slate-50" edges={[]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerBackTitle: "Retour",
+        }}
+      />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
-        <View className="bg-white rounded-3xl p-5 border border-slate-100">
+        <GlassCard className="p-5">
           <View className="flex-row mb-2" style={{ gap: 6 }}>
             <View className="flex-row items-center bg-fuchsia-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
               <Radar size={11} color={colors.fuchsia600} />
@@ -286,10 +292,10 @@ export default function SuiviDetailScreen() {
               {festival.name} — {festival.location}
             </Text>
           )}
-        </View>
+        </GlassCard>
 
         {pendingInvite ? (
-          <View className="bg-white rounded-3xl p-6 border border-slate-100 items-center" style={{ gap: 14 }}>
+          <GlassCard className="p-6 items-center" style={{ gap: 14 }}>
             <Text className="text-sm font-semibold text-slate-700">
               Vous avez été invité à rejoindre ce suivi live.
             </Text>
@@ -313,10 +319,10 @@ export default function SuiviDetailScreen() {
                 <Text className="text-slate-600 text-xs font-bold">Refuser</Text>
               </Pressable>
             </View>
-          </View>
+          </GlassCard>
         ) : (
           <>
-            <View className="bg-white rounded-3xl p-5 border border-slate-100">
+            <GlassCard className="p-5">
               <View className="flex-row items-center justify-between mb-4">
                 <View className="flex-row items-center" style={{ gap: 8 }}>
                   <Navigation size={16} color={colors.fuchsia600} />
@@ -424,9 +430,9 @@ export default function SuiviDetailScreen() {
                   );
                 })
               )}
-            </View>
+            </GlassCard>
 
-            <View className="bg-white rounded-3xl p-5 border border-slate-100" style={{ gap: 12 }}>
+            <GlassCard className="p-5" style={{ gap: 12 }}>
               <View className="flex-row items-center" style={{ gap: 8 }}>
                 <UserPlus size={16} color={colors.fuchsia600} />
                 <Text className="text-sm font-bold text-slate-900">Membres</Text>
@@ -502,9 +508,9 @@ export default function SuiviDetailScreen() {
                   <Text className="text-xs font-bold text-slate-600">Quitter le suivi</Text>
                 </Pressable>
               )}
-            </View>
+            </GlassCard>
 
-            <View className="bg-white rounded-3xl p-5 border border-slate-100" style={{ gap: 10 }}>
+            <GlassCard className="p-5" style={{ gap: 10 }}>
               <View className="flex-row items-center" style={{ gap: 8 }}>
                 <Users size={15} color={colors.indigo600} />
                 <Text className="text-sm font-bold text-slate-900">En ce moment ({positions.length})</Text>
@@ -532,7 +538,7 @@ export default function SuiviDetailScreen() {
                   </View>
                 ))
               )}
-            </View>
+            </GlassCard>
           </>
         )}
       </ScrollView>

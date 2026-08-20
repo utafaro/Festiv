@@ -2,19 +2,32 @@ import { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   Pressable,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { Picker, TextField, SecureField, Text as UIText } from "@expo/ui/swift-ui";
+import {
+  pickerStyle,
+  tag,
+  keyboardType,
+  textContentType,
+  textInputAutocapitalization,
+  autocorrectionDisabled,
+  submitLabel,
+  padding,
+  font,
+} from "@expo/ui/swift-ui/modifiers";
 import { Radio, Mail, Lock, User } from "lucide-react-native";
 import { useAuth } from "../../src/context/AuthContext";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import GlassCard from "../../src/components/GlassCard";
+import Host from "../../src/components/NativeHost";
 
 export default function SignInScreen() {
   const router = useRouter();
@@ -78,53 +91,37 @@ export default function SignInScreen() {
               </Text>
             </View>
 
-            <View className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-              <View className="flex-row bg-slate-100 rounded-xl p-1 mb-6">
-                <Pressable
-                  onPress={() => setMode("login")}
-                  className={`flex-1 py-2.5 rounded-lg items-center ${
-                    mode === "login" ? "bg-white shadow-sm" : ""
-                  }`}
+            <GlassCard className="p-6">
+              <Host matchContents={{ vertical: true }} className="w-full mb-6">
+                <Picker
+                  selection={mode}
+                  onSelectionChange={setMode}
+                  modifiers={[pickerStyle("segmented")]}
                 >
-                  <Text
-                    className={`text-sm font-bold ${
-                      mode === "login" ? "text-slate-900" : "text-slate-500"
-                    }`}
-                  >
-                    Connexion
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => setMode("signup")}
-                  className={`flex-1 py-2.5 rounded-lg items-center ${
-                    mode === "signup" ? "bg-white shadow-sm" : ""
-                  }`}
-                >
-                  <Text
-                    className={`text-sm font-bold ${
-                      mode === "signup" ? "text-slate-900" : "text-slate-500"
-                    }`}
-                  >
-                    Créer un compte
-                  </Text>
-                </Pressable>
-              </View>
+                  <UIText modifiers={[tag("login")]}>Connexion</UIText>
+                  <UIText modifiers={[tag("signup")]}>Créer un compte</UIText>
+                </Picker>
+              </Host>
 
               {mode === "signup" && (
                 <View className="mb-4">
                   <Text className="text-xs font-bold text-slate-500 mb-1.5">
                     Nom complet
                   </Text>
-                  <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5">
+                  <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5" style={{ gap: 10 }}>
                     <User size={16} color={colors.slate400} />
-                    <TextInput
-                      value={fullName}
-                      onChangeText={setFullName}
-                      placeholder="Arthur Pendragon"
-                      placeholderTextColor={colors.slate400}
-                      autoCapitalize="words"
-                      className="flex-1 py-3.5 px-2.5 text-sm text-slate-900"
-                    />
+                    <Host matchContents={{ vertical: true }} className="flex-1">
+                      <TextField
+                        placeholder="Arthur Pendragon"
+                        onTextChange={setFullName}
+                        modifiers={[
+                          font({ size: 16 }),
+                          padding({ vertical: 12 }),
+                          textInputAutocapitalization("words"),
+                          textContentType("name"),
+                        ]}
+                      />
+                    </Host>
                   </View>
                 </View>
               )}
@@ -133,17 +130,23 @@ export default function SignInScreen() {
                 <Text className="text-xs font-bold text-slate-500 mb-1.5">
                   Adresse email
                 </Text>
-                <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5">
+                <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5" style={{ gap: 10 }}>
                   <Mail size={16} color={colors.slate400} />
-                  <TextInput
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="vous@exemple.com"
-                    placeholderTextColor={colors.slate400}
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    className="flex-1 py-3.5 px-2.5 text-sm text-slate-900"
-                  />
+                  <Host matchContents={{ vertical: true }} className="flex-1">
+                    <TextField
+                      placeholder="vous@exemple.com"
+                      onTextChange={setEmail}
+                      modifiers={[
+                        font({ size: 16 }),
+                        padding({ vertical: 12 }),
+                        keyboardType("email-address"),
+                        textInputAutocapitalization("never"),
+                        autocorrectionDisabled(),
+                        textContentType("emailAddress"),
+                        submitLabel("next"),
+                      ]}
+                    />
+                  </Host>
                 </View>
               </View>
 
@@ -151,16 +154,20 @@ export default function SignInScreen() {
                 <Text className="text-xs font-bold text-slate-500 mb-1.5">
                   Mot de passe
                 </Text>
-                <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5">
+                <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5" style={{ gap: 10 }}>
                   <Lock size={16} color={colors.slate400} />
-                  <TextInput
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="••••••••••"
-                    placeholderTextColor={colors.slate400}
-                    secureTextEntry
-                    className="flex-1 py-3.5 px-2.5 text-sm text-slate-900"
-                  />
+                  <Host matchContents={{ vertical: true }} className="flex-1">
+                    <SecureField
+                      placeholder="••••••••••"
+                      onTextChange={setPassword}
+                      modifiers={[
+                        font({ size: 16 }),
+                        padding({ vertical: 12 }),
+                        textContentType(mode === "signup" ? "newPassword" : "password"),
+                        submitLabel("go"),
+                      ]}
+                    />
+                  </Host>
                 </View>
               </View>
 
@@ -178,28 +185,13 @@ export default function SignInScreen() {
                 </Text>
               ) : null}
 
-              <Pressable onPress={handleSubmit} disabled={loading} className="mt-5">
-                <LinearGradient
-                  colors={[colors.indigo600, colors.purple600]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={{
-                    borderRadius: 16,
-                    paddingVertical: 14,
-                    alignItems: "center",
-                    opacity: loading ? 0.6 : 1,
-                  }}
-                >
-                  {loading ? (
-                    <ActivityIndicator color="white" />
-                  ) : (
-                    <Text className="text-white font-bold text-sm">
-                      {mode === "login" ? "Se connecter" : "Commencer l'aventure"}
-                    </Text>
-                  )}
-                </LinearGradient>
-              </Pressable>
-            </View>
+              <PrimaryButton
+                label={mode === "login" ? "Se connecter" : "Commencer l'aventure"}
+                onPress={handleSubmit}
+                loading={loading}
+                className="mt-5"
+              />
+            </GlassCard>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

@@ -9,12 +9,14 @@ import {
   Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { X, Plus, Calendar, Clock, Layers, Music } from "lucide-react-native";
 import { listStages, listSets, createStage, createSet, updateSet } from "../../src/api/lineup";
 import { listArtists, createArtist } from "../../src/api/artist";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import { HeaderCloseButton } from "../../src/components/nav/HeaderButtons";
 
 const pad = (n) => String(n).padStart(2, "0");
 const toHM = (date) => `${pad(date.getHours())}:${pad(date.getMinutes())}`;
@@ -147,15 +149,14 @@ export default function SetFormModal() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
-        <Text className="text-base font-extrabold text-slate-800">
-          {setId ? "Modifier le set" : "Ajouter un set"}
-        </Text>
-        <Pressable onPress={() => router.back()} hitSlop={8}>
-          <X size={20} color={colors.slate400} />
-        </Pressable>
-      </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["bottom", "left", "right"]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: setId ? "Modifier le set" : "Ajouter un set",
+          headerRight: () => <HeaderCloseButton onPress={() => router.back()} />,
+        }}
+      />
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
@@ -361,20 +362,11 @@ export default function SetFormModal() {
 
           {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
 
-          <Pressable
+          <PrimaryButton
+            label={setId ? "Enregistrer les modifications" : "Ajouter au line-up"}
             onPress={handleSubmit}
-            disabled={submitting}
-            className="bg-indigo-600 rounded-xl py-4 items-center"
-            style={{ opacity: submitting ? 0.6 : 1 }}
-          >
-            {submitting ? (
-              <ActivityIndicator color="white" />
-            ) : (
-              <Text className="text-white text-xs font-extrabold uppercase tracking-wide">
-                {setId ? "Enregistrer les modifications" : "Ajouter au line-up"}
-              </Text>
-            )}
-          </Pressable>
+            loading={submitting}
+          />
         </ScrollView>
       )}
     </SafeAreaView>

@@ -2,11 +2,1090 @@ Starting project at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile
 Starting Metro Bundler
 
 warning: Bundler cache is empty, rebuilding (this may take a minute)
-› Opening exp://192.168.1.120:8081 on iPhone 15
-Expo Go 57.0.9 is recommended for SDK 57.0.0 (iPhone 15 is using 2.31.6). Learn more: https://docs.expo.dev/develop/tools/#expo-go. Install the recommended Expo Go version?
-- Fetching Expo Go
-- Installing Expo Go on iPhone 15
+› Opening exp://192.168.1.120:8081 on iPhone 16
 Waiting on http://localhost:8081
 
 Logs for your project will appear below.
-iOS Bundled 9103ms node_modules/expo-router/entry.js (3632 modules)
+iOS Bundled 7922ms node_modules/expo-router/entry.js (3734 modules)
+iOS Bundled 148ms node_modules/expo-router/entry.js (1 module)
+ ERROR  [Error: Couldn't find a navigation context. Have you wrapped your app with 'NavigationContainer'? See https://reactnavigation.org/docs/getting-started for setup instructions.] 
+
+Code: sign-in.jsx
+[0m [90m  96 |[39m                   [33m<[39m[33m/[39m[33mText[39m[33m>[39m
+ [90m  97 |[39m                 [33m<[39m[33m/[39m[33mPressable[39m[33m>[39m
+[31m[1m>[22m[39m[90m  98 |[39m                 [33m<[39m[33mPressable[39m
+ [90m     |[39m                 [31m[1m^[22m[39m
+ [90m  99 |[39m                   onPress[33m=[39m{() [33m=>[39m setMode([32m"signup"[39m)}
+ [90m 100 |[39m                   className[33m=[39m{[32m`flex-1 py-2.5 rounded-lg items-center ${[39m
+ [90m 101 |[39m [32m                    mode === "signup" ? "bg-white shadow-sm" : ""[39m[0m
+Call Stack
+  SignInScreen (app/(auth)/sign-in.jsx:98:17)
+  AuthLayout (app/(auth)/_layout.jsx:4:10)
+  RootNavigator (app/_layout.jsx:19:5)
+  RootLayout (app/_layout.jsx:60:7)
+iOS Bundled 146ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 103ms node_modules/expo-router/entry.js (1 module)
+ ERROR  [Error: Couldn't find a navigation context. Have you wrapped your app with 'NavigationContainer'? See https://reactnavigation.org/docs/getting-started for setup instructions.] 
+
+Code: sign-in.jsx
+[0m [90m 76 |[39m               [33m<[39m[33m/[39m[33mLinearGradient[39m[33m>[39m
+ [90m 77 |[39m               [33m<[39m[33mText[39m className[33m=[39m[32m"text-3xl font-extrabold text-slate-900"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 78 |[39m                 [33mFESTIV[39m[33m<[39m[33mText[39m className[33m=[39m[32m"text-indigo-600"[39m[33m>[39m[33m.[39m[33m<[39m[33m/[39m[33mText[39m[33m>[39m
+ [90m    |[39m                                                        [31m[1m^[22m[39m
+ [90m 79 |[39m               [33m<[39m[33m/[39m[33mText[39m[33m>[39m
+ [90m 80 |[39m             [33m<[39m[33m/[39m[33mView[39m[33m>[39m
+ [90m 81 |[39m[0m
+Call Stack
+  SignInScreen (app/(auth)/sign-in.jsx:78:56)
+  AuthLayout (app/(auth)/_layout.jsx:4:10)
+  <global> (app/_layout.jsx:1)
+  RootNavigator (app/_layout.jsx:45:10)
+iOS Bundled 100ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 110ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 85ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 99ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 111ms node_modules/expo-router/entry.js (1 module)
+Unable to resolve "/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/(tabs)/suivi.jsx" from "app?ctx=3ab07f305c4346b25020dd398f4d6d4dc9229acb"
+
+Import stack:
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/dashboard/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mFestivalCard[39m [36mfrom[39m [32m"../../src/components/FestivalCard"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/dashboard/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/dashboard/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mFestivalCard[39m [36mfrom[39m [32m"../../src/components/FestivalCard"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/dashboard/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/dashboard/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mFestivalCard[39m [36mfrom[39m [32m"../../src/components/FestivalCard"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/dashboard/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/dashboard/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mFestivalCard[39m [36mfrom[39m [32m"../../src/components/FestivalCard"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/dashboard/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/dashboard/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mFestivalCard[39m [36mfrom[39m [32m"../../src/components/FestivalCard"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/dashboard/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/lineups/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mSparkles[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/lineups/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/suivi/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mRadar[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/suivi/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+Unable to resolve "../../src/components/ScreenHeader" from "app/(tabs)/suivi/index.jsx"
+[0m [90m 4 |[39m [36mimport[39m { useFocusEffect[33m,[39m useRouter } [36mfrom[39m [32m"expo-router"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { [33mPlus[39m[33m,[39m [33mRadar[39m[33m,[39m [33mMapPin[39m[33m,[39m [33mCrown[39m[33m,[39m [33mUsers[39m[33m,[39m [33mCheck[39m[33m,[39m [33mX[39m } [36mfrom[39m [32m"lucide-react-native"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mScreenHeader[39m [36mfrom[39m [32m"../../src/components/ScreenHeader"[39m[33m;[39m
+ [90m   |[39m                           [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m [33mToastStack[39m [36mfrom[39m [32m"../../src/components/ToastStack"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { useToasts } [36mfrom[39m [32m"../../src/hooks/useToasts"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { listFestivals } [36mfrom[39m [32m"../../src/api/festival"[39m[33m;[39m[0m
+
+Import stack:
+
+ app/(tabs)/suivi/index.jsx
+ | import "../../src/components/ScreenHeader"
+
+ app (require.context)
+
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  TabsLayout (app/(tabs)/_layout.jsx:3:16)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+ ERROR  [TypeError: Cannot read property 'show' of null] 
+
+Code: index.jsx
+[0m [90m 17 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 18 |[39m   [36mconst[39m { user } [33m=[39m useAuth()[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m   [36mconst[39m { show[33m:[39m showSettings } [33m=[39m useSettingsSheet()[33m;[39m
+ [90m    |[39m                               [31m[1m^[22m[39m
+ [90m 20 |[39m   [36mconst[39m [festivals[33m,[39m setFestivals] [33m=[39m useState([])[33m;[39m
+ [90m 21 |[39m   [36mconst[39m [loading[33m,[39m setLoading] [33m=[39m useState([36mtrue[39m)[33m;[39m
+ [90m 22 |[39m   [36mconst[39m [refreshing[33m,[39m setRefreshing] [33m=[39m useState([36mfalse[39m)[33m;[39m[0m
+Call Stack
+  DashboardScreen (app/(tabs)/dashboard/index.jsx:19:31) 
+
+Code: _layout.jsx
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDashboardLayout[39m() {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mreturn[39m [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }} [33m/[39m[33m>[39m[33m;[39m
+ [90m   |[39m          [31m[1m^[22m[39m
+ [90m 5 |[39m }
+ [90m 6 |[39m[0m
+Call Stack
+  DashboardLayout (app/(tabs)/dashboard/_layout.jsx:4:10)
+  <global> (src/context/AuthContext.jsx:50:21)
+iOS Bundled 95ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 111ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 112ms node_modules/expo-router/entry.js (1 module)
+ WARN  Dynamically changing header's visibility in modals will result in remounting the screen and losing all local state.
+iOS Bundled 106ms node_modules/expo-router/entry.js (1 module)
+ WARN  Dynamically changing header's visibility in modals will result in remounting the screen and losing all local state.
+iOS Bundled 123ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 93ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 112ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 97ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 136ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 81ms node_modules/expo-router/entry.js (1 module)
+ ERROR  [Error: Couldn't find a navigation context. Have you wrapped your app with 'NavigationContainer'? See https://reactnavigation.org/docs/getting-started for setup instructions.] 
+
+Code: sign-in.jsx
+[0m [90m  96 |[39m                   [33m<[39m[33m/[39m[33mText[39m[33m>[39m
+ [90m  97 |[39m                 [33m<[39m[33m/[39m[33mPressable[39m[33m>[39m
+[31m[1m>[22m[39m[90m  98 |[39m                 [33m<[39m[33mPressable[39m
+ [90m     |[39m                 [31m[1m^[22m[39m
+ [90m  99 |[39m                   onPress[33m=[39m{() [33m=>[39m setMode([32m"signup"[39m)}
+ [90m 100 |[39m                   className[33m=[39m{[32m`flex-1 py-2.5 rounded-lg items-center ${[39m
+ [90m 101 |[39m [32m                    mode === "signup" ? "bg-white shadow-sm" : ""[39m[0m
+Call Stack
+  SignInScreen (app/(auth)/sign-in.jsx:98:17)
+  AuthLayout (app/(auth)/_layout.jsx:4:10)
+  RootNavigator (app/_layout.jsx:19:5)
+  RootLayout (app/_layout.jsx:60:7)
+ ERROR  Text strings must be rendered within a <Text> component. 
+
+Code: SettingsSheet.jsx
+[0m [90m 21 |[39m       [33m<[39m[33mBottomSheet[39m isPresented[33m=[39m{open} onIsPresentedChange[33m=[39m{(presented) [33m=>[39m [33m![39mpresented [33m&&[39m hide()} fitToContents[33m>[39m
+ [90m 22 |[39m         [33m<[39m[33mForm[39m[33m>[39m
+[31m[1m>[22m[39m[90m 23 |[39m           [33m<[39m[33mSection[39m title[33m=[39m[32m"Compte"[39m footer[33m=[39m{user[33m?[39m[33m.[39memail}[33m>[39m
+ [90m    |[39m           [31m[1m^[22m[39m
+ [90m 24 |[39m             [33m<[39m[33mButton[39m
+ [90m 25 |[39m               role[33m=[39m[32m"destructive"[39m
+ [90m 26 |[39m               systemImage[33m=[39m[32m"rectangle.portrait.and.arrow.right"[39m[0m
+Call Stack
+  SettingsSheet (src/components/SettingsSheet.jsx:23:11)
+  TabsLayout (app/(tabs)/_layout.jsx:22:7)
+iOS Bundled 144ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 105ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 101ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 94ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 97ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 86ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 92ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 103ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 95ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 105ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 97ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 105ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 88ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 107ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 87ms node_modules/expo-router/entry.js (1 module)
+ ERROR  [ReferenceError: Property 'HeaderTextButton' doesn't exist] 
+
+Code: [id].jsx
+[0m [90m 264 |[39m           headerTitle[33m:[39m [32m""[39m[33m,[39m
+ [90m 265 |[39m           headerLeft[33m:[39m () [33m=>[39m (
+[31m[1m>[22m[39m[90m 266 |[39m             [33m<[39m[33mHeaderTextButton[39m
+ [90m     |[39m              [31m[1m^[22m[39m
+ [90m 267 |[39m               label[33m=[39m[32m"Amis & Live"[39m
+ [90m 268 |[39m               systemImage[33m=[39m[32m"chevron.backward"[39m
+ [90m 269 |[39m               onPress[33m=[39m{() [33m=>[39m router[33m.[39mreplace([32m"/(tabs)/suivi"[39m)}[0m
+Call Stack
+  Stack.Screen.props.options.headerLeft (app/suivis/[id].jsx:266:14) 
+
+Code: _layout.jsx
+[0m [90m 17 |[39m
+ [90m 18 |[39m   [36mreturn[39m (
+[31m[1m>[22m[39m[90m 19 |[39m     [33m<[39m[33mStack[39m screenOptions[33m=[39m{{ headerShown[33m:[39m [36mfalse[39m }}[33m>[39m
+ [90m    |[39m     [31m[1m^[22m[39m
+ [90m 20 |[39m       [33m<[39m[33mStack[39m[33m.[39m[33mProtected[39m guard[33m=[39m{[33m![39m[33m![39muser}[33m>[39m
+ [90m 21 |[39m         [33m<[39m[33mStack[39m[33m.[39m[33mScreen[39m name[33m=[39m[32m"(tabs)"[39m [33m/[39m[33m>[39m
+ [90m 22 |[39m         [33m<[39m[33mStack[39m[33m.[39m[33mScreen[39m name[33m=[39m[32m"festival/[id]"[39m [33m/[39m[33m>[39m[0m
+Call Stack
+  RootNavigator (app/_layout.jsx:19:5)
+  RootLayout (app/_layout.jsx:60:7)
+iOS Bundled 106ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 82ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 118ms node_modules/expo-router/entry.js (1 module)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token, expected "," (115:14)
+
+  113 |                 onPress={() => router.push(`/modals/edit-festival?id=${id}`)}
+  114 |               />
+> 115 |               {festival.ticket_office_url && (
+      |               ^
+  116 |                 <HeaderTextButton
+  117 |                   label="Billetterie"
+  118 |                   systemImage="ticket.fill"
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.expect (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6920:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11687:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+iOS Bundled 93ms node_modules/expo-router/entry.js (1 module)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token (124:10)
+
+  122 |             //   )}
+  123 |             // </View>
+> 124 |           ),
+      |           ^
+  125 |         }}
+  126 |       />
+  127 |
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11718:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+ ERROR  SyntaxError: /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/app/festival/[id].jsx: Unexpected token (124:10)
+
+  122 |             //   )}
+  123 |             // </View>
+> 124 |           ),
+      |           ^
+  125 |         }}
+  126 |       />
+  127 |
+    at constructor (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:369:19)
+    at FlowParserMixin.raise (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6620:19)
+    at FlowParserMixin.unexpected (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:6640:16)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11718:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12122:24)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3084:16)
+    at FlowParserMixin.parseFunctionBody (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:2908:12)
+    at FlowParserMixin.parseArrowExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12104:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11713:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3607:18)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11357:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3565:18)
+    at /Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:39
+    at FlowParserMixin.allowInAnd (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12455:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10821:17)
+    at FlowParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12522:17)
+    at FlowParserMixin.parseObjectProperty (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11979:83)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:12007:100)
+    at FlowParserMixin.parseObjPropValue (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:3355:26)
+    at FlowParserMixin.parsePropertyDefinition (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11944:17)
+    at FlowParserMixin.parseObjectLike (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11861:21)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11365:23)
+    at FlowParserMixin.parseExprAtom (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:4780:20)
+    at FlowParserMixin.parseExprSubscripts (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11102:23)
+    at FlowParserMixin.parseUpdate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11087:21)
+    at FlowParserMixin.parseMaybeUnary (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:11067:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10920:61)
+    at FlowParserMixin.parseExprOps (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10925:23)
+    at FlowParserMixin.parseMaybeConditional (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10902:23)
+    at FlowParserMixin.parseMaybeAssign (/Users/alexisthierry/Documents/Alex/Code/Festiv/mobile/node_modules/@babel/parser/lib/index.js:10852:21)
+iOS Bundled 98ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 88ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 118ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 101ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 106ms node_modules/expo-router/entry.js (1 module)

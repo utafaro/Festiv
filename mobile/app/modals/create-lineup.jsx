@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { X, Sparkles, Check } from "lucide-react-native";
+import { Stack, useRouter } from "expo-router";
+import { Sparkles, Check } from "lucide-react-native";
 import { listFestivals } from "../../src/api/festival";
 import { createLineup } from "../../src/api/lineup";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import { HeaderCloseButton } from "../../src/components/nav/HeaderButtons";
 
 export default function CreateLineupModal() {
   const router = useRouter();
@@ -39,13 +41,14 @@ export default function CreateLineupModal() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
-        <Text className="text-base font-extrabold text-slate-800">Nouvelle Lineup</Text>
-        <Pressable onPress={() => router.back()} hitSlop={8}>
-          <X size={20} color={colors.slate400} />
-        </Pressable>
-      </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["bottom", "left", "right"]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "Nouvelle Lineup",
+          headerRight: () => <HeaderCloseButton onPress={() => router.back()} />,
+        }}
+      />
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
@@ -103,20 +106,7 @@ export default function CreateLineupModal() {
 
           {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
 
-          <Pressable
-            onPress={handleSubmit}
-            disabled={submitting}
-            className="bg-indigo-600 rounded-xl py-4 items-center"
-            style={{ opacity: submitting ? 0.6 : 1 }}
-          >
-            {submitting ? (
-              <ActivityIndicator color="white" />
-            ) : (
-              <Text className="text-white text-xs font-extrabold uppercase tracking-wide">
-                Créer la lineup
-              </Text>
-            )}
-          </Pressable>
+          <PrimaryButton label="Créer la lineup" onPress={handleSubmit} loading={submitting} />
         </ScrollView>
       )}
     </SafeAreaView>

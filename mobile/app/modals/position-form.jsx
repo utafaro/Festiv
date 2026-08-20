@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { X, MapPin, Music, Plus, Users } from "lucide-react-native";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { MapPin, Music, Plus, Users } from "lucide-react-native";
 import {
   listSuiviSets,
   listSpots,
@@ -12,6 +12,8 @@ import {
 } from "../../src/api/suivi";
 import { useAuth } from "../../src/context/AuthContext";
 import { colors } from "../../src/theme/colors";
+import PrimaryButton from "../../src/components/PrimaryButton";
+import { HeaderCloseButton } from "../../src/components/nav/HeaderButtons";
 
 export default function PositionFormModal() {
   const params = useLocalSearchParams();
@@ -100,13 +102,14 @@ export default function PositionFormModal() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
-        <Text className="text-base font-extrabold text-slate-800">Où êtes-vous ?</Text>
-        <Pressable onPress={() => router.back()} hitSlop={8}>
-          <X size={20} color={colors.slate400} />
-        </Pressable>
-      </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["bottom", "left", "right"]}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "Où êtes-vous ?",
+          headerRight: () => <HeaderCloseButton onPress={() => router.back()} />,
+        }}
+      />
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
@@ -275,20 +278,12 @@ export default function PositionFormModal() {
 
           {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
 
-          <Pressable
+          <PrimaryButton
+            label="Valider ma position"
             onPress={handleSubmit}
-            disabled={submitting}
-            className="bg-fuchsia-600 rounded-xl py-4 items-center"
-            style={{ opacity: submitting ? 0.6 : 1 }}
-          >
-            {submitting ? (
-              <ActivityIndicator color="white" />
-            ) : (
-              <Text className="text-white text-xs font-extrabold uppercase tracking-wide">
-                Valider ma position
-              </Text>
-            )}
-          </Pressable>
+            loading={submitting}
+            tintColor={colors.fuchsia600}
+          />
         </ScrollView>
       )}
     </SafeAreaView>

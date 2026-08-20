@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { Zap } from "lucide-react-native";
 import { colors } from "../theme/colors";
+import GlassCard from "./GlassCard";
 
 const STYLES = {
   success: { bg: colors.emerald50, fg: colors.emerald700 },
@@ -19,9 +20,10 @@ export default function ToastStack({ toasts }) {
       {toasts.map((toast) => {
         const style = STYLES[toast.type] || STYLES.info;
         return (
-          <View
+          <GlassCard
             key={toast.id}
-            className="flex-row items-center bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-md"
+            radius="rounded-2xl"
+            className="flex-row items-center px-4 py-3"
             style={{ gap: 10 }}
           >
             <View
@@ -36,7 +38,7 @@ export default function ToastStack({ toasts }) {
             <Text className="flex-1 text-xs font-semibold text-slate-700">
               {toast.message}
             </Text>
-          </View>
+          </GlassCard>
         );
       })}
     </View>
