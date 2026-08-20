@@ -16,8 +16,8 @@ function resolveApiBaseUrl() {
     return `http://${host}:8000`;
   }
 
-  // Fallback : simulateur iOS/Android sans info d'hôte Metro dispo.
-  return Platform.OS === "android" ? "http://10.0.2.2:8000" : "http://localhost:8000";
+  // Fallback : build release (Xcode) ou simulateur sans info d'hôte Metro dispo.
+  return "https://festiv.backend.alexis-thierry.com";
 }
 
 function resolveWsBaseUrl(apiBaseUrl) {
