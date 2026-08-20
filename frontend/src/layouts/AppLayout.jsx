@@ -26,7 +26,7 @@ export default function AppLayout() {
 
       <Header user={user} />
 
-      <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 flex flex-col md:flex-row md:gap-2">
+      <div className="relative flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 flex flex-col md:flex-row md:gap-2">
         <Sidebar />
 
         <main className="flex-1 min-w-0 py-6 md:py-8 pb-24 md:pb-8 flex flex-col gap-6">

@@ -235,7 +235,7 @@ export default function LineupDetailPage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 lg:px-8 mt-8 relative z-10 space-y-8">
+      <main className="max-w-6xl mx-auto px-4 lg:px-8 mt-8 relative space-y-8">
         <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-xl shadow-slate-100/50 rounded-3xl p-6 sm:p-8">
           <div className="flex items-center gap-2 mb-2">
             {isOwner && (
