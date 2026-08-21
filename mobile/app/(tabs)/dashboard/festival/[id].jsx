@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, ActivityIndicator, Pressable, Linking } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -12,14 +12,15 @@ import {
   Plus,
   ArrowUpRight,
 } from "lucide-react-native";
-import { HeaderIconButton, HeaderTextButton } from "../../src/components/nav/HeaderButtons";
-import { getFestivalById } from "../../src/api/festival";
-import { listMyLineups, createLineup } from "../../src/api/lineup";
-import { API_BASE_URL } from "../../src/api/config";
-import { colors } from "../../src/theme/colors";
-import GlassCard from "../../src/components/GlassCard";
+import { HeaderIconButton, HeaderTextButton } from "../../../../src/components/nav/HeaderButtons";
+import { getFestivalById } from "../../../../src/api/festival";
+import { listMyLineups, createLineup } from "../../../../src/api/lineup";
+import { API_BASE_URL } from "../../../../src/api/config";
+import { colors } from "../../../../src/theme/colors";
+import GlassCard from "../../../../src/components/GlassCard";
 
 export default function FestivalDetailScreen() {
+  const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const [festival, setFestival] = useState(null);
@@ -137,7 +138,7 @@ export default function FestivalDetailScreen() {
         }}
       />
 
-      <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}>
         <View className="rounded-3xl overflow-hidden bg-slate-200 h-56">
           {coverUri ? (
             <Image source={{ uri: coverUri }} className="w-full h-full" resizeMode="cover" />

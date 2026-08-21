@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { View, Text, FlatList, Pressable, ActivityIndicator, RefreshControl } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useFocusEffect, useRouter } from "expo-router";
 import { Plus, Radar, MapPin, Crown, Users, Check, X } from "lucide-react-native";
 import ToastStack from "../../../src/components/ToastStack";
@@ -63,6 +63,7 @@ function SuiviCard({ suivi, shared, festival, onPress }) {
 }
 
 export default function SuiviScreen() {
+  const insets = useSafeAreaInsets();
   const router = useRouter();
   const { user } = useAuth();
   const { show: showSettings } = useSettingsSheet();
@@ -173,7 +174,7 @@ export default function SuiviScreen() {
         <FlatList
           data={sections}
           keyExtractor={(item) => item.type}
-          contentContainerStyle={{ padding: 16 }}
+          contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100 }}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
@@ -255,7 +256,7 @@ export default function SuiviScreen() {
                         suivi={s}
                         shared={false}
                         festival={festivalsById[s.festival_id]}
-                        onPress={() => router.push(`/suivis/${s.id}`)}
+                        onPress={() => router.push(`/suivi/${s.id}`)}
                       />
                     ))
                   )}
@@ -274,7 +275,7 @@ export default function SuiviScreen() {
                     suivi={s}
                     shared={true}
                     festival={festivalsById[s.festival_id]}
-                    onPress={() => router.push(`/suivis/${s.id}`)}
+                    onPress={() => router.push(`/suivi/${s.id}`)}
                   />
                 ))}
               </View>

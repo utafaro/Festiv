@@ -51,6 +51,9 @@ export default function LineupDetailPage() {
   };
 
   const isOwner = lineup && user && lineup.owner_id === user.id;
+  const canEdit =
+    isOwner ||
+    (user && members.some((m) => m.user_id === user.id && m.status === "accepted"));
 
   useEffect(() => {
     if (!id || !user) return;
@@ -184,7 +187,7 @@ export default function LineupDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+      <div className="flex flex-col items-center justify-center bg-slate-50 py-24">
         <Loader2 className="w-10 h-10 text-indigo-600 animate-spin mb-4" />
         <p className="text-slate-500 font-medium text-sm">Chargement de la lineup...</p>
       </div>
@@ -193,7 +196,7 @@ export default function LineupDetailPage() {
 
   if (notFound || !lineup) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-4 text-center">
+      <div className="flex flex-col items-center justify-center bg-slate-50 px-4 py-24 text-center">
         <p className="text-slate-700 font-semibold text-lg mb-4">
           Cette lineup est introuvable ou vous n'y avez pas accès.
         </p>
@@ -209,7 +212,7 @@ export default function LineupDetailPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
+    <div className="relative bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
       <div
         className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-200/30 blur-[100px] animate-pulse pointer-events-none"
         style={{ animationDuration: "12s" }}
@@ -290,7 +293,7 @@ export default function LineupDetailPage() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <LineupSection lineupId={id} readOnly={!isOwner} />
+              <LineupSection lineupId={id} readOnly={!canEdit} />
             </div>
 
             <div className="space-y-4">

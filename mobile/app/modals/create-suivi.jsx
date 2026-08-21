@@ -49,7 +49,7 @@ export default function CreateSuiviModal() {
     setSubmitting(true);
     try {
       const suivi = await createSuivi(festivalId, lineupIds, name.trim());
-      router.replace(`/suivis/${suivi.id}`);
+      router.replace(`/suivi/${suivi.id}`);
     } catch {
       setError("Erreur lors de la création du suivi.");
       setSubmitting(false);

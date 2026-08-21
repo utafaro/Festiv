@@ -292,7 +292,7 @@ export default function SuiviDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+      <div className="flex flex-col items-center justify-center bg-slate-50 py-24">
         <Loader2 className="w-10 h-10 text-fuchsia-600 animate-spin mb-4" />
         <p className="text-slate-500 font-medium text-sm">Chargement du suivi...</p>
       </div>
@@ -301,7 +301,7 @@ export default function SuiviDetailPage() {
 
   if (notFound || !suivi) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-4 text-center">
+      <div className="flex flex-col items-center justify-center bg-slate-50 px-4 py-24 text-center">
         <p className="text-slate-700 font-semibold text-lg mb-4">
           Ce suivi est introuvable ou vous n'y avez pas accès.
         </p>
@@ -337,7 +337,7 @@ export default function SuiviDetailPage() {
     }, {});
 
   return (
-    <div className="relative min-h-screen bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
+    <div className="relative bg-slate-50 overflow-x-hidden pb-12 font-sans antialiased">
       <div
         className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-200/30 blur-[100px] animate-pulse pointer-events-none"
         style={{ animationDuration: "12s" }}

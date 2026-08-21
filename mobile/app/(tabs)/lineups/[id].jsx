@@ -9,7 +9,7 @@ import {
   Alert,
   Share,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
 import {
   Plus,
@@ -22,9 +22,9 @@ import {
   Check,
   X,
 } from "lucide-react-native";
-import ToastStack from "../../src/components/ToastStack";
-import { useToasts } from "../../src/hooks/useToasts";
-import { useAuth } from "../../src/context/AuthContext";
+import ToastStack from "../../../src/components/ToastStack";
+import { useToasts } from "../../../src/hooks/useToasts";
+import { useAuth } from "../../../src/context/AuthContext";
 import {
   getLineup,
   listMembers,
@@ -35,12 +35,13 @@ import {
   listStages,
   listSets,
   deleteSet,
-} from "../../src/api/lineup";
-import { getFestivalById } from "../../src/api/festival";
-import { colors } from "../../src/theme/colors";
-import GlassCard from "../../src/components/GlassCard";
+} from "../../../src/api/lineup";
+import { getFestivalById } from "../../../src/api/festival";
+import { colors } from "../../../src/theme/colors";
+import GlassCard from "../../../src/components/GlassCard";
 
 export default function LineupDetailScreen() {
+  const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { user } = useAuth();
@@ -60,6 +61,9 @@ export default function LineupDetailScreen() {
   const [deletingId, setDeletingId] = useState(null);
 
   const isOwner = lineup && user && lineup.owner_id === user.id;
+  const canEdit =
+    isOwner ||
+    (user && members.some((m) => m.user_id === user.id && m.status === "accepted"));
 
   const load = useCallback(async () => {
     if (!id || !user) return;
@@ -228,7 +232,24 @@ export default function LineupDetailScreen() {
 
   const UNSCHEDULED_KEY = "sans-date";
 
-  const groups = sets.reduce((acc, s) => {
+  const sortedSets = [...sets].sort((a, b) => {
+    if (a.date !== b.date) {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return a.date.localeCompare(b.date);
+    }
+    if (!a.start_time) return 1;
+    if (!b.start_time) return -1;
+    return a.start_time.localeCompare(b.start_time);
+  });
+
+  const isSetFinished = (s) => {
+    const end = s.end_time || s.date;
+    if (!end) return false;
+    return new Date(end).getTime() < Date.now();
+  };
+
+  const groups = sortedSets.reduce((acc, s) => {
     const key = s.date ? s.date.slice(0, 10) : UNSCHEDULED_KEY;
     (acc[key] ||= []).push(s);
     return acc;
@@ -253,7 +274,7 @@ export default function LineupDetailScreen() {
         }}
       />
 
-      <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}>
         <GlassCard className="p-5">
           <View className="flex-row mb-2" style={{ gap: 6 }}>
             {isOwner ? (
@@ -317,7 +338,7 @@ export default function LineupDetailScreen() {
                   >
                     <Share2 size={14} color={colors.slate600} />
                   </Pressable>
-                  {isOwner && (
+                  {canEdit && (
                     <Pressable
                       onPress={() => router.push(`/modals/set-form?lineupId=${id}`)}
                       className="bg-indigo-600 rounded-lg px-3 py-2 flex-row items-center"
@@ -344,6 +365,7 @@ export default function LineupDetailScreen() {
                       <View
                         key={s.id}
                         className="flex-row items-center justify-between bg-slate-50 rounded-2xl p-3.5 mb-2"
+                        style={isSetFinished(s) ? { opacity: 0.5 } : undefined}
                       >
                         <View className="flex-1 pr-2">
                           <Text className="text-sm font-semibold text-slate-900" numberOfLines={1}>
@@ -362,7 +384,7 @@ export default function LineupDetailScreen() {
                             )}
                           </View>
                         </View>
-                        {isOwner && (
+                        {canEdit && (
                           <View className="flex-row" style={{ gap: 4 }}>
                             <Pressable
                               onPress={() =>

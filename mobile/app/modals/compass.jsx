@@ -3,7 +3,6 @@ import { View, Text, ActivityIndicator, Animated, Easing } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import * as Location from "expo-location";
-import { Magnetometer } from "expo-sensors";
 import { Navigation, MapPinOff } from "lucide-react-native";
 import { listPositions } from "../../src/api/suivi";
 import { useSuiviSocket } from "../../src/hooks/useSuiviSocket";
@@ -71,13 +70,14 @@ export default function CompassModal() {
   }, []);
 
   useEffect(() => {
-    Magnetometer.setUpdateInterval(200);
-    const sub = Magnetometer.addListener(({ x, y }) => {
-      let angle = toDeg(Math.atan2(y, x)) - 90;
-      if (angle < 0) angle += 360;
-      setHeading(angle);
-    });
-    return () => sub.remove();
+    let sub;
+    (async () => {
+      sub = await Location.watchHeadingAsync(({ trueHeading, magHeading }) => {
+        const h = trueHeading >= 0 ? trueHeading : magHeading;
+        setHeading(h);
+      });
+    })();
+    return () => sub?.remove();
   }, []);
 
   const refreshTarget = async () => {

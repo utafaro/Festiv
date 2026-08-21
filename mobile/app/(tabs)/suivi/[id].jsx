@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput, Alert } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
 import {
   UserPlus,
@@ -15,10 +15,10 @@ import {
   MapPin,
   Compass,
 } from "lucide-react-native";
-import ToastStack from "../../src/components/ToastStack";
-import { useToasts } from "../../src/hooks/useToasts";
-import { useAuth } from "../../src/context/AuthContext";
-import { useSuiviSocket } from "../../src/hooks/useSuiviSocket";
+import ToastStack from "../../../src/components/ToastStack";
+import { useToasts } from "../../../src/hooks/useToasts";
+import { useAuth } from "../../../src/context/AuthContext";
+import { useSuiviSocket } from "../../../src/hooks/useSuiviSocket";
 import {
   getSuivi,
   listSuiviMembers,
@@ -30,10 +30,10 @@ import {
   listPositions,
   clearPosition,
   clearGeo,
-} from "../../src/api/suivi";
-import { getFestivalById } from "../../src/api/festival";
-import { colors } from "../../src/theme/colors";
-import GlassCard from "../../src/components/GlassCard";
+} from "../../../src/api/suivi";
+import { getFestivalById } from "../../../src/api/festival";
+import { colors } from "../../../src/theme/colors";
+import GlassCard from "../../../src/components/GlassCard";
 
 function formatGeoAgo(iso) {
   if (!iso) return "";
@@ -44,6 +44,7 @@ function formatGeoAgo(iso) {
 }
 
 export default function SuiviDetailScreen() {
+  const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { user } = useAuth();
@@ -301,7 +302,7 @@ export default function SuiviDetailScreen() {
         }}
       />
 
-      <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}>
         <GlassCard className="p-5">
           <View className="flex-row mb-2" style={{ gap: 6 }}>
             <View className="flex-row items-center bg-fuchsia-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>

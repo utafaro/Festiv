@@ -6,7 +6,7 @@ from core.security import get_current_user
 from models.festival import SetCreateRequest, SetUpdateRequest, SetResponse
 from routes.artist import format_artist
 from routes.stage import format_stage
-from routes.lineup import get_lineup_or_404, ensure_access, ensure_owner
+from routes.lineup import get_lineup_or_404, ensure_access
 from typing import List
 
 router = APIRouter(prefix="/lineups/{lineup_id}/sets", tags=["sets"])
@@ -50,7 +50,7 @@ async def validate_artists(artist_ids: List[str], db):
 @router.post("", response_model=SetResponse, status_code=status.HTTP_201_CREATED)
 async def create_set(lineup_id: str, data: SetCreateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
     lineup = await get_lineup_or_404(lineup_id, db)
-    ensure_owner(lineup, str(current_user["_id"]))
+    await ensure_access(lineup, str(current_user["_id"]), db)
     if data.stage_id:
         await validate_stage(lineup_id, data.stage_id, db)
     await validate_artists(data.artist_ids, db)
@@ -79,7 +79,7 @@ async def list_sets(lineup_id: str, db=Depends(get_db), current_user=Depends(get
 @router.put("/{set_id}", response_model=SetResponse)
 async def update_set(lineup_id: str, set_id: str, data: SetUpdateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
     lineup = await get_lineup_or_404(lineup_id, db)
-    ensure_owner(lineup, str(current_user["_id"]))
+    await ensure_access(lineup, str(current_user["_id"]), db)
     if not ObjectId.is_valid(set_id):
         raise HTTPException(400, "Format d'ID invalide")
     existing = await db["sets"].find_one({"_id": ObjectId(set_id), "lineup_id": lineup_id})
@@ -101,7 +101,7 @@ async def update_set(lineup_id: str, set_id: str, data: SetUpdateRequest, db=Dep
 @router.delete("/{set_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_set(lineup_id: str, set_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
     lineup = await get_lineup_or_404(lineup_id, db)
-    ensure_owner(lineup, str(current_user["_id"]))
+    await ensure_access(lineup, str(current_user["_id"]), db)
     if not ObjectId.is_valid(set_id):
         raise HTTPException(400, "Format d'ID invalide")
     result = await db["sets"].delete_one({"_id": ObjectId(set_id), "lineup_id": lineup_id})

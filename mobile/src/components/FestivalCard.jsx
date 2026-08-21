@@ -24,7 +24,7 @@ export default function FestivalCard({ festival }) {
 
   return (
     <Pressable
-      onPress={() => router.push(`/festival/${festival.id}`)}
+      onPress={() => router.push(`/dashboard/festival/${festival.id}`)}
       className="mb-4 active:opacity-90"
     >
     <GlassCard>

@@ -115,10 +115,6 @@ export default function SetFormModal() {
 
   const handleSubmit = async () => {
     setError("");
-    if (!stageId) {
-      setError("Sélectionnez une scène.");
-      return;
-    }
     if (toHM(endTime) <= toHM(startTime)) {
       setError("L'heure de fin doit être après l'heure de début.");
       return;
@@ -128,7 +124,7 @@ export default function SetFormModal() {
     const payload = {
       name: name.trim() || null,
       artist_ids: selectedArtistIds,
-      stage_id: stageId,
+      stage_id: stageId || null,
       start_time: `${ymd}T${toHM(startTime)}:00`,
       end_time: `${ymd}T${toHM(endTime)}:00`,
       date: `${ymd}T00:00:00`,
@@ -250,7 +246,7 @@ export default function SetFormModal() {
           <View style={{ gap: 6 }}>
             <View className="flex-row items-center" style={{ gap: 6 }}>
               <Layers size={13} color={colors.indigo600} />
-              <Text className="text-xs font-bold text-slate-500">Scène / Lieu *</Text>
+              <Text className="text-xs font-bold text-slate-500">Scène / Lieu (optionnel)</Text>
             </View>
             <View className="flex-row flex-wrap" style={{ gap: 8 }}>
               {stages.map((s) => {

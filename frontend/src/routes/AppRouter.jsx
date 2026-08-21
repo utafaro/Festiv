@@ -28,32 +28,10 @@ export default function App() {
           <Route index element={<DashboardPage />} />
           <Route path="lineups" element={<LineupPlanningSection />} />
           <Route path="suivis" element={<SuiviPlanningSection />} />
+          <Route path="festival/:id" element={<FestivalDetailPage />} />
+          <Route path="lineups/:id" element={<LineupDetailPage />} />
+          <Route path="suivis/:id" element={<SuiviDetailPage />} />
         </Route>
-
-        <Route
-          path="/festival/:id"
-          element={
-            <ProtectedRoute>
-              <FestivalDetailPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/lineups/:id"
-          element={
-            <ProtectedRoute>
-              <LineupDetailPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/suivis/:id"
-          element={
-            <ProtectedRoute>
-              <SuiviDetailPage />
-            </ProtectedRoute>
-          }
-        />
       </Routes>
     </BrowserRouter>
   );

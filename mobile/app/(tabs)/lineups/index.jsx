@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { View, Text, FlatList, Pressable, ActivityIndicator, RefreshControl } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useFocusEffect, useRouter } from "expo-router";
 import { Plus, Sparkles, MapPin, Crown, Users, Check, X } from "lucide-react-native";
 import ToastStack from "../../../src/components/ToastStack";
@@ -59,6 +59,7 @@ function LineupCard({ lineup, shared, festival, onPress }) {
 }
 
 export default function LineupsScreen() {
+  const insets = useSafeAreaInsets();
   const router = useRouter();
   const { user } = useAuth();
   const { show: showSettings } = useSettingsSheet();
@@ -173,7 +174,7 @@ export default function LineupsScreen() {
         <FlatList
           data={sections}
           keyExtractor={(item) => item.type}
-          contentContainerStyle={{ padding: 16 }}
+          contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100 }}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}

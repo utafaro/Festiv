@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { View, Text, FlatList, Pressable, ActivityIndicator, RefreshControl } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useFocusEffect, useRouter } from "expo-router";
 import { Plus, Sparkles } from "lucide-react-native";
 import FestivalCard from "../../../src/components/FestivalCard";
@@ -14,6 +14,7 @@ import { listFestivals } from "../../../src/api/festival";
 import { colors } from "../../../src/theme/colors";
 
 export default function DashboardScreen() {
+  const insets = useSafeAreaInsets();
   const router = useRouter();
   const { user } = useAuth();
   const { show: showSettings } = useSettingsSheet();
@@ -99,7 +100,7 @@ export default function DashboardScreen() {
           data={festivals}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <FestivalCard festival={item} />}
-          contentContainerStyle={{ padding: 16 }}
+          contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100 }}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }

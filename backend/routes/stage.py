@@ -4,7 +4,7 @@ from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
 from models.festival import StageCreateRequest, StageResponse
-from routes.lineup import get_lineup_or_404, ensure_access, ensure_owner
+from routes.lineup import get_lineup_or_404, ensure_access
 from typing import List
 
 router = APIRouter(prefix="/lineups/{lineup_id}/stages", tags=["stages"])
@@ -19,7 +19,7 @@ def format_stage(stage) -> StageResponse:
 @router.post("", response_model=StageResponse, status_code=status.HTTP_201_CREATED)
 async def create_stage(lineup_id: str, data: StageCreateRequest, db=Depends(get_db), current_user=Depends(get_current_user)):
     lineup = await get_lineup_or_404(lineup_id, db)
-    ensure_owner(lineup, str(current_user["_id"]))
+    await ensure_access(lineup, str(current_user["_id"]), db)
 
     # Une scène est réutilisable : si son nom existe déjà pour cette lineup, on la renvoie telle quelle.
     existing = await db["stages"].find_one({"lineup_id": lineup_id, "name": data.name})

@@ -19,9 +19,6 @@ function RootNavigator() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={!!user}>
         <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="festival/[id]" />
-        <Stack.Screen name="lineups/[id]" />
-        <Stack.Screen name="suivis/[id]" />
         <Stack.Screen
           name="modals/add-festival"
           options={{ presentation: "modal", headerShown: true }}

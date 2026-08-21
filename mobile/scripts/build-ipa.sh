@@ -50,6 +50,7 @@ mkdir -p "$(dirname "$OUTPUT_IPA")"
 echo "==> Nettoyage ios/ et DerivedData"
 rm -rf "$MOBILE_DIR/ios"
 rm -rf "$HOME/Library/Developer/Xcode/DerivedData/${APP_NAME}-"*
+rm -rf "$MOBILE_DIR/build"
 
 echo "==> expo prebuild"
 npx expo prebuild --platform ios --clean

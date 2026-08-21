@@ -160,6 +160,7 @@ async def delete_invitation(member_id: str, db=Depends(get_db), current_user=Dep
         raise HTTPException(403, "Vous ne pouvez pas supprimer cette invitation")
 
     await db["suivi_members"].delete_one({"_id": ObjectId(member_id)})
+    await db["positions"].delete_one({"suivi_id": member["suivi_id"], "user_id": member["user_id"]})
 
 @router.get("/{suivi_id}", response_model=SuiviResponse)
 async def get_suivi(suivi_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):

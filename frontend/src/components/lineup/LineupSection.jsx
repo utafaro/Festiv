@@ -34,7 +34,7 @@ export default function LineupSection({ lineupId, readOnly = false }) {
         ]);
         if (!active) return;
         setStages(stagesData);
-        setSets(setsData);
+        setSets(sortSets(setsData));
         setArtists(artistsData);
       } catch {
         if (active) triggerToast("Impossible de charger le line-up.", "error");
@@ -69,6 +69,12 @@ export default function LineupSection({ lineupId, readOnly = false }) {
       if (!b.start_time) return -1;
       return a.start_time.localeCompare(b.start_time);
     });
+
+  const isSetFinished = (s) => {
+    const end = s.end_time || s.date;
+    if (!end) return false;
+    return new Date(end).getTime() < Date.now();
+  };
 
   const handleSaved = (saved) => {
     setSets((prev) => {
@@ -176,7 +182,9 @@ export default function LineupSection({ lineupId, readOnly = false }) {
                 {groups[dateKey].map((s) => (
                   <div
                     key={s.id}
-                    className="group p-4 bg-slate-100/60 border border-slate-200/40 rounded-2xl hover:bg-white hover:border-indigo-100 transition shadow-sm hover:shadow-md"
+                    className={`group p-4 bg-slate-100/60 border border-slate-200/40 rounded-2xl hover:bg-white hover:border-indigo-100 transition shadow-sm hover:shadow-md ${
+                      isSetFinished(s) ? "opacity-50 grayscale" : ""
+                    }`}
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="space-y-1 min-w-0">
