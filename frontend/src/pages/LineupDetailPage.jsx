@@ -24,6 +24,7 @@ import {
 } from "../api/lineup";
 import LineupSection from "../components/lineup/LineupSection";
 import ToastNotifications from "../components/ToastNotifications";
+import FriendPicker from "../components/FriendPicker";
 
 export default function LineupDetailPage() {
   const { id } = useParams();
@@ -37,8 +38,6 @@ export default function LineupDetailPage() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
-  const [inviteEmail, setInviteEmail] = useState("");
-  const [inviting, setInviting] = useState(false);
   const [responding, setResponding] = useState(false);
   const [removingId, setRemovingId] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
@@ -143,22 +142,16 @@ export default function LineupDetailPage() {
     }
   };
 
-  const handleInvite = async (e) => {
-    e.preventDefault();
-    if (!inviteEmail.trim()) return;
-    setInviting(true);
+  const handleInviteFriend = async (friend) => {
     try {
-      const member = await inviteMember(id, inviteEmail.trim());
+      const member = await inviteMember(id, friend.email);
       setMembers((prev) => [...prev, member]);
-      setInviteEmail("");
       triggerToast(`Invitation envoyée à ${member.email}.`, "success");
     } catch (err) {
       triggerToast(
         err.response?.data?.detail || "Erreur lors de l'invitation.",
         "error",
       );
-    } finally {
-      setInviting(false);
     }
   };
 
@@ -304,22 +297,11 @@ export default function LineupDetailPage() {
                 </h2>
 
                 {isOwner && (
-                  <form onSubmit={handleInvite} className="flex gap-2">
-                    <input
-                      type="email"
-                      placeholder="email@exemple.com"
-                      value={inviteEmail}
-                      onChange={(e) => setInviteEmail(e.target.value)}
-                      className="flex-1 bg-slate-50 border border-slate-200 px-3 py-2.5 rounded-xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
-                    />
-                    <button
-                      type="submit"
-                      disabled={inviting}
-                      className="px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold disabled:opacity-50"
-                    >
-                      {inviting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Inviter"}
-                    </button>
-                  </form>
+                  <FriendPicker
+                    excludeIds={members.map((m) => m.user_id)}
+                    onSelect={handleInviteFriend}
+                    placeholder="Rechercher un ami à inviter..."
+                  />
                 )}
 
                 <div className="space-y-2">

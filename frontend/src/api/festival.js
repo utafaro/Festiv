@@ -2,7 +2,12 @@ import axios from "axios";
 import { API_BASE_URL } from "./config";
 
 export const listFestivals = async () => {
-  const response = await axios.get(`${API_BASE_URL}/festivals`);
+  const activeToken =
+    localStorage.getItem("access_token") ||
+    sessionStorage.getItem("access_token");
+  const response = await axios.get(`${API_BASE_URL}/festivals`, {
+    headers: activeToken ? { Authorization: `Bearer ${activeToken}` } : {},
+  });
   return response.data;
 };
 

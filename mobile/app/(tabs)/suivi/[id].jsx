@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput, Alert, RefreshControl } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert, RefreshControl } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
 import {
@@ -20,6 +20,7 @@ import ToastStack from "../../../src/components/ToastStack";
 import { useToasts } from "../../../src/hooks/useToasts";
 import { useAuth } from "../../../src/context/AuthContext";
 import { useSuiviSocket } from "../../../src/hooks/useSuiviSocket";
+import FriendPicker from "../../../src/components/FriendPicker";
 import {
   getSuivi,
   listSuiviMembers,
@@ -60,8 +61,6 @@ export default function SuiviDetailScreen() {
   const [pendingInvite, setPendingInvite] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [inviteEmail, setInviteEmail] = useState("");
-  const [inviting, setInviting] = useState(false);
   const [responding, setResponding] = useState(false);
   const [clearingPosition, setClearingPosition] = useState(false);
   const [clearingGeo, setClearingGeo] = useState(false);
@@ -175,18 +174,13 @@ export default function SuiviDetailScreen() {
     ]);
   };
 
-  const handleInvite = async () => {
-    if (!inviteEmail.trim()) return;
-    setInviting(true);
+  const handleInviteFriend = async (friend) => {
     try {
-      const member = await inviteSuiviMember(id, inviteEmail.trim());
+      const member = await inviteSuiviMember(id, friend.email);
       setMembers((prev) => [...prev, member]);
-      setInviteEmail("");
       triggerToast(`Invitation envoyée à ${member.email}.`, "success");
     } catch (err) {
       triggerToast(err.response?.data?.detail || "Erreur lors de l'invitation.", "error");
-    } finally {
-      setInviting(false);
     }
   };
 
@@ -618,28 +612,12 @@ export default function SuiviDetailScreen() {
               </View>
 
               {isOwner && (
-                <View className="flex-row" style={{ gap: 8 }}>
-                  <TextInput
-                    value={inviteEmail}
-                    onChangeText={setInviteEmail}
-                    placeholder="email@exemple.com"
-                    placeholderTextColor={colors.slate400}
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800"
-                  />
-                  <Pressable
-                    onPress={handleInvite}
-                    disabled={inviting}
-                    className="bg-fuchsia-600 rounded-xl px-3.5 items-center justify-center"
-                  >
-                    {inviting ? (
-                      <ActivityIndicator size="small" color="white" />
-                    ) : (
-                      <Text className="text-white text-xs font-bold">Inviter</Text>
-                    )}
-                  </Pressable>
-                </View>
+                <FriendPicker
+                  excludeIds={members.map((m) => m.user_id)}
+                  onSelect={handleInviteFriend}
+                  tintColor={colors.fuchsia600}
+                  placeholder="Rechercher un ami à inviter..."
+                />
               )}
 
               {members.length === 0 ? (

@@ -11,6 +11,7 @@ from models.suivi import (
     SuiviMemberResponse,
     SuiviMemberStatus,
 )
+from routes.friend import is_friend
 from typing import List
 
 router = APIRouter(prefix="/suivis", tags=["suivis"])
@@ -230,6 +231,9 @@ async def invite_member(suivi_id: str, data: SuiviInviteRequest, db=Depends(get_
     invited_id = str(invited_user["_id"])
     if invited_id == suivi["owner_id"]:
         raise HTTPException(400, "Vous ne pouvez pas vous inviter vous-même")
+
+    if not await is_friend(suivi["owner_id"], invited_id, db):
+        raise HTTPException(400, "Vous ne pouvez ajouter que vos amis à un suivi")
 
     existing = await db["suivi_members"].find_one({"suivi_id": suivi_id, "user_id": invited_id})
     if existing:

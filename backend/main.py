@@ -12,6 +12,7 @@ from routes.stage import router as stage_router
 from routes.sets import router as sets_router
 from routes.suivi import router as suivi_router
 from routes.tracking import router as tracking_router
+from routes.friend import router as friend_router
 from starlette.middleware.sessions import SessionMiddleware
 from core.config import settings
 
@@ -55,6 +56,7 @@ app.include_router(stage_router)
 app.include_router(sets_router)
 app.include_router(suivi_router)
 app.include_router(tracking_router)
+app.include_router(friend_router)
 
 
 from fastapi.staticfiles import StaticFiles

@@ -13,6 +13,7 @@ from models.festival import (
     LineupMemberResponse,
     LineupMemberStatus,
 )
+from routes.friend import is_friend
 from typing import List
 
 router = APIRouter(prefix="/lineups", tags=["lineups"])
@@ -231,6 +232,9 @@ async def invite_member(lineup_id: str, data: LineupInviteRequest, db=Depends(ge
     invited_id = str(invited_user["_id"])
     if invited_id == lineup["owner_id"]:
         raise HTTPException(400, "Vous ne pouvez pas vous inviter vous-même")
+
+    if not await is_friend(lineup["owner_id"], invited_id, db):
+        raise HTTPException(400, "Vous ne pouvez ajouter que vos amis à une lineup")
 
     existing = await db["lineup_members"].find_one({"lineup_id": lineup_id, "user_id": invited_id})
     if existing:

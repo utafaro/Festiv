@@ -1,10 +1,11 @@
-import { Calendar, Zap, Users } from "lucide-react";
+import { Calendar, Zap, UserPlus, Radar } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 const TABS = [
   { path: "/", label: "Mon Tableau", icon: Calendar },
   { path: "/lineups", label: "Lineup & Planning", icon: Zap },
-  { path: "/suivis", label: "Amis & Live", icon: Users },
+  { path: "/amis", label: "Amis", icon: UserPlus },
+  { path: "/suivis", label: "Live", icon: Radar },
 ];
 
 export default function Sidebar() {

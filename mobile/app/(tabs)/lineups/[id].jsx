@@ -5,7 +5,6 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  TextInput,
   Alert,
   Share,
   RefreshControl,
@@ -27,6 +26,7 @@ import ToastStack from "../../../src/components/ToastStack";
 import { useToasts } from "../../../src/hooks/useToasts";
 import { useAuth } from "../../../src/context/AuthContext";
 import { useLineupSocket } from "../../../src/hooks/useLineupSocket";
+import FriendPicker from "../../../src/components/FriendPicker";
 import {
   getLineup,
   listMembers,
@@ -58,8 +58,6 @@ export default function LineupDetailScreen() {
   const [pendingInvite, setPendingInvite] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [inviteEmail, setInviteEmail] = useState("");
-  const [inviting, setInviting] = useState(false);
   const [responding, setResponding] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -176,18 +174,13 @@ export default function LineupDetailScreen() {
     ]);
   };
 
-  const handleInvite = async () => {
-    if (!inviteEmail.trim()) return;
-    setInviting(true);
+  const handleInviteFriend = async (friend) => {
     try {
-      const member = await inviteMember(id, inviteEmail.trim());
+      const member = await inviteMember(id, friend.email);
       setMembers((prev) => [...prev, member]);
-      setInviteEmail("");
       triggerToast(`Invitation envoyée à ${member.email}.`, "success");
     } catch (err) {
       triggerToast(err.response?.data?.detail || "Erreur lors de l'invitation.", "error");
-    } finally {
-      setInviting(false);
     }
   };
 
@@ -485,28 +478,11 @@ export default function LineupDetailScreen() {
               </View>
 
               {isOwner && (
-                <View className="flex-row" style={{ gap: 8 }}>
-                  <TextInput
-                    value={inviteEmail}
-                    onChangeText={setInviteEmail}
-                    placeholder="email@exemple.com"
-                    placeholderTextColor={colors.slate400}
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800"
-                  />
-                  <Pressable
-                    onPress={handleInvite}
-                    disabled={inviting}
-                    className="bg-indigo-600 rounded-xl px-3.5 items-center justify-center"
-                  >
-                    {inviting ? (
-                      <ActivityIndicator size="small" color="white" />
-                    ) : (
-                      <Text className="text-white text-xs font-bold">Inviter</Text>
-                    )}
-                  </Pressable>
-                </View>
+                <FriendPicker
+                  excludeIds={members.map((m) => m.user_id)}
+                  onSelect={handleInviteFriend}
+                  placeholder="Rechercher un ami à inviter..."
+                />
               )}
 
               {members.length === 0 ? (

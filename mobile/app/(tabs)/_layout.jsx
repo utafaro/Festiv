@@ -14,8 +14,12 @@ export default function TabsLayout() {
           <NativeTabs.Trigger.Label>Lineup</NativeTabs.Trigger.Label>
           <NativeTabs.Trigger.Icon sf="bolt.fill" md="bolt" />
         </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="amis">
+          <NativeTabs.Trigger.Label>Amis</NativeTabs.Trigger.Label>
+          <NativeTabs.Trigger.Icon sf="person.badge.plus" md="person_add" />
+        </NativeTabs.Trigger>
         <NativeTabs.Trigger name="suivi">
-          <NativeTabs.Trigger.Label>Amis & Live</NativeTabs.Trigger.Label>
+          <NativeTabs.Trigger.Label>Live</NativeTabs.Trigger.Label>
           <NativeTabs.Trigger.Icon sf="person.2.fill" md="group" />
         </NativeTabs.Trigger>
       </NativeTabs>

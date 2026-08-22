@@ -6,6 +6,7 @@ from core.security import get_current_user
 from models.festival import FestivalCreateRequest, FestivalResponse
 from routes.lineup import cascade_delete_lineup
 from routes.suivi import cascade_delete_suivi
+from routes.friend import get_friend_ids
 from typing import List
 import os
 import shutil
@@ -88,22 +89,38 @@ async def create_festival(festival_data: str = Form(...), file: UploadFile = Fil
     return await format_festival({**festival, "_id": result.inserted_id}, db)
 
 @router.get("", response_model=List[FestivalResponse])
-async def list_festivals(db=Depends(get_db)):
-    cursor = db["festivals"].find()
+async def list_festivals(db=Depends(get_db), current_user=Depends(get_current_user)):
+    user_id = str(current_user["_id"])
+    friend_ids = await get_friend_ids(user_id, db)
+    cursor = db["festivals"].find({
+        "$or": [
+            {"owner_id": {"$in": [None, user_id, *friend_ids]}},
+            {"owner_id": {"$exists": False}},
+        ]
+    })
     festivals = await cursor.to_list(length=50)
-    
+
     # Résolution asynchrone itérative pour chaque festival
     return [await format_festival(f, db) for f in festivals]
 
+def ensure_festival_visible(festival, user_id: str, friend_ids: List[str]):
+    owner_id = festival.get("owner_id")
+    if owner_id and owner_id != user_id and owner_id not in friend_ids:
+        raise HTTPException(403, "Accès refusé à ce festival")
+
 @router.get("/{festival_id}", response_model=FestivalResponse)
-async def get_festival(festival_id: str, db=Depends(get_db)):
+async def get_festival(festival_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
     if not ObjectId.is_valid(festival_id):
         raise HTTPException(400, "Format d'ID de festival invalide")
-        
+
     festival_doc = await db["festivals"].find_one({"_id": ObjectId(festival_id)})
     if not festival_doc:
         raise HTTPException(404, "Festival introuvable")
-        
+
+    user_id = str(current_user["_id"])
+    friend_ids = await get_friend_ids(user_id, db)
+    ensure_festival_visible(festival_doc, user_id, friend_ids)
+
     return await format_festival(festival_doc, db)
 
 
