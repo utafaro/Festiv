@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import MapView, { Marker } from "react-native-maps";
@@ -73,11 +73,8 @@ export default function GeoPingModal() {
         </View>
       ) : (
         <View style={{ flex: 1 }}>
-          <Text className="text-xs text-slate-500 text-center py-3 px-6">
-            Ajustez le repère si besoin, puis validez pour partager votre position avec le suivi.
-          </Text>
           <MapView
-            style={StyleSheet.absoluteFillObject}
+            style={{ flex: 1 }}
             initialRegion={{
               latitude: coords.latitude,
               longitude: coords.longitude,
@@ -92,7 +89,12 @@ export default function GeoPingModal() {
               pinColor={colors.fuchsia600}
             />
           </MapView>
-          <View className="p-4 bg-white" style={{ gap: 8 }}>
+          <View className="absolute top-0 left-0 right-0 bg-white/90 py-3 px-6">
+            <Text className="text-xs text-slate-500 text-center">
+              Ajustez le repère si besoin, puis validez pour partager votre position avec le suivi.
+            </Text>
+          </View>
+          <View className="absolute left-0 right-0 bottom-0 p-4 bg-white" style={{ gap: 8 }}>
             {error ? <Text className="text-rose-600 text-xs font-semibold">{error}</Text> : null}
             <PrimaryButton
               label="Partager ma position"

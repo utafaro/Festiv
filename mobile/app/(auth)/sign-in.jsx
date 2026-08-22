@@ -45,6 +45,10 @@ export default function SignInScreen() {
       setError("Merci de remplir tous les champs.");
       return;
     }
+    if (mode === "signup" && password.length < 8) {
+      setError("Le mot de passe doit contenir au moins 8 caractères.");
+      return;
+    }
     setLoading(true);
     try {
       if (mode === "login") {
@@ -53,7 +57,13 @@ export default function SignInScreen() {
         await register(email, password, fullName);
       }
     } catch (err) {
-      setError(err.response?.data?.detail || "Une erreur est survenue.");
+      const detail = err.response?.data?.detail;
+      const message = Array.isArray(detail)
+        ? detail.map((d) => d.msg).filter(Boolean).join("\n")
+        : typeof detail === "string"
+          ? detail
+          : "";
+      setError(message || "Une erreur est survenue.");
     } finally {
       setLoading(false);
     }

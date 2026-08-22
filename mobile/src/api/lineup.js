@@ -1,4 +1,6 @@
 import api from "./client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { WS_BASE_URL } from "./config";
 
 // Lineups
 export const listMyLineups = () => api.get("/lineups/mine").then((r) => r.data);
@@ -51,3 +53,8 @@ export const updateSet = (lineupId, setId, data) =>
 
 export const deleteSet = (lineupId, setId) =>
   api.delete(`/lineups/${lineupId}/sets/${setId}`);
+
+export async function lineupWsUrl(lineupId) {
+  const token = await AsyncStorage.getItem("access_token");
+  return `${WS_BASE_URL}/lineups/${lineupId}/ws?token=${encodeURIComponent(token || "")}`;
+}

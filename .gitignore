@@ -7,3 +7,4 @@
 */node_module
 /Payload*
 *.DS_Store
+/data

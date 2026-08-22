@@ -7,10 +7,13 @@ import {
   ScrollView,
   ActivityIndicator,
   Platform,
+  Modal,
+  StyleSheet,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { DateTimePicker as NativeTimePicker } from "@expo/ui/community/datetime-picker";
 import { X, Plus, Calendar, Clock, Layers, Music } from "lucide-react-native";
 import { listStages, listSets, createStage, createSet, updateSet } from "../../src/api/lineup";
 import { listArtists, createArtist } from "../../src/api/artist";
@@ -207,16 +210,46 @@ export default function SetFormModal() {
                 <Clock size={15} color={colors.slate400} />
                 <Text className="text-sm font-semibold text-slate-800">{toHM(startTime)}</Text>
               </Pressable>
-              {showStartPicker && (
-                <DateTimePicker
-                  value={startTime}
-                  mode="time"
-                  display="default"
-                  onChange={(e, d) => {
-                    setShowStartPicker(false);
-                    if (d) setStartTime(d);
-                  }}
-                />
+              {Platform.OS === "ios" ? (
+                <Modal
+                  visible={showStartPicker}
+                  transparent
+                  animationType="slide"
+                  onRequestClose={() => setShowStartPicker(false)}
+                >
+                  <View style={{ flex: 1, justifyContent: "flex-end" }}>
+                    <Pressable
+                      style={StyleSheet.absoluteFillObject}
+                      onPress={() => setShowStartPicker(false)}
+                    />
+                    <View className="bg-white rounded-t-3xl">
+                      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
+                        <Text className="text-sm font-bold text-slate-900">Heure début</Text>
+                        <Pressable onPress={() => setShowStartPicker(false)}>
+                          <Text className="text-indigo-600 text-sm font-bold">Terminé</Text>
+                        </Pressable>
+                      </View>
+                      <NativeTimePicker
+                        mode="time"
+                        display="spinner"
+                        value={startTime}
+                        onValueChange={(_, d) => setStartTime(d)}
+                      />
+                    </View>
+                  </View>
+                </Modal>
+              ) : (
+                showStartPicker && (
+                  <NativeTimePicker
+                    mode="time"
+                    value={startTime}
+                    onValueChange={(_, d) => {
+                      setShowStartPicker(false);
+                      setStartTime(d);
+                    }}
+                    onDismiss={() => setShowStartPicker(false)}
+                  />
+                )
               )}
             </View>
             <View style={{ flex: 1, gap: 6 }}>
@@ -229,16 +262,46 @@ export default function SetFormModal() {
                 <Clock size={15} color={colors.slate400} />
                 <Text className="text-sm font-semibold text-slate-800">{toHM(endTime)}</Text>
               </Pressable>
-              {showEndPicker && (
-                <DateTimePicker
-                  value={endTime}
-                  mode="time"
-                  display="default"
-                  onChange={(e, d) => {
-                    setShowEndPicker(false);
-                    if (d) setEndTime(d);
-                  }}
-                />
+              {Platform.OS === "ios" ? (
+                <Modal
+                  visible={showEndPicker}
+                  transparent
+                  animationType="slide"
+                  onRequestClose={() => setShowEndPicker(false)}
+                >
+                  <View style={{ flex: 1, justifyContent: "flex-end" }}>
+                    <Pressable
+                      style={StyleSheet.absoluteFillObject}
+                      onPress={() => setShowEndPicker(false)}
+                    />
+                    <View className="bg-white rounded-t-3xl">
+                      <View className="flex-row items-center justify-between px-4 py-3 border-b border-slate-100">
+                        <Text className="text-sm font-bold text-slate-900">Heure fin</Text>
+                        <Pressable onPress={() => setShowEndPicker(false)}>
+                          <Text className="text-indigo-600 text-sm font-bold">Terminé</Text>
+                        </Pressable>
+                      </View>
+                      <NativeTimePicker
+                        mode="time"
+                        display="spinner"
+                        value={endTime}
+                        onValueChange={(_, d) => setEndTime(d)}
+                      />
+                    </View>
+                  </View>
+                </Modal>
+              ) : (
+                showEndPicker && (
+                  <NativeTimePicker
+                    mode="time"
+                    value={endTime}
+                    onValueChange={(_, d) => {
+                      setShowEndPicker(false);
+                      setEndTime(d);
+                    }}
+                    onDismiss={() => setShowEndPicker(false)}
+                  />
+                )
               )}
             </View>
           </View>

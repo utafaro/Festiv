@@ -14,6 +14,7 @@ import {
   Navigation,
   Users,
   Compass,
+  Map as MapIcon,
 } from "lucide-react";
 import { useAuth } from "../context/useAuth";
 import { getFestivalById } from "../api/festival";
@@ -33,6 +34,7 @@ import { useSuiviSocket } from "../hooks/useSuiviSocket";
 import PositionFormModal from "../modal/PositionFormModal";
 import GeoPingModal from "../modal/GeoPingModal";
 import CompassModal from "../modal/CompassModal";
+import FollowMapModal from "../modal/FollowMapModal";
 import ToastNotifications from "../components/ToastNotifications";
 
 function formatGeoAgo(iso) {
@@ -66,6 +68,7 @@ export default function SuiviDetailPage() {
   const [showPositionModal, setShowPositionModal] = useState(false);
   const [showGeoModal, setShowGeoModal] = useState(false);
   const [compassTargetId, setCompassTargetId] = useState(null);
+  const [mapTargetId, setMapTargetId] = useState(null);
   const [quickTarget, setQuickTarget] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -320,6 +323,7 @@ export default function SuiviDetailPage() {
   const myGeo = positions.find((p) => p.user_id === user.id && p.lat != null);
   const geoPeople = positions.filter((p) => p.lat != null);
   const compassTarget = compassTargetId ? positions.find((p) => p.user_id === compassTargetId) : null;
+  const mapTarget = mapTargetId ? positions.find((p) => p.user_id === mapTargetId) : null;
   const otherPositions = positions.filter((p) => p.user_id !== user.id);
 
   const setById = Object.fromEntries(sets.map((s) => [s.id, s]));
@@ -592,12 +596,20 @@ export default function SuiviDetailPage() {
                           </div>
                         </div>
                         {p.user_id !== user.id && (
-                          <button
-                            onClick={() => setCompassTargetId(p.user_id)}
-                            className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[10px] font-bold transition"
-                          >
-                            <Compass className="w-3.5 h-3.5" /> Boussole
-                          </button>
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <button
+                              onClick={() => setMapTargetId(p.user_id)}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-lg text-[10px] font-bold transition"
+                            >
+                              <MapIcon className="w-3.5 h-3.5" /> Carte
+                            </button>
+                            <button
+                              onClick={() => setCompassTargetId(p.user_id)}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[10px] font-bold transition"
+                            >
+                              <Compass className="w-3.5 h-3.5" /> Boussole
+                            </button>
+                          </div>
                         )}
                       </div>
                     ))}
@@ -734,6 +746,10 @@ export default function SuiviDetailPage() {
 
       {compassTargetId && (
         <CompassModal target={compassTarget} onClose={() => setCompassTargetId(null)} />
+      )}
+
+      {mapTargetId && (
+        <FollowMapModal target={mapTarget} onClose={() => setMapTargetId(null)} />
       )}
 
       <ToastNotifications toasts={toasts} />

@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   Share,
+  RefreshControl,
 } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
@@ -25,6 +26,7 @@ import {
 import ToastStack from "../../../src/components/ToastStack";
 import { useToasts } from "../../../src/hooks/useToasts";
 import { useAuth } from "../../../src/context/AuthContext";
+import { useLineupSocket } from "../../../src/hooks/useLineupSocket";
 import {
   getLineup,
   listMembers,
@@ -35,6 +37,7 @@ import {
   listStages,
   listSets,
   deleteSet,
+  deleteLineup,
 } from "../../../src/api/lineup";
 import { getFestivalById } from "../../../src/api/festival";
 import { colors } from "../../../src/theme/colors";
@@ -59,15 +62,17 @@ export default function LineupDetailScreen() {
   const [inviting, setInviting] = useState(false);
   const [responding, setResponding] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [deletingLineup, setDeletingLineup] = useState(false);
 
   const isOwner = lineup && user && lineup.owner_id === user.id;
   const canEdit =
     isOwner ||
     (user && members.some((m) => m.user_id === user.id && m.status === "accepted"));
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (isRefresh = false) => {
     if (!id || !user) return;
-    setLoading(true);
+    if (!isRefresh) setLoading(true);
     try {
       const lineupData = await getLineup(id);
       setLineup(lineupData);
@@ -108,7 +113,8 @@ export default function LineupDetailScreen() {
         triggerToast("Impossible de charger cette lineup.", "error");
       }
     } finally {
-      setLoading(false);
+      if (isRefresh) setRefreshing(false);
+      else setLoading(false);
     }
   }, [id, user, triggerToast]);
 
@@ -117,6 +123,18 @@ export default function LineupDetailScreen() {
       load();
     }, [load]),
   );
+
+  const refreshSets = useCallback(async () => {
+    if (!id) return;
+    try {
+      const setsData = await listSets(id);
+      setSets(setsData);
+    } catch {
+      // rattrapé au prochain focus ou tick socket
+    }
+  }, [id]);
+
+  useLineupSocket(!pendingInvite ? id : null, refreshSets);
 
   const handleAccept = async () => {
     setResponding(true);
@@ -185,6 +203,30 @@ export default function LineupDetailScreen() {
         },
       },
     ]);
+  };
+
+  const handleDeleteLineup = () => {
+    Alert.alert(
+      "Supprimer cette lineup ?",
+      "Les sets, scènes et membres associés seront définitivement supprimés.",
+      [
+        { text: "Annuler", style: "cancel" },
+        {
+          text: "Supprimer",
+          style: "destructive",
+          onPress: async () => {
+            setDeletingLineup(true);
+            try {
+              await deleteLineup(id);
+              router.replace("/(tabs)/lineups");
+            } catch {
+              triggerToast("Erreur lors de la suppression.", "error");
+              setDeletingLineup(false);
+            }
+          },
+        },
+      ],
+    );
   };
 
   const handleDeleteSet = (setId) => {
@@ -274,18 +316,40 @@ export default function LineupDetailScreen() {
         }}
       />
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true);
+              load(true);
+            }}
+          />
+        }
+      >
         <GlassCard className="p-5">
-          <View className="flex-row mb-2" style={{ gap: 6 }}>
-            {isOwner ? (
-              <View className="flex-row items-center bg-amber-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
-                <Crown size={11} color={colors.amber700} />
-                <Text className="text-[9px] font-bold text-amber-700 uppercase">Propriétaire</Text>
-              </View>
-            ) : (
-              <View className="bg-slate-100 rounded-lg px-2 py-1">
-                <Text className="text-[9px] font-bold text-slate-600 uppercase">Partagé avec vous</Text>
-              </View>
+          <View className="flex-row items-center justify-between mb-2">
+            <View className="flex-row" style={{ gap: 6 }}>
+              {isOwner ? (
+                <View className="flex-row items-center bg-amber-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
+                  <Crown size={11} color={colors.amber700} />
+                  <Text className="text-[9px] font-bold text-amber-700 uppercase">Propriétaire</Text>
+                </View>
+              ) : (
+                <View className="bg-slate-100 rounded-lg px-2 py-1">
+                  <Text className="text-[9px] font-bold text-slate-600 uppercase">Partagé avec vous</Text>
+                </View>
+              )}
+            </View>
+            {isOwner && (
+              <Pressable onPress={handleDeleteLineup} disabled={deletingLineup} className="p-1">
+                {deletingLineup ? (
+                  <ActivityIndicator size="small" color={colors.rose600} />
+                ) : (
+                  <Trash2 size={16} color={colors.rose600} />
+                )}
+              </Pressable>
             )}
           </View>
           <Text className="text-xl font-extrabold text-slate-900">

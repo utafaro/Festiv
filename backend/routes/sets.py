@@ -6,7 +6,7 @@ from core.security import get_current_user
 from models.festival import SetCreateRequest, SetUpdateRequest, SetResponse
 from routes.artist import format_artist
 from routes.stage import format_stage
-from routes.lineup import get_lineup_or_404, ensure_access
+from routes.lineup import get_lineup_or_404, ensure_access, manager
 from typing import List
 
 router = APIRouter(prefix="/lineups/{lineup_id}/sets", tags=["sets"])
@@ -66,7 +66,9 @@ async def create_set(lineup_id: str, data: SetCreateRequest, db=Depends(get_db),
         "created_at": datetime.now(timezone.utc)
     }
     result = await db["sets"].insert_one(new_set)
-    return await format_set({**new_set, "_id": result.inserted_id}, db)
+    created = await format_set({**new_set, "_id": result.inserted_id}, db)
+    await manager.broadcast(lineup_id, {"type": "updated"})
+    return created
 
 @router.get("", response_model=List[SetResponse])
 async def list_sets(lineup_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
@@ -96,7 +98,9 @@ async def update_set(lineup_id: str, set_id: str, data: SetUpdateRequest, db=Dep
         await db["sets"].update_one({"_id": ObjectId(set_id)}, {"$set": update_data})
 
     updated = await db["sets"].find_one({"_id": ObjectId(set_id)})
-    return await format_set(updated, db)
+    result_data = await format_set(updated, db)
+    await manager.broadcast(lineup_id, {"type": "updated"})
+    return result_data
 
 @router.delete("/{set_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_set(lineup_id: str, set_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
@@ -107,3 +111,4 @@ async def delete_set(lineup_id: str, set_id: str, db=Depends(get_db), current_us
     result = await db["sets"].delete_one({"_id": ObjectId(set_id), "lineup_id": lineup_id})
     if result.deleted_count == 0:
         raise HTTPException(404, "Set introuvable")
+    await manager.broadcast(lineup_id, {"type": "updated"})

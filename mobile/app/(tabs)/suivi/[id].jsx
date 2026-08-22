@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput, Alert, RefreshControl } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter, useFocusEffect } from "expo-router";
 import {
@@ -14,6 +14,7 @@ import {
   Users,
   MapPin,
   Compass,
+  Map as MapIcon,
 } from "lucide-react-native";
 import ToastStack from "../../../src/components/ToastStack";
 import { useToasts } from "../../../src/hooks/useToasts";
@@ -30,6 +31,7 @@ import {
   listPositions,
   clearPosition,
   clearGeo,
+  deleteSuivi,
 } from "../../../src/api/suivi";
 import { getFestivalById } from "../../../src/api/festival";
 import { colors } from "../../../src/theme/colors";
@@ -63,12 +65,14 @@ export default function SuiviDetailScreen() {
   const [responding, setResponding] = useState(false);
   const [clearingPosition, setClearingPosition] = useState(false);
   const [clearingGeo, setClearingGeo] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [deletingSuivi, setDeletingSuivi] = useState(false);
 
   const isOwner = suivi && user && suivi.owner_id === user.id;
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (isRefresh = false) => {
     if (!id || !user) return;
-    setLoading(true);
+    if (!isRefresh) setLoading(true);
     try {
       const suiviData = await getSuivi(id);
       setSuivi(suiviData);
@@ -109,7 +113,8 @@ export default function SuiviDetailScreen() {
         triggerToast("Impossible de charger ce suivi.", "error");
       }
     } finally {
-      setLoading(false);
+      if (isRefresh) setRefreshing(false);
+      else setLoading(false);
     }
   }, [id, user, triggerToast]);
 
@@ -197,6 +202,30 @@ export default function SuiviDetailScreen() {
         },
       },
     ]);
+  };
+
+  const handleDeleteSuivi = () => {
+    Alert.alert(
+      "Supprimer ce suivi ?",
+      "Les positions et membres associés seront définitivement supprimés.",
+      [
+        { text: "Annuler", style: "cancel" },
+        {
+          text: "Supprimer",
+          style: "destructive",
+          onPress: async () => {
+            setDeletingSuivi(true);
+            try {
+              await deleteSuivi(id);
+              router.replace("/(tabs)/suivi");
+            } catch {
+              triggerToast("Erreur lors de la suppression.", "error");
+              setDeletingSuivi(false);
+            }
+          },
+        },
+      ],
+    );
   };
 
   const handleClearPosition = async () => {
@@ -302,22 +331,44 @@ export default function SuiviDetailScreen() {
         }}
       />
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 100, gap: 16 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true);
+              load(true);
+            }}
+          />
+        }
+      >
         <GlassCard className="p-5">
-          <View className="flex-row mb-2" style={{ gap: 6 }}>
-            <View className="flex-row items-center bg-fuchsia-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
-              <Radar size={11} color={colors.fuchsia600} />
-              <Text className="text-[9px] font-bold text-fuchsia-600 uppercase">Suivi live</Text>
+          <View className="flex-row items-center justify-between mb-2">
+            <View className="flex-row" style={{ gap: 6 }}>
+              <View className="flex-row items-center bg-fuchsia-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
+                <Radar size={11} color={colors.fuchsia600} />
+                <Text className="text-[9px] font-bold text-fuchsia-600 uppercase">Suivi live</Text>
+              </View>
+              {isOwner ? (
+                <View className="flex-row items-center bg-amber-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
+                  <Crown size={11} color={colors.amber700} />
+                  <Text className="text-[9px] font-bold text-amber-700 uppercase">Propriétaire</Text>
+                </View>
+              ) : (
+                <View className="bg-slate-100 rounded-lg px-2 py-1">
+                  <Text className="text-[9px] font-bold text-slate-600 uppercase">Partagé avec vous</Text>
+                </View>
+              )}
             </View>
-            {isOwner ? (
-              <View className="flex-row items-center bg-amber-50 rounded-lg px-2 py-1" style={{ gap: 4 }}>
-                <Crown size={11} color={colors.amber700} />
-                <Text className="text-[9px] font-bold text-amber-700 uppercase">Propriétaire</Text>
-              </View>
-            ) : (
-              <View className="bg-slate-100 rounded-lg px-2 py-1">
-                <Text className="text-[9px] font-bold text-slate-600 uppercase">Partagé avec vous</Text>
-              </View>
+            {isOwner && (
+              <Pressable onPress={handleDeleteSuivi} disabled={deletingSuivi} className="p-1">
+                {deletingSuivi ? (
+                  <ActivityIndicator size="small" color={colors.rose600} />
+                ) : (
+                  <Trash2 size={16} color={colors.rose600} />
+                )}
+              </Pressable>
             )}
           </View>
           <Text className="text-xl font-extrabold text-slate-900">
@@ -526,19 +577,34 @@ export default function SuiviDetailScreen() {
                       </View>
                     </View>
                     {p.user_id !== user.id && (
-                      <Pressable
-                        onPress={() =>
-                          router.push({
-                            pathname: "/modals/compass",
-                            params: { suiviId: id, targetUserId: p.user_id, targetName: p.full_name },
-                          })
-                        }
-                        className="flex-row items-center bg-indigo-600 rounded-lg px-2.5 py-1.5"
-                        style={{ gap: 4 }}
-                      >
-                        <Compass size={13} color="white" />
-                        <Text className="text-white text-[10px] font-bold">Boussole</Text>
-                      </Pressable>
+                      <View className="flex-row" style={{ gap: 6 }}>
+                        <Pressable
+                          onPress={() =>
+                            router.push({
+                              pathname: "/modals/follow-map",
+                              params: { suiviId: id, targetUserId: p.user_id, targetName: p.full_name },
+                            })
+                          }
+                          className="flex-row items-center bg-fuchsia-600 rounded-lg px-2.5 py-1.5"
+                          style={{ gap: 4 }}
+                        >
+                          <MapIcon size={13} color="white" />
+                          <Text className="text-white text-[10px] font-bold">Carte</Text>
+                        </Pressable>
+                        <Pressable
+                          onPress={() =>
+                            router.push({
+                              pathname: "/modals/compass",
+                              params: { suiviId: id, targetUserId: p.user_id, targetName: p.full_name },
+                            })
+                          }
+                          className="flex-row items-center bg-indigo-600 rounded-lg px-2.5 py-1.5"
+                          style={{ gap: 4 }}
+                        >
+                          <Compass size={13} color="white" />
+                          <Text className="text-white text-[10px] font-bold">Boussole</Text>
+                        </Pressable>
+                      </View>
                     )}
                   </View>
                 ))

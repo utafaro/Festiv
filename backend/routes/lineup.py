@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, WebSocket, WebSocketDisconnect, Query
 from datetime import datetime, timezone
 from bson import ObjectId
+from jose import jwt, JWTError
 from core.database import get_db
 from core.security import get_current_user
+from core.config import settings
 from models.festival import (
     LineupCreateRequest,
     LineupUpdateRequest,
@@ -14,6 +16,31 @@ from models.festival import (
 from typing import List
 
 router = APIRouter(prefix="/lineups", tags=["lineups"])
+
+
+class ConnectionManager:
+    def __init__(self):
+        self.active: dict[str, list[WebSocket]] = {}
+
+    async def connect(self, lineup_id: str, ws: WebSocket):
+        await ws.accept()
+        self.active.setdefault(lineup_id, []).append(ws)
+
+    def disconnect(self, lineup_id: str, ws: WebSocket):
+        if lineup_id in self.active:
+            self.active[lineup_id] = [w for w in self.active[lineup_id] if w is not ws]
+            if not self.active[lineup_id]:
+                del self.active[lineup_id]
+
+    async def broadcast(self, lineup_id: str, message: dict):
+        for ws in list(self.active.get(lineup_id, [])):
+            try:
+                await ws.send_json(message)
+            except Exception:
+                pass
+
+
+manager = ConnectionManager()
 
 def format_lineup(lineup) -> LineupResponse:
     return LineupResponse(
@@ -218,3 +245,49 @@ async def invite_member(lineup_id: str, data: LineupInviteRequest, db=Depends(ge
     }
     result = await db["lineup_members"].insert_one(member)
     return format_member({**member, "_id": result.inserted_id}, invited_user, lineup)
+
+
+async def _authenticate_ws(token: str, lineup_id: str, db):
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        if payload.get("type") != "access":
+            return None
+        user_id = payload.get("sub")
+        if not user_id:
+            return None
+    except JWTError:
+        return None
+
+    user = await db["users"].find_one({"_id": ObjectId(user_id)})
+    if not user:
+        return None
+
+    if not ObjectId.is_valid(lineup_id):
+        return None
+    lineup = await db["lineups"].find_one({"_id": ObjectId(lineup_id)})
+    if not lineup:
+        return None
+
+    if lineup["owner_id"] != user_id:
+        member = await db["lineup_members"].find_one({
+            "lineup_id": lineup_id, "user_id": user_id, "status": LineupMemberStatus.accepted
+        })
+        if not member:
+            return None
+
+    return user
+
+@router.websocket("/{lineup_id}/ws")
+async def lineup_ws(websocket: WebSocket, lineup_id: str, token: str = Query(...)):
+    db = get_db()
+    user = await _authenticate_ws(token, lineup_id, db)
+    if not user:
+        await websocket.close(code=4003)
+        return
+
+    await manager.connect(lineup_id, websocket)
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        manager.disconnect(lineup_id, websocket)
