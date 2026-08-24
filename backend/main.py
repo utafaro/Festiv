@@ -15,6 +15,11 @@ from routes.tracking import router as tracking_router
 from routes.friend import router as friend_router
 from starlette.middleware.sessions import SessionMiddleware
 from core.config import settings
+from core.database import get_db
+
+origins = [
+    "http://localhost:5173",
+]
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -61,6 +66,18 @@ app.include_router(friend_router)
 
 from fastapi.staticfiles import StaticFiles
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/api/health")
+async def health():
+    db = get_db()
+    await db.command("ping")
+
+    return {
+        "status": "ok",
+        "database": "connected",
+    }
+
 
 @app.get("/")
 async def root():

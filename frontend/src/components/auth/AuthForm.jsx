@@ -3,10 +3,15 @@ import PasswordField from "./PasswordField";
 import { useAuth } from "../../context/useAuth";
 import { useNavigate } from "react-router";
 
-export default function AuthForm({ activeTab, setActiveTab, showToast, setShowResetModal}) {
+export default function AuthForm({
+  activeTab,
+  setActiveTab,
+  showToast,
+  setShowResetModal,
+}) {
   const { login, register } = useAuth();
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -16,42 +21,41 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
   });
   const handleInputChange = (e) => {
     const { id, value, type, checked } = e.target;
-   
+
     setFormData((prev) => ({
       ...prev,
-      [id]: type === 'checkbox' ? checked : value
+      [id]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleFormSubmit = async (e) => {
-      e.preventDefault();
-      setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-      try {
-        if (activeTab === "login") {
-          await login(formData.email, formData.password, formData.rememberMe);
-          showToast(`Ravi de vous revoir ! Authentification réussie.`, "success");
-          navigate("/");
-
-        } else {
-          if (!formData.terms) {
-            showToast("Veuillez accepter les conditions d'utilisation.", "error");
-            return;
-          }
-          await register(formData.email, formData.password, formData.fullname);
-          showToast(`Compte créé avec succès ! Bienvenue, ${formData.fullname}.`, "success");
-          navigate("/");
+    try {
+      if (activeTab === "login") {
+        await login(formData.email, formData.password, formData.rememberMe);
+        showToast(`Ravi de vous revoir ! Authentification réussie.`, "success");
+        navigate("/");
+      } else {
+        if (!formData.terms) {
+          showToast("Veuillez accepter les conditions d'utilisation.", "error");
+          return;
         }
-
-      } catch (err) {
-        const detail = err.response?.data?.detail;
-        showToast(detail || "Une erreur est survenue.", "error");
-
-      } finally {
-        setLoading(false);
+        await register(formData.email, formData.password, formData.fullname);
+        showToast(
+          `Compte créé avec succès ! Bienvenue, ${formData.fullname}.`,
+          "success",
+        );
+        navigate("/");
       }
+    } catch (err) {
+      const detail = err.response?.data?.detail;
+      showToast(detail || "Une erreur est survenue.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
-
 
   return (
     <form onSubmit={handleFormSubmit} className="space-y-5">
@@ -87,7 +91,7 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
               value={formData.fullname}
               onChange={handleInputChange}
               placeholder="Arthur Pendragon"
-              className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400 dark:placeholder-slate-500 text-sm"
+              className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 dark:text-white dark:placeholder-slate-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400"
             />
           </div>
         </div>
@@ -124,18 +128,16 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
             value={formData.email}
             onChange={handleInputChange}
             placeholder="vous@exemple.com"
-            className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400 dark:placeholder-slate-500 text-sm"
+            className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 dark:text-white dark:placeholder-slate-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 placeholder-slate-400"
           />
         </div>
       </div>
 
-      <PasswordField 
+      <PasswordField
         setShowResetModal={setShowResetModal}
         activeTab={activeTab}
         handleInputChange={handleInputChange}
         formData={formData}
-
-
       />
 
       {}
@@ -150,7 +152,7 @@ export default function AuthForm({ activeTab, setActiveTab, showToast, setShowRe
               onChange={handleInputChange}
               className="w-4 h-4 rounded-md border-slate-300 text-indigo-600 focus:ring-indigo-500/50 bg-slate-50 dark:bg-slate-900 transition-all"
             />
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+            <span className="text-xs font-medium text-slate-500 dark:text-white group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
               Se souvenir de moi
             </span>
           </label>
