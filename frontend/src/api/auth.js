@@ -1,7 +1,8 @@
 import axios from "axios"
+import { API_BASE_URL } from "./config"
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000",
+  baseURL: API_BASE_URL,
 })
 
 // Injecte le token Bearer sur chaque requête
@@ -24,7 +25,7 @@ api.interceptors.response.use(
       if (refresh) {
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_API_URL}/auth/refresh`,
+            `${API_BASE_URL}/auth/refresh`,
             null,
             { params: { token: refresh } }
           )

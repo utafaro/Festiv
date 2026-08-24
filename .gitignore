@@ -1,7 +1,10 @@
 */.env
-*/.env.*
-
-*/__pycache__/
-*/*.py[cod]
-*/.venv/
-*/venv/
+**/venv
+*/.claude/
+.codegraph/
+**/__pycache__/
+*/*.log
+*/node_module
+/Payload*
+*.DS_Store
+/data

@@ -1,4 +1,15 @@
 import axios from "axios";
+import { API_BASE_URL } from "./config";
+
+export const listFestivals = async () => {
+  const activeToken =
+    localStorage.getItem("access_token") ||
+    sessionStorage.getItem("access_token");
+  const response = await axios.get(`${API_BASE_URL}/festivals`, {
+    headers: activeToken ? { Authorization: `Bearer ${activeToken}` } : {},
+  });
+  return response.data;
+};
 
 export const createFestival = async (festivalTextData, imageFile) => {
   const formData = new FormData();
@@ -15,7 +26,7 @@ export const createFestival = async (festivalTextData, imageFile) => {
     sessionStorage.getItem("access_token");
   try {
     const response = await axios.post(
-      "http://localhost:8000/festivals",
+      `${API_BASE_URL}/festivals`,
       formData,
       {
         headers: {
@@ -52,7 +63,7 @@ export const updateFestival = async (
 
   try {
     const response = await axios.put(
-      `http://localhost:8000/festivals/${festivalId}`,
+      `${API_BASE_URL}/festivals/${festivalId}`,
       formData,
       {
         headers: {
@@ -71,13 +82,32 @@ export const updateFestival = async (
   }
 };
 
+export const deleteFestival = async (festivalId) => {
+  const activeToken =
+    localStorage.getItem("access_token") ||
+    sessionStorage.getItem("access_token");
+  try {
+    await axios.delete(`${API_BASE_URL}/festivals/${festivalId}`, {
+      headers: {
+        Authorization: activeToken ? `Bearer ${activeToken}` : undefined,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la suppression du festival :",
+      error.response?.data || error.message,
+    );
+    throw error;
+  }
+};
+
 export const getFestivalById = async (festivalId) => {
   const activeToken =
     localStorage.getItem("access_token") ||
     sessionStorage.getItem("access_token");
   try {
     const response = await axios.get(
-      `http://localhost:8000/festivals/${festivalId}`,
+      `${API_BASE_URL}/festivals/${festivalId}`,
       {
         headers: {
           Authorization: activeToken ? `Bearer ${activeToken}` : undefined,

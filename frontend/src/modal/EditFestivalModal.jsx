@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { updateFestival } from "../api/festival";
+import { API_BASE_URL } from "../api/config";
 
 export default function EditFestivalModal({
   festival, // Le festival complet à modifier passé par le parent
@@ -37,7 +38,7 @@ export default function EditFestivalModal({
     akkros_url: festival.akkros_url || "",
     merch_url: festival.merch_url || "",
     cover_image_url: festival.cover_image_url
-      ? `http://localhost:8000${festival.cover_image_url}`
+      ? `${API_BASE_URL}${festival.cover_image_url}`
       : "",
   });
 
@@ -226,7 +227,7 @@ export default function EditFestivalModal({
 
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-none">
+      <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl w-full max-w-lg shadow-2xl relative max-h-[90dvh] overflow-y-auto scrollbar-none">
         <button
           onClick={() => setShowEditModal(false)}
           className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer"
@@ -293,7 +294,7 @@ export default function EditFestivalModal({
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className="text-slate-500 font-bold">
                 Date de Début * :

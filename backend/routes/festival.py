@@ -1,9 +1,12 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Form, UploadFile, File
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
 from models.festival import FestivalCreateRequest, FestivalResponse
+from routes.lineup import cascade_delete_lineup
+from routes.suivi import cascade_delete_suivi
+from routes.friend import get_friend_ids
 from typing import List
 import os
 import shutil
@@ -11,10 +14,18 @@ from pydantic import ValidationError
 
 router = APIRouter(prefix="/festivals", tags=["festivals"])
 
+def ensure_festival_owner(festival, user_id: str):
+    # owner_id est absent sur les festivals créés avant l'introduction de ce champ :
+    # on les laisse gérables par n'importe qui plutôt que de les rendre orphelins.
+    owner_id = festival.get("owner_id")
+    if owner_id and owner_id != user_id:
+        raise HTTPException(403, "Seul le créateur du festival peut effectuer cette action")
+
 async def format_festival(festival_doc, db) -> FestivalResponse:
 
     return FestivalResponse(
         id=str(festival_doc["_id"]),
+        owner_id=festival_doc.get("owner_id"),
         name=festival_doc["name"],
         location=festival_doc["location"],
         genres=festival_doc.get("genres", []),
@@ -43,7 +54,7 @@ async def create_festival(festival_data: str = Form(...), file: UploadFile = Fil
 
     if file:
         # Générer un nom unique pour éviter les collisions (ex: timestamp + nom_origine)
-        filename = f"{int(datetime.utcnow().timestamp())}_{file.filename.replace(' ', '_')}"
+        filename = f"{int(datetime.now(timezone.utc).timestamp())}_{file.filename.replace(' ', '_')}"
         file_path = os.path.join(UPLOAD_DIR, filename)
         
         # Sauvegarde physique du fichier
@@ -59,6 +70,7 @@ async def create_festival(festival_data: str = Form(...), file: UploadFile = Fil
 
     # Conversion des URLs optionnelles Pydantic en str pour le stockage propre en DB
     festival = {
+        "owner_id": str(current_user["_id"]),
         "name": data.name,
         "location": data.location,
         "genres": data.genres,
@@ -70,29 +82,45 @@ async def create_festival(festival_data: str = Form(...), file: UploadFile = Fil
         "akkros_url": str(data.akkros_url) if data.akkros_url else None,
         "merch_url": str(data.merch_url) if data.merch_url else None,
         "cover_image_url": cover_image_url,
-        "created_at": datetime.utcnow()
+        "created_at": datetime.now(timezone.utc)
     }
     
     result = await db["festivals"].insert_one(festival)
     return await format_festival({**festival, "_id": result.inserted_id}, db)
 
 @router.get("", response_model=List[FestivalResponse])
-async def list_festivals(db=Depends(get_db)):
-    cursor = db["festivals"].find()
+async def list_festivals(db=Depends(get_db), current_user=Depends(get_current_user)):
+    user_id = str(current_user["_id"])
+    friend_ids = await get_friend_ids(user_id, db)
+    cursor = db["festivals"].find({
+        "$or": [
+            {"owner_id": {"$in": [None, user_id, *friend_ids]}},
+            {"owner_id": {"$exists": False}},
+        ]
+    })
     festivals = await cursor.to_list(length=50)
-    
+
     # Résolution asynchrone itérative pour chaque festival
     return [await format_festival(f, db) for f in festivals]
 
+def ensure_festival_visible(festival, user_id: str, friend_ids: List[str]):
+    owner_id = festival.get("owner_id")
+    if owner_id and owner_id != user_id and owner_id not in friend_ids:
+        raise HTTPException(403, "Accès refusé à ce festival")
+
 @router.get("/{festival_id}", response_model=FestivalResponse)
-async def get_festival(festival_id: str, db=Depends(get_db)):
+async def get_festival(festival_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
     if not ObjectId.is_valid(festival_id):
         raise HTTPException(400, "Format d'ID de festival invalide")
-        
+
     festival_doc = await db["festivals"].find_one({"_id": ObjectId(festival_id)})
     if not festival_doc:
         raise HTTPException(404, "Festival introuvable")
-        
+
+    user_id = str(current_user["_id"])
+    friend_ids = await get_friend_ids(user_id, db)
+    ensure_festival_visible(festival_doc, user_id, friend_ids)
+
     return await format_festival(festival_doc, db)
 
 
@@ -101,11 +129,12 @@ async def get_festival(festival_id: str, db=Depends(get_db)):
 async def update_festival(festival_id: str, festival_data: str = Form(...), file: UploadFile = File(None), db=Depends(get_db), current_user=Depends(get_current_user)):
     if not ObjectId.is_valid(festival_id):
         raise HTTPException(400, "Format d'ID de festival invalide")
-    
+
     existing_festival = await db["festivals"].find_one({"_id": ObjectId(festival_id)})
     if not existing_festival:
         raise HTTPException(404, "Festival introuvable")
-    
+    ensure_festival_owner(existing_festival, str(current_user["_id"]))
+
     try:
         data = FestivalCreateRequest.model_validate_json(festival_data)
     except ValidationError as e:
@@ -115,7 +144,7 @@ async def update_festival(festival_id: str, festival_data: str = Form(...), file
 
     if file:
         # Générer un nom unique pour éviter les collisions (ex: timestamp + nom_origine)
-        filename = f"{int(datetime.utcnow().timestamp())}_{file.filename.replace(' ', '_')}"
+        filename = f"{int(datetime.now(timezone.utc).timestamp())}_{file.filename.replace(' ', '_')}"
         file_path = os.path.join(UPLOAD_DIR, filename)
         
         # Sauvegarde physique du fichier
@@ -145,3 +174,30 @@ async def update_festival(festival_id: str, festival_data: str = Form(...), file
     
     await db["festivals"].update_one({"_id": ObjectId(festival_id)}, {"$set": updated_festival})
     return await format_festival({**existing_festival, **updated_festival}, db)
+
+
+@router.delete("/{festival_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_festival(festival_id: str, db=Depends(get_db), current_user=Depends(get_current_user)):
+    if not ObjectId.is_valid(festival_id):
+        raise HTTPException(400, "Format d'ID de festival invalide")
+
+    festival = await db["festivals"].find_one({"_id": ObjectId(festival_id)})
+    if not festival:
+        raise HTTPException(404, "Festival introuvable")
+    ensure_festival_owner(festival, str(current_user["_id"]))
+
+    suivi_ids = [str(doc["_id"]) async for doc in db["suivis"].find({"festival_id": festival_id}, {"_id": 1})]
+    for suivi_id in suivi_ids:
+        await cascade_delete_suivi(suivi_id, db)
+
+    lineup_ids = [str(doc["_id"]) async for doc in db["lineups"].find({"festival_id": festival_id}, {"_id": 1})]
+    for lineup_id in lineup_ids:
+        await cascade_delete_lineup(lineup_id, db)
+
+    cover_image_url = festival.get("cover_image_url")
+    if cover_image_url and cover_image_url.startswith("/static/"):
+        file_path = cover_image_url.lstrip("/")
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+
+    await db["festivals"].delete_one({"_id": ObjectId(festival_id)})

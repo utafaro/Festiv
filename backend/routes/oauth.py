@@ -5,7 +5,7 @@ from starlette.config import Config
 from core.config import settings
 from core.database import get_db
 from core.security import create_access_token, create_refresh_token
-from datetime import datetime
+from datetime import datetime, timezone
 import httpx
 
 router = APIRouter(prefix="/auth", tags=["oauth"])
@@ -78,7 +78,7 @@ async def _upsert_oauth_user(db, email, full_name, provider, provider_id, avatar
     if not user:
         doc = {"email": email, "full_name": full_name, "provider": provider,
                "provider_id": provider_id, "avatar": avatar,
-               "is_active": True, "created_at": datetime.utcnow()}
+               "is_active": True, "created_at": datetime.now(timezone.utc)}
         result = await db["users"].insert_one(doc)
         user = {**doc, "_id": result.inserted_id}
 

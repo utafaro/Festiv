@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import get_current_user
@@ -26,7 +26,7 @@ async def create_artist(data: ArtistCreateRequest, db=Depends(get_db), current_u
         "name": data.name,
         "nationality": data.nationality,
         "genres": data.genres,
-        "created_at": datetime.utcnow()
+        "created_at": datetime.now(timezone.utc)
     }
     result = await db["artists"].insert_one(artist)
     return format_artist({**artist, "_id": result.inserted_id})

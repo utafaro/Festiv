@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi.security import HTTPAuthorizationCredentials
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from core.database import get_db
 from core.security import (hash_password, verify_password,
@@ -31,7 +31,7 @@ async def signup(data: SignUpRequest, db=Depends(get_db)):
         "hashed_password": hash_password(data.password),
         "provider": "local",
         "is_active": True,
-        "created_at": datetime.utcnow()
+        "created_at": datetime.now(timezone.utc)
     }
     result = await db["users"].insert_one(user)
     user_id = str(result.inserted_id)
@@ -95,6 +95,6 @@ async def logout(
 
     await db["token_blacklist"].insert_one({
         "token": token,
-        "expires_at": datetime.utcfromtimestamp(exp)
+        "expires_at": datetime.fromtimestamp(exp, tz=timezone.utc)
     })
     return {"message": "Déconnecté avec succès"}

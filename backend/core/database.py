@@ -8,16 +8,9 @@ client: AsyncIOMotorClient | None = None
 
 async def connect_db() -> None:
     global client
-
-    client = AsyncIOMotorClient(settings.MONGODB_URI)
-
-    await client.admin.command("ping")
-
-    db = client[settings.DB_NAME]
-
-    await db["token_blacklist"].create_index(
-        "expires_at",
-        expireAfterSeconds=0,
+    client = AsyncIOMotorClient(settings.MONGODB_URI, tz_aware=True)
+    await client[settings.DB_NAME]["token_blacklist"].create_index(
+        "expires_at", expireAfterSeconds=0
     )
 
     print("Connected to MongoDB")

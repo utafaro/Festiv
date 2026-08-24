@@ -2,19 +2,20 @@ import { LogOut, User } from "lucide-react";
 import { useNavigate } from "react-router"; // 👈 Changé de Navigate à useNavigate
 import { useAuth } from "../context/useAuth";
 
-export default function UserDropdown({ user, getInitials }) {
+export default function UserDropdown({ user, getInitials, onNavigate }) {
   const { logout } = useAuth();
   const navigate = useNavigate(); // 👈 Initialisation du hook de navigation
 
   async function handleLogout() {
     await logout();
+    onNavigate?.();
     navigate("/auth", { replace: true }); // 👈 Utilisation correcte ici
   }
 
   return (
     <>
       {/* Dropdown Menu Box - Premium Glassmorphism styling */}
-      <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-xl shadow-slate-200/60 p-2.5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+      <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-xl shadow-slate-200/60 p-2.5 z-50">
         {/* Account details header section */}
         <div className="p-3 border-b border-slate-100 mb-2">
           <div className="flex items-center space-x-3">
